@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwaggerAutomocker_Example' do
+  pod 'SwaggerAutomocker', :path => '../'
+
+  target 'SwaggerAutomocker_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
