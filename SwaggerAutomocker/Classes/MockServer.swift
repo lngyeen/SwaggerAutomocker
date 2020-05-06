@@ -40,7 +40,6 @@ public class MockServer {
             let endpointsHasPathParam = swagger.endPoints.filter({$0.hasPathParameters})
             let endpointsHasNoPathParam = swagger.endPoints.filter({!$0.hasPathParameters})
             for endpoint in endpointsHasNoPathParam {
-                print(endpoint.path + " // " + endpoint.route)
                 server.route(endpoint.method, endpoint.path) { (request) -> HTTPResponse? in
                     var headers: [HTTPHeaderName: String] = [:]
                     if let contentType = endpoint.contentType {
@@ -54,7 +53,6 @@ public class MockServer {
             }
 
             for endpoint in endpointsHasPathParam {
-                print(endpoint.path + " // " + endpoint.route)
                 server.route(endpoint.method, regex: "^" + endpoint.route + "$") { (request) -> HTTPResponse? in
                     var headers: [HTTPHeaderName: String] = [:]
                     if let contentType = endpoint.contentType {

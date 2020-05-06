@@ -503,7 +503,7 @@ extension Tests {
     fileprivate func readJSONFromFile(fileName: String) -> [String: Any]? {
         var json: Any?
         
-        if let fileUrl = Bundle(for: type(of: self)).url(forResource: fileName, withExtension: "json") {
+        if let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
                 // Getting data from JSON file using the file URL
                 let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)

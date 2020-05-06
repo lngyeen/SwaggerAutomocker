@@ -15,7 +15,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		78794F885A5B68982425C934 /* Pods_SwaggerAutomocker_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEBA7AC6CD238DF21B4195A /* Pods_SwaggerAutomocker_Tests.framework */; };
 		8364ECFAFD3F013E48E379E8 /* Pods_SwaggerAutomocker_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45A42CB5CA46DD758FF3B3C /* Pods_SwaggerAutomocker_Example.framework */; };
-		F83F6DA02462C4AB006342C1 /* swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F83F6D9F2462C4AB006342C1 /* swagger.json */; };
+		F83F6DC42462CDC8006342C1 /* swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F83F6D9F2462C4AB006342C1 /* swagger.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +111,7 @@
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				F83F6D9F2462C4AB006342C1 /* swagger.json */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for SwaggerAutomocker";
@@ -129,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
-				F83F6D9F2462C4AB006342C1 /* swagger.json */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -251,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83F6DC42462CDC8006342C1 /* swagger.json in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -261,7 +262,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F83F6DA02462C4AB006342C1 /* swagger.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
