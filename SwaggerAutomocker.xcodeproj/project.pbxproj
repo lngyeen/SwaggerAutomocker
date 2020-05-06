@@ -10,6 +10,14 @@
 		F83F6D252462A04A006342C1 /* SwaggerAutomocker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83F6D1B2462A04A006342C1 /* SwaggerAutomocker.framework */; };
 		F83F6D2A2462A04A006342C1 /* SwaggerAutomockerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D292462A04A006342C1 /* SwaggerAutomockerTests.swift */; };
 		F83F6D2C2462A04A006342C1 /* SwaggerAutomocker.h in Headers */ = {isa = PBXBuildFile; fileRef = F83F6D1E2462A04A006342C1 /* SwaggerAutomocker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F83F6D3C2462A4B1006342C1 /* SwaggerParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D362462A4B1006342C1 /* SwaggerParam.swift */; };
+		F83F6D3D2462A4B1006342C1 /* SwaggerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D372462A4B1006342C1 /* SwaggerResponse.swift */; };
+		F83F6D3E2462A4B1006342C1 /* SwaggerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D382462A4B1006342C1 /* SwaggerHeader.swift */; };
+		F83F6D3F2462A4B1006342C1 /* SwaggerSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D392462A4B1006342C1 /* SwaggerSchema.swift */; };
+		F83F6D402462A4B1006342C1 /* SwaggerJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D3A2462A4B1006342C1 /* SwaggerJson.swift */; };
+		F83F6D412462A4B1006342C1 /* SwaggerEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D3B2462A4B1006342C1 /* SwaggerEndPoint.swift */; };
+		F83F6D442462A4BD006342C1 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D422462A4BD006342C1 /* EndPoint.swift */; };
+		F83F6D452462A4BD006342C1 /* MockServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83F6D432462A4BD006342C1 /* MockServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +37,14 @@
 		F83F6D242462A04A006342C1 /* SwaggerAutomockerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwaggerAutomockerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F83F6D292462A04A006342C1 /* SwaggerAutomockerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwaggerAutomockerTests.swift; sourceTree = "<group>"; };
 		F83F6D2B2462A04A006342C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F83F6D362462A4B1006342C1 /* SwaggerParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaggerParam.swift; sourceTree = "<group>"; };
+		F83F6D372462A4B1006342C1 /* SwaggerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaggerResponse.swift; sourceTree = "<group>"; };
+		F83F6D382462A4B1006342C1 /* SwaggerHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaggerHeader.swift; sourceTree = "<group>"; };
+		F83F6D392462A4B1006342C1 /* SwaggerSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaggerSchema.swift; sourceTree = "<group>"; };
+		F83F6D3A2462A4B1006342C1 /* SwaggerJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaggerJson.swift; sourceTree = "<group>"; };
+		F83F6D3B2462A4B1006342C1 /* SwaggerEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwaggerEndPoint.swift; sourceTree = "<group>"; };
+		F83F6D422462A4BD006342C1 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		F83F6D432462A4BD006342C1 /* MockServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +87,9 @@
 		F83F6D1D2462A04A006342C1 /* SwaggerAutomocker */ = {
 			isa = PBXGroup;
 			children = (
+				F83F6D422462A4BD006342C1 /* EndPoint.swift */,
+				F83F6D432462A4BD006342C1 /* MockServer.swift */,
+				F83F6D352462A480006342C1 /* Swagger */,
 				F83F6D1E2462A04A006342C1 /* SwaggerAutomocker.h */,
 				F83F6D1F2462A04A006342C1 /* Info.plist */,
 			);
@@ -84,6 +103,19 @@
 				F83F6D2B2462A04A006342C1 /* Info.plist */,
 			);
 			path = SwaggerAutomockerTests;
+			sourceTree = "<group>";
+		};
+		F83F6D352462A480006342C1 /* Swagger */ = {
+			isa = PBXGroup;
+			children = (
+				F83F6D3B2462A4B1006342C1 /* SwaggerEndPoint.swift */,
+				F83F6D382462A4B1006342C1 /* SwaggerHeader.swift */,
+				F83F6D3A2462A4B1006342C1 /* SwaggerJson.swift */,
+				F83F6D362462A4B1006342C1 /* SwaggerParam.swift */,
+				F83F6D372462A4B1006342C1 /* SwaggerResponse.swift */,
+				F83F6D392462A4B1006342C1 /* SwaggerSchema.swift */,
+			);
+			path = Swagger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +180,7 @@
 				TargetAttributes = {
 					F83F6D1A2462A04A006342C1 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					F83F6D232462A04A006342C1 = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -195,6 +228,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83F6D3C2462A4B1006342C1 /* SwaggerParam.swift in Sources */,
+				F83F6D3E2462A4B1006342C1 /* SwaggerHeader.swift in Sources */,
+				F83F6D402462A4B1006342C1 /* SwaggerJson.swift in Sources */,
+				F83F6D3D2462A4B1006342C1 /* SwaggerResponse.swift in Sources */,
+				F83F6D452462A4BD006342C1 /* MockServer.swift in Sources */,
+				F83F6D3F2462A4B1006342C1 /* SwaggerSchema.swift in Sources */,
+				F83F6D442462A4BD006342C1 /* EndPoint.swift in Sources */,
+				F83F6D412462A4B1006342C1 /* SwaggerEndPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +381,7 @@
 		F83F6D302462A04A006342C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -355,6 +397,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = luunguyen.SwaggerAutomocker;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -363,6 +406,7 @@
 		F83F6D312462A04A006342C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -386,6 +430,7 @@
 		F83F6D332462A04A006342C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwaggerAutomockerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -403,6 +448,7 @@
 		F83F6D342462A04A006342C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwaggerAutomockerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
