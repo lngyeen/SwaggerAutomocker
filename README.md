@@ -31,7 +31,7 @@ var mockServer: MockServer?
 
 let swaggerJson = readJSONFromFile(fileName: "swagger")
 if let swaggerJson = swaggerJson {
-    mockServer = MockServer(port: 8080, swaggerJson: json)
+    mockServer = MockServer(port: 8080, swaggerJson: swaggerJson)
     mockServer?.start()
 }
 ```
