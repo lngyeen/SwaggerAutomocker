@@ -31,7 +31,7 @@ class Tests: XCTestCase {
             "name": "string"])
         var jsonResponse: [String: Any]?
         
-        call(request: request, description: "Loading Inventory") { (data, response, _) in
+        call(request: request, description: "Loading Inventory") { (data, _, _) in
             if let jsonData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any]
@@ -52,7 +52,7 @@ class Tests: XCTestCase {
         let request = post(path: "/store/order", body: [:])
         var responseCode: Int?
         
-        call(request: request, description: "Posting Order") { (data, response, _) in
+        call(request: request, description: "Posting Order") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -74,7 +74,7 @@ class Tests: XCTestCase {
             "complete": "true"])
         var jsonResponse: [String: Any]?
         
-        call(request: request, description: "Loading Order") { (data, response, _) in
+        call(request: request, description: "Loading Order") { (data, _, _) in
             if let jsonData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [String: Any]
@@ -95,7 +95,7 @@ class Tests: XCTestCase {
         let request = delete(path: "/store/order/123")
         var responseCode: Int?
         
-        call(request: request, description: "Deleting Order") { (data, response, _) in
+        call(request: request, description: "Deleting Order") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -139,7 +139,7 @@ class Tests: XCTestCase {
             "status": "string"])
         var jsonResponse: [String: Any]?
         
-        call(request: request, description: "Loading Pet") { (data, response, _) in
+        call(request: request, description: "Loading Pet") { (data, _, _) in
             if let jsonData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [String: Any]
@@ -193,7 +193,7 @@ class Tests: XCTestCase {
         
         var jsonResponse: [[String: Any]]?
         
-        call(request: request, description: "Finding Pet") { (data, response, _) in
+        call(request: request, description: "Finding Pet") { (data, _, _) in
             if let jsonData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [[String: Any]]
@@ -214,7 +214,7 @@ class Tests: XCTestCase {
         let request = post(path: "/pet")
         var responseCode: Int?
         
-        call(request: request, description: "Posting Pet") { (data, response, _) in
+        call(request: request, description: "Posting Pet") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -229,7 +229,7 @@ class Tests: XCTestCase {
         let request = post(path: "/pet/123")
         var responseCode: Int?
         
-        call(request: request, description: "Posting Pet 2") { (data, response, _) in
+        call(request: request, description: "Posting Pet 2") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -244,7 +244,7 @@ class Tests: XCTestCase {
         let request = put(path: "/pet")
         var responseCode: Int?
         
-        call(request: request, description: "Updating Pet") { (data, response, _) in
+        call(request: request, description: "Updating Pet") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -259,7 +259,7 @@ class Tests: XCTestCase {
         let request = delete(path: "/pet/123")
         var responseCode: Int?
         
-        call(request: request, description: "Deleting Pet") { (data, response, _) in
+        call(request: request, description: "Deleting Pet") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -274,7 +274,7 @@ class Tests: XCTestCase {
         let request = post(path: "/pet/123/uploadImage")
         var responseCode: Int?
         
-        call(request: request, description: "Uploading Pet Picture") { (data, response, _) in
+        call(request: request, description: "Uploading Pet Picture") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -291,7 +291,7 @@ class Tests: XCTestCase {
         let request = post(path: "/user")
         var responseCode: Int?
         
-        call(request: request, description: "Posting User") { (data, response, _) in
+        call(request: request, description: "Posting User") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -305,7 +305,7 @@ class Tests: XCTestCase {
         let request = post(path: "/user/createWithArray", body: [])
         var responseCode: Int?
         
-        call(request: request, description: "Creating User With Array") { (data, response, _) in
+        call(request: request, description: "Creating User With Array") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -319,7 +319,7 @@ class Tests: XCTestCase {
         let request = post(path: "/user/createWithList", body: [])
         var responseCode: Int?
         
-        call(request: request, description: "Creating User With List") { (data, response, _) in
+        call(request: request, description: "Creating User With List") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -334,7 +334,7 @@ class Tests: XCTestCase {
         let request = get(path: "/user/login")
         var stringResponse: String?
         
-        call(request: request, description: "Login") { (data, response, _) in
+        call(request: request, description: "Login") { (data, _, _) in
             if let jsonData = data {
                 stringResponse = String(data: jsonData, encoding: .utf8)
             }
@@ -350,7 +350,7 @@ class Tests: XCTestCase {
         let request = get(path: "/user/logout")
         var stringResponse: String?
         
-        call(request: request, description: "Logout") { (data, response, _) in
+        call(request: request, description: "Logout") { (data, _, _) in
             if let jsonData = data {
                 stringResponse = String(data: jsonData, encoding: .utf8)
             }
@@ -375,7 +375,7 @@ class Tests: XCTestCase {
             "userStatus": "123"])
         var jsonResponse: [String: Any]?
         
-        call(request: request, description: "Loading User") { (data, response, _) in
+        call(request: request, description: "Loading User") { (data, _, _) in
             if let jsonData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [String: Any]
@@ -395,7 +395,7 @@ class Tests: XCTestCase {
     func testPutUser() throws {
         let request = put(path: "/user/john")
         var responseCode: Int?
-        call(request: request, description: "Updating User") { (data, response, _) in
+        call(request: request, description: "Updating User") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }
@@ -409,7 +409,7 @@ class Tests: XCTestCase {
     func testDeleteUser() throws {
         let request = delete(path: "/user/john")
         var responseCode: Int?
-        call(request: request, description: "Deleting User") { (data, response, _) in
+        call(request: request, description: "Deleting User") { (_, response, _) in
             if let httpResponse = response as? HTTPURLResponse {
                 responseCode = httpResponse.statusCode
             }

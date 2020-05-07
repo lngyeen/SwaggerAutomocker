@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.name             = 'SwaggerAutomocker'
   s.version          = '0.1.0'
   s.summary          = 'An automatic mock server to speed up your initial development using swagger json.'
-  s.swift_version    = '4.2'
+  s.swift_version    = '5.0'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -40,5 +40,5 @@ SwaggerAutomocker will read a swagger json file and launch a mock server which w
   # s.frameworks = 'UIKit', 'MapKit'
 
   s.dependency 'Telegraph', '~> 0.28.0'
-  s.dependency 'ObjectMapper', '~> 3.4.0'
+  s.dependency 'ObjectMapper', '~> 3.5.0'
 end
