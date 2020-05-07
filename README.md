@@ -20,6 +20,32 @@ it, simply add the following line to your Podfile:
 pod 'SwaggerAutomocker'
 ```
 
+## Usage
+
+Configure App Transport Security:
+Because the purpose of this mock server is only for mock environment, our server only supports http protocol, so to be able to run the mock server you need to disable App Transport Security by adding the key App Transport Security Settings to your Info.plist, with a sub-key where Allow Arbitrary Loads is set to Yes.
+
+Start mock server:
+```swift
+var mockServer: MockServer?
+
+let swaggerJson = readJSONFromFile(fileName: "swagger")
+if let swaggerJson = swaggerJson {
+    mockServer = MockServer(port: 8080, swaggerJson: json)
+    mockServer?.start()
+}
+```
+
+Stop mock server when app is send to the background mode:
+```swift
+mockServer?.stop()
+```
+
+Restart mock server when the app returns to the active mode:
+```swift
+mockServer?.start()
+```
+
 ## Author
 
 lngyeen, lngyeen@openwt.com
