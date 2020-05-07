@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+SwaggerAutomocker will read a swagger json file and launch a mock server which will respond to all calls to the endpoints defined in swagger json.
                        DESC
 
   s.homepage         = 'https://github.com/lngyeen/SwaggerAutomocker'
