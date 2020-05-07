@@ -39,6 +39,6 @@ SwaggerAutomocker will read a swagger json file and launch a mock server which w
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
 
-  s.dependency 'Telegraph', '~> 0.28.0'
-  s.dependency 'ObjectMapper', '~> 3.5.2'
+  s.dependency 'Telegraph', '~> 0.28'
+  s.dependency 'ObjectMapper', '~> 3.0'
 end
