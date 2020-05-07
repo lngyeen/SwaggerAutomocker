@@ -35,7 +35,8 @@ class SwaggerSchema: Mappable {
     
     private func valueFromJson(_ json: [String: Any], definitions: Definitions) -> Any {
         if let type = json["type"] as? String {
-            if type == "object" {
+            switch type {
+            case "object":
                 var result: [String: Any] = [:]
                 let properties: [String: Any] = json["properties"] as? [String : Any] ?? [:]
                 for (key, val) in properties {
@@ -46,15 +47,15 @@ class SwaggerSchema: Mappable {
                     }
                 }
                 return result
-            } else if type == "string" {
+            case "string":
                 return json["example"] as? String ?? "string"
-            } else if type == "integer" {
+            case "integer":
                 return json["example"] as? String ?? "123"
-            } else if type == "number" {
+            case "number":
                 return json["example"] as? String ?? "12.34"
-            } else if type == "boolean" {
+            case "boolean":
                 return json["example"] as? String ?? "true"
-            } else if type == "array" {
+            case "array":
                 var array: [Any] = []
                 if let items = json["items"] as? [String: Any] {
                     let val = valueFromJson(items, definitions: definitions)
@@ -63,7 +64,7 @@ class SwaggerSchema: Mappable {
                     array.append(val)
                 }
                 return array
-            } else {
+            default:
                 return ""
             }
         } else if let reference = json["$ref"] as? String {

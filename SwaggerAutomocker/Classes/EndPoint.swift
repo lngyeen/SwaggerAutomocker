@@ -39,9 +39,7 @@ class EndPoint {
                 switch pathParam.type {
                 case "integer":
                     route = route.removingRegexMatches(pattern: "\\{\(pathParam.name ?? ".*")\\}", replaceWith: "[-+]?[0-9]+")
-                case "double":
-                    route = route.removingRegexMatches(pattern: "\\{\(pathParam.name ?? ".*")\\}", replaceWith: "[-+]?[0-9]+(?:[.,][0-9]+)*")
-                case "float":
+                case "number":
                     route = route.removingRegexMatches(pattern: "\\{\(pathParam.name ?? ".*")\\}", replaceWith: "[-+]?[0-9]+(?:[.,][0-9]+)*")
                 default:
                     route = route.removingRegexMatches(pattern: "\\{\(pathParam.name ?? ".*")\\}", replaceWith: "[^/]*")
