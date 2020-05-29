@@ -24,13 +24,22 @@ class SwaggerResponse: Mappable {
     }
     
     func responseDataFromDefinations(_ definitions: Definitions) -> String? {
-        if let value = schema?.valueFromDefinations(definitions) {
-            if let string = value as? String {
-                return string
-            } else if let jsonData = try? JSONSerialization.data(
-                withJSONObject: value,
-                options: [.prettyPrinted, .fragmentsAllowed]) {
-                return String(data: jsonData, encoding: .ascii)
+        if let responseData = schema?.valueFromDefinations(definitions) {
+            switch responseData {
+            case .string(let content):
+                return content
+            case .object(let content):
+                if let jsonData = try? JSONSerialization.data(
+                    withJSONObject: content,
+                    options: [.prettyPrinted, .fragmentsAllowed]) {
+                    return String(data: jsonData, encoding: .ascii)
+                }
+            case .array(let content):
+                if let jsonData = try? JSONSerialization.data(
+                    withJSONObject: content,
+                    options: [.prettyPrinted, .fragmentsAllowed]) {
+                    return String(data: jsonData, encoding: .ascii)
+                }
             }
             return nil
         } else {
@@ -62,3 +71,4 @@ private class HeadersTransformer: TransformType {
         return nil
     }
 }
+

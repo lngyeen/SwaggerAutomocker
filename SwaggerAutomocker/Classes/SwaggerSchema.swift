@@ -9,6 +9,12 @@
 import Foundation
 import ObjectMapper
 
+enum SwaggerSchemaResponse {
+    case string(content: String)
+    case object(content: [String: Any])
+    case array(content: [Any])
+}
+
 class SwaggerSchema: Mappable {
     var type: String?
     var ref: String?
@@ -21,19 +27,19 @@ class SwaggerSchema: Mappable {
         items <- map["items"]
     }
     
-    func valueFromDefinations(_ definitions: Definitions) -> Any {
+    func valueFromDefinations(_ definitions: Definitions) -> SwaggerSchemaResponse {
         return valueFromJson(self.toJSON(), definitions: definitions)
     }
     
-    private func valueFromRef(_ ref: String, definitions: Definitions) -> Any {
-        if let jsonObject = definitions[ref] {
+    private func valueFromReference(_ referenceName: String, definitions: Definitions) -> SwaggerSchemaResponse {
+        if let jsonObject = definitions[referenceName] {
             return valueFromJson(jsonObject, definitions: definitions)
         } else {
-            return ""
+            return .string(content: "")
         }
     }
     
-    private func valueFromJson(_ json: [String: Any], definitions: Definitions) -> Any {
+    private func valueFromJson(_ json: [String: Any], definitions: Definitions) -> SwaggerSchemaResponse {
         if let type = json["type"] as? String {
             switch type {
             case "object":
@@ -41,37 +47,48 @@ class SwaggerSchema: Mappable {
                 let properties: [String: Any] = json["properties"] as? [String : Any] ?? [:]
                 for (key, val) in properties {
                     if let jsonObject = val as? [String: Any] {
-                        result[key] = valueFromJson(jsonObject, definitions: definitions)
+                        switch valueFromJson(jsonObject, definitions: definitions) {
+                        case .string(let content):
+                            result[key] = content
+                        case .object(let content):
+                            result[key] = content
+                        case .array(let content):
+                            result[key] = content
+                        }
                     } else {
                         result[key] = val
                     }
                 }
-                return result
+                return .object(content: result)
             case "string":
-                return json["example"] as? String ?? "string"
+                return .string(content: json["example"] as? String ?? "string")
             case "integer":
-                return json["example"] as? String ?? "123"
+                return .string(content: json["example"] as? String ?? "123")
             case "number":
-                return json["example"] as? String ?? "12.34"
+                return .string(content: json["example"] as? String ?? "12.34")
             case "boolean":
-                return json["example"] as? String ?? "true"
+                return .string(content: json["example"] as? String ?? "true")
             case "array":
                 var array: [Any] = []
                 if let items = json["items"] as? [String: Any] {
-                    let val = valueFromJson(items, definitions: definitions)
-                    array.append(val)
-                    array.append(val)
-                    array.append(val)
+                    switch valueFromJson(items, definitions: definitions) {
+                    case .string(let content):
+                        array.append(contentsOf: [content, content, content])
+                    case .array(let content):
+                        array.append(contentsOf: [content, content, content])
+                    case .object(let content):
+                        array.append(contentsOf: [content, content, content])
+                    }
                 }
-                return array
+                return .array(content: array)
             default:
-                return ""
+                return .string(content: "")
             }
         } else if let reference = json["$ref"] as? String {
-            let jsonReferenceName = reference.replacingOccurrences(of: "#/definitions/", with: "")
-            return valueFromRef(jsonReferenceName, definitions: definitions)
+            let referenceName = reference.components(separatedBy: "/").last ?? ""
+            return valueFromReference(referenceName, definitions: definitions)
         } else {
-            return ""
+            return .string(content: "")
         }
     }
 }
