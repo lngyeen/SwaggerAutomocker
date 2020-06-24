@@ -21,6 +21,9 @@ class SwaggerResponse: Mappable {
     func mapping(map: Map) {
         headers <- (map["headers"], HeadersTransformer())
         schema <- map["schema"]
+        if schema == nil {
+            schema <- map["content.application/json.schema"]
+        }
     }
     
     func responseDataFromDefinations(_ definitions: Definitions) -> String? {

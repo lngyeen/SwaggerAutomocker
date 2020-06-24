@@ -19,12 +19,14 @@ class SwaggerSchema: Mappable {
     var type: String?
     var ref: String?
     var items: [String: Any]?
+    var properties: [String: Any]?
     
     required init?(map: Map) {}
     func mapping(map: Map) {
         type <- map["type"]
         ref <- map["$ref"]
         items <- map["items"]
+        properties <- map["properties"]
     }
     
     func valueFromDefinations(_ definitions: Definitions) -> SwaggerSchemaResponse {
@@ -42,7 +44,28 @@ class SwaggerSchema: Mappable {
     private func valueFromJson(_ json: [String: Any], definitions: Definitions) -> SwaggerSchemaResponse {
         if let type = json["type"] as? String {
             switch type {
-            case "object":
+            case "string":
+                return .string(content: json["example"] as? String ?? "string")
+            case "integer":
+                return .string(content: json["example"] as? String ?? "123")
+            case "number":
+                return .string(content: json["example"] as? String ?? "12.34")
+            case "boolean":
+                return .string(content: json["example"] as? String ?? "true")
+            case "array":
+                var array: [Any] = []
+                if let items = json["items"] as? [String: Any] {
+                    switch valueFromJson(items, definitions: definitions) {
+                    case .string(let content):
+                        array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
+                    case .array(let content):
+                        array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
+                    case .object(let content):
+                        array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
+                    }
+                }
+                return .array(content: array)
+            default:    // Default is object
                 var result: [String: Any] = [:]
                 let properties: [String: Any] = json["properties"] as? [String : Any] ?? [:]
                 for (key, val) in properties {
@@ -60,29 +83,6 @@ class SwaggerSchema: Mappable {
                     }
                 }
                 return .object(content: result)
-            case "string":
-                return .string(content: json["example"] as? String ?? "string")
-            case "integer":
-                return .string(content: json["example"] as? String ?? "123")
-            case "number":
-                return .string(content: json["example"] as? String ?? "12.34")
-            case "boolean":
-                return .string(content: json["example"] as? String ?? "true")
-            case "array":
-                var array: [Any] = []
-                if let items = json["items"] as? [String: Any] {
-                    switch valueFromJson(items, definitions: definitions) {
-                    case .string(let content):
-                        array.append(contentsOf: [content, content, content])
-                    case .array(let content):
-                        array.append(contentsOf: [content, content, content])
-                    case .object(let content):
-                        array.append(contentsOf: [content, content, content])
-                    }
-                }
-                return .array(content: array)
-            default:
-                return .string(content: "")
             }
         } else if let reference = json["$ref"] as? String {
             let referenceName = reference.components(separatedBy: "/").last ?? ""
