@@ -30,13 +30,8 @@ class EndPoint {
          params: [SwaggerParam]?,
          responseData: String?) {
         self.method = HTTPMethod(stringLiteral: method)
-        
         self.path = path
-        while self.path.last == "/" {
-            self.path = String(self.path.dropLast())
-        }
-        
-        var route = self.path
+        var route = path
         if let params = params {
             let pathParams = params.filter({$0.position == "path"})
             for pathParam in pathParams {
