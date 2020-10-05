@@ -87,6 +87,13 @@ extension String: LocalizedError {
     public var errorDescription: String? { return self }
 }
 
+extension Array {
+    subscript (safe index: Int?) -> Element? {
+        guard let index = index else { return nil }
+        return Int(index) < count ? self[Int(index)] : nil
+    }
+}
+
 // MARK: - ServerDelegate implementation
 extension MockServer: ServerDelegate {
     // Raised when the server gets disconnected.

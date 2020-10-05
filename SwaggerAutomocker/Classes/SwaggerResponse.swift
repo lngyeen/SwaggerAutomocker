@@ -21,7 +21,7 @@ class SwaggerResponse: Mappable {
     func mapping(map: Map) {
         headers <- (map["headers"], HeadersTransformer())
         schema <- map["schema"]
-        if schema == nil {
+        if case .none = schema {
             schema <- map["content.application/json.schema"]
         }
     }

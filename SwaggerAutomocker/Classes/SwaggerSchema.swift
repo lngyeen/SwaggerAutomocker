@@ -48,11 +48,11 @@ class SwaggerSchema: Mappable {
         if let type = json["type"] as? String {
             switch type {
             case "string":
-                return .string(content: json["example"] as? String ?? "string")
+                return .string(content: ((json["example"] as? String) ?? (json["enum"] as? [Any])?[safe: 0] as? String) ?? "string")
             case "integer":
-                return .integer(content: json["example"] as? Int ?? 123)
+                return .integer(content: ((json["example"] as? Int) ?? (json["enum"] as? [Any])?[safe: 0] as? Int) ?? 123)
             case "number":
-                return .number(content: json["example"] as? Double ?? 12.34)
+                return .number(content: ((json["example"] as? Double) ?? (json["enum"] as? [Any])?[safe: 0] as? Double) ?? 12.34)
             case "boolean":
                 return .boolean(content: json["example"] as? Bool ?? true)
             case "array":

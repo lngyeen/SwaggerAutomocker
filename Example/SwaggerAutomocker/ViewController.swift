@@ -36,7 +36,7 @@ class ViewController: UIViewController {
                 // Getting data from JSON file using the file URL
                 let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
                 do {
-                    json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                 } catch {
                     print("Error!! Unable to parse \(fileName).json")
                 }
