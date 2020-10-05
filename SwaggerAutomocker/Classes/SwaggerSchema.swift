@@ -11,6 +11,9 @@ import ObjectMapper
 
 enum SwaggerSchemaResponse {
     case string(content: String)
+    case integer(content: Int)
+    case number(content: Double)
+    case boolean(content: Bool)
     case object(content: [String: Any])
     case array(content: [Any])
 }
@@ -47,21 +50,28 @@ class SwaggerSchema: Mappable {
             case "string":
                 return .string(content: json["example"] as? String ?? "string")
             case "integer":
-                return .string(content: json["example"] as? String ?? "123")
+                return .integer(content: json["example"] as? Int ?? 123)
             case "number":
-                return .string(content: json["example"] as? String ?? "12.34")
+                return .number(content: json["example"] as? Double ?? 12.34)
             case "boolean":
-                return .string(content: json["example"] as? String ?? "true")
+                return .boolean(content: json["example"] as? Bool ?? true)
             case "array":
                 var array: [Any] = []
                 if let items = json["items"] as? [String: Any] {
                     switch valueFromJson(items, definitions: definitions) {
                     case .string(let content):
                         array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
+                    case .integer(content: let content):
+                        array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
+                    case .number(content: let content):
+                        array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
+                    case .boolean(content: let content):
+                        array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
                     case .array(let content):
                         array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
                     case .object(let content):
                         array.append(contentsOf: (json["example"] as? Array) ?? [content, content, content])
+                    
                     }
                 }
                 return .array(content: array)
@@ -72,6 +82,12 @@ class SwaggerSchema: Mappable {
                     if let jsonObject = val as? [String: Any] {
                         switch valueFromJson(jsonObject, definitions: definitions) {
                         case .string(let content):
+                            result[key] = content
+                        case .integer(let content):
+                            result[key] = content
+                        case .number(let content):
+                            result[key] = content
+                        case .boolean(let content):
                             result[key] = content
                         case .object(let content):
                             result[key] = content

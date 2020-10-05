@@ -31,6 +31,12 @@ class SwaggerResponse: Mappable {
             switch responseData {
             case .string(let content):
                 return content
+            case .integer(let content):
+                return String(content)
+            case .number(let content):
+                return String(content)
+            case .boolean(let content):
+                return String(content)
             case .object(let content):
                 if let jsonData = try? JSONSerialization.data(
                     withJSONObject: content,
