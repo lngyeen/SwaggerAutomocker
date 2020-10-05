@@ -64,7 +64,11 @@ private class ResponsesTransformer: TransformType {
             var returnValue: [String: SwaggerResponse] = [:]
             for (key, anyObject) in responses {
                 if let jsonObject = anyObject as? [String: Any] {
-                    if let nestedJsonObject = (jsonObject["content"] as? [String: Any])?["application/json"] as? [String: Any] {
+                    var nestedJsonObject = (jsonObject["content"] as? [String: Any])?["application/json"] as? [String: Any]
+                    if case .none = nestedJsonObject {
+                        nestedJsonObject = (jsonObject["content"] as? [String: Any])?["*/*"] as? [String: Any]
+                    }
+                    if let nestedJsonObject = nestedJsonObject {
                         returnValue[key] = SwaggerResponse.init(JSON: nestedJsonObject)
                     } else {
                         returnValue[key] = SwaggerResponse.init(JSON: jsonObject)

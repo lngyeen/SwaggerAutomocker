@@ -40,7 +40,7 @@ public class SwaggerJson: Mappable {
         basePath <- map["basePath"]
         paths <- (map["paths"], PathsTransformer())
         definitions <- map["definitions"]
-        if definitions == nil {
+        if case .none = definitions {
             definitions <- map["components.schemas"]
         }
     }
