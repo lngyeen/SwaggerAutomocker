@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SwaggerAutomocker'
-  s.version          = '0.1.8'
+  s.version          = '0.1.9'
   s.summary          = 'An automatic mock server to speed up your initial development using swagger json.'
   s.swift_version    = '5.0'
 
