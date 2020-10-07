@@ -16,6 +16,7 @@ class SwaggerEndPoint: Mappable {
     var contentType: String {
         return produces.first ?? ""
     }
+
     var responseCode: Int {
         if responses != nil {
             let defaultRes = defaultResponse()
@@ -23,6 +24,7 @@ class SwaggerEndPoint: Mappable {
         }
         return 204
     }
+
     var headers: [String: String] {
         if responses != nil {
             let defaultRes = defaultResponse()
@@ -30,14 +32,14 @@ class SwaggerEndPoint: Mappable {
         }
         return [:]
     }
-    
+
     required init?(map: Map) {}
     func mapping(map: Map) {
         produces <- map["produces"]
         parameters <- map["parameters"]
         responses <- (map["responses"], ResponsesTransformer())
     }
-    
+
     func responseDataFromDefications(_ definitions: Definitions) -> String? {
         if responses != nil {
             let defaultRes = defaultResponse()
@@ -45,13 +47,20 @@ class SwaggerEndPoint: Mappable {
         }
         return nil
     }
-    
+
     private func defaultResponse() -> (statusCode: String, response: SwaggerResponse) {
         if let responses = responses {
-            for (key, jsonObject) in responses {
-                if key != "default", let keyInt = Int(key), keyInt >= 200, keyInt <= 299 {
-                    return (key, jsonObject)
+            let okResponses = responses.filter { (reponse) -> Bool in
+                if reponse.key != "default", let keyInt = Int(reponse.key), keyInt >= 200, keyInt <= 299 {
+                    return true
+                } else {
+                    return false
                 }
+            }
+            let sortedOkResponseKeys = Array(okResponses.keys).sorted(by: <)
+            if let firstKey = sortedOkResponseKeys.first,
+                let firstData = responses[firstKey] {
+                return (firstKey, firstData)
             }
         }
         return (statusCode: "204", response: SwaggerResponse())
@@ -69,9 +78,9 @@ private class ResponsesTransformer: TransformType {
                         nestedJsonObject = (jsonObject["content"] as? [String: Any])?["*/*"] as? [String: Any]
                     }
                     if let nestedJsonObject = nestedJsonObject {
-                        returnValue[key] = SwaggerResponse.init(JSON: nestedJsonObject)
+                        returnValue[key] = SwaggerResponse(JSON: nestedJsonObject)
                     } else {
-                        returnValue[key] = SwaggerResponse.init(JSON: jsonObject)
+                        returnValue[key] = SwaggerResponse(JSON: jsonObject)
                     }
                 }
             }
@@ -79,11 +88,11 @@ private class ResponsesTransformer: TransformType {
         }
         return nil
     }
-    
+
     func transformToJSON(_ value: [String: SwaggerResponse]?) -> [String: Any]? {
         if let value = value {
             return value.mapValues { value in
-                return value.toJSON()
+                value.toJSON()
             }
         }
         return nil
