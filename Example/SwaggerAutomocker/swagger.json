@@ -947,13 +947,7 @@
                     "format": "date-time"
                 },
                 "status": {
-                    "type": "string",
-                    "description": "Order Status",
-                    "enum": [
-                        "placed",
-                        "approved",
-                        "delivered"
-                    ]
+                    "$ref": "#/definitions/OrderStatus"
                 },
                 "complete": {
                     "type": "boolean"
@@ -962,6 +956,15 @@
             "xml": {
                 "name": "Order"
             }
+        },
+        "OrderStatus": {
+            "type": "string",
+            "description": "Order Status",
+            "enum": [
+                "placed",
+                "approved",
+                "delivered"
+            ]
         },
         "User": {
             "type": "object",

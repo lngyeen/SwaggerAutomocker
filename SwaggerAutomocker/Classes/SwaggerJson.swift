@@ -11,22 +11,34 @@ import ObjectMapper
 
 typealias Definitions = [String: [String: Any]]
 
+enum SwaggerJsonAttribute: String {
+    case openapi
+    case swagger
+    case basePath
+    case paths
+    case definitions // swagger 2.0
+    case schemas = "components.schemas" // open api 3.0
+}
+
 public class SwaggerJson: Mappable {
+    var openapi: String?
+    var swagger: String?
     var basePath: String?
     var paths: [String: [String: SwaggerEndPoint]]?
     var definitions: Definitions?
+    
     var endPoints: [EndPoint] {
         if let paths = paths {
             var endPoints: [EndPoint] = []
             for (path, jsonPath) in paths {
                 for (method, jsonEndPoint) in jsonPath {
                     let endpoint = EndPoint(method: method.uppercased(),
-                                            path: String(format: "%@%@", basePath ?? "", path),
+                                            path: (basePath ?? "") + path,
                                             contentType: jsonEndPoint.contentType,
                                             statusCode: jsonEndPoint.responseCode,
                                             headers: jsonEndPoint.headers,
                                             params: jsonEndPoint.parameters,
-                                            responseData: (definitions != nil ? jsonEndPoint.responseDataFromDefications(definitions!) : nil))
+                                            responseString: definitions != nil ? jsonEndPoint.responseStringFromDefinitions(definitions!) : nil)
                     endPoints.append(endpoint)
                 }
             }
@@ -34,28 +46,34 @@ public class SwaggerJson: Mappable {
         }
         return []
     }
-    
+
     public required init?(map: Map) {}
     public func mapping(map: Map) {
-        basePath <- map["basePath"]
-        paths <- (map["paths"], PathsTransformer())
-        definitions <- map["definitions"]
-        if case .none = definitions {
-            definitions <- map["components.schemas"]
+        swagger <- map[SwaggerJsonAttribute.swagger.rawValue]
+        openapi <- map[SwaggerJsonAttribute.openapi.rawValue]
+        basePath <- map[SwaggerJsonAttribute.basePath.rawValue]
+        paths <- (map[SwaggerJsonAttribute.paths.rawValue], PathsTransformer())
+        if case .some = swagger {
+            definitions <- map[SwaggerJsonAttribute.definitions.rawValue]
+        } else if case .some = openapi {
+            definitions <- map[SwaggerJsonAttribute.schemas.rawValue]
         }
     }
 }
 
 private class PathsTransformer: TransformType {
     func transformFromJSON(_ value: Any?) -> [String: [String: SwaggerEndPoint]]? {
-        if let definations = value as? [String: [String: Any]] {
+        if let definitions = value as? [String: [String: Any]] {
             var returnValue: [String: [String: SwaggerEndPoint]] = [:]
-            for (key, value) in definations {
+            
+            for (key, value) in definitions {
                 var stringJsonEndPoint: [String: SwaggerEndPoint] = [:]
+                
                 if let mapStringJsonObject = value as? [String: [String: Any]] {
                     for (string, jsonObject) in mapStringJsonObject {
-                        stringJsonEndPoint[string] = SwaggerEndPoint.init(JSON: jsonObject)
+                        stringJsonEndPoint[string] = SwaggerEndPoint(JSON: jsonObject)
                     }
+                    
                     returnValue[key] = stringJsonEndPoint
                 }
             }
@@ -63,14 +81,10 @@ private class PathsTransformer: TransformType {
         }
         return nil
     }
-    
+
     func transformToJSON(_ value: [String: [String: SwaggerEndPoint]]?) -> [String: Any]? {
         if let value = value {
-            return value.mapValues { v in
-                return v.mapValues { value in
-                    return value.toJSON()
-                }
-            }
+            return value.mapValues { $0.mapValues { $0.toJSON() } }
         }
         return nil
     }

@@ -1,0 +1,173 @@
+[
+    {
+        "user" : {
+            "email" : "string value",
+            "metadata" : {
+                "gender" : "M",
+                "lastLocalizationAt" : "string value",
+                "externalPhoneNumbers" : [
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    }
+                ],
+                "longitude" : 1.23,
+                "employeeCompany" : "string value",
+                "supportContactName" : "string value",
+                "latitude" : 1.23,
+                "employeeDepartment" : "string value",
+                "supportContactPhoneNumber" : "string value",
+                "lastActivityAt" : "string value",
+                "employeeClinicId" : 123
+            },
+            "firstName" : "string value",
+            "username" : "string value",
+            "settings" : {
+                "language" : "string value",
+                "nickname" : "string value",
+                "notificationSettings" : [
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    },
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    },
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    }
+                ],
+                "anonymous" : true
+            },
+            "lastName" : "string value"
+        },
+        "score" : 123
+    },
+    {
+        "user" : {
+            "email" : "string value",
+            "metadata" : {
+                "gender" : "M",
+                "lastLocalizationAt" : "string value",
+                "externalPhoneNumbers" : [
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    }
+                ],
+                "longitude" : 1.23,
+                "employeeCompany" : "string value",
+                "supportContactName" : "string value",
+                "latitude" : 1.23,
+                "employeeDepartment" : "string value",
+                "supportContactPhoneNumber" : "string value",
+                "lastActivityAt" : "string value",
+                "employeeClinicId" : 123
+            },
+            "firstName" : "string value",
+            "username" : "string value",
+            "settings" : {
+                "language" : "string value",
+                "nickname" : "string value",
+                "notificationSettings" : [
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    },
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    },
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    }
+                ],
+                "anonymous" : true
+            },
+            "lastName" : "string value"
+        },
+        "score" : 123
+    },
+    {
+        "user" : {
+            "email" : "string value",
+            "metadata" : {
+                "gender" : "M",
+                "lastLocalizationAt" : "string value",
+                "externalPhoneNumbers" : [
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    }
+                ],
+                "longitude" : 1.23,
+                "employeeCompany" : "string value",
+                "supportContactName" : "string value",
+                "latitude" : 1.23,
+                "employeeDepartment" : "string value",
+                "supportContactPhoneNumber" : "string value",
+                "lastActivityAt" : "string value",
+                "employeeClinicId" : 123
+            },
+            "firstName" : "string value",
+            "username" : "string value",
+            "settings" : {
+                "language" : "string value",
+                "nickname" : "string value",
+                "notificationSettings" : [
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    },
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    },
+                    {
+                        "enabled" : true,
+                        "channel" : "EMAIL",
+                        "type" : "FEE_STATUS_UPDATE"
+                    }
+                ],
+                "anonymous" : true
+            },
+            "lastName" : "string value"
+        },
+        "score" : 123
+    }
+    ]

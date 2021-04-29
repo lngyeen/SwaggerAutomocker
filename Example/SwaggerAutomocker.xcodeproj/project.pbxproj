@@ -15,7 +15,23 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		78794F885A5B68982425C934 /* Pods_SwaggerAutomocker_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEBA7AC6CD238DF21B4195A /* Pods_SwaggerAutomocker_Tests.framework */; };
 		8364ECFAFD3F013E48E379E8 /* Pods_SwaggerAutomocker_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45A42CB5CA46DD758FF3B3C /* Pods_SwaggerAutomocker_Example.framework */; };
+		F80E602D263910C000094629 /* TestsOpenApi2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80E602C263910C000094629 /* TestsOpenApi2.swift */; };
+		F80E60342639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json in Resources */ = {isa = PBXBuildFile; fileRef = F80E60332639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json */; };
+		F80E60E026396ED600094629 /* swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F83F6D9F2462C4AB006342C1 /* swagger.json */; };
+		F80E60E326396ED800094629 /* openapi1.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A2C05325BBC8E200A045B1 /* openapi1.json */; };
+		F80E60E626396EDA00094629 /* openapi2.json in Resources */ = {isa = PBXBuildFile; fileRef = F8AC35E32637FA3F00FEFD87 /* openapi2.json */; };
 		F83F6DC42462CDC8006342C1 /* swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F83F6D9F2462C4AB006342C1 /* swagger.json */; };
+		F8A2C05425BBC8E200A045B1 /* openapi1.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A2C05325BBC8E200A045B1 /* openapi1.json */; };
+		F8A2C05525BBC96A00A045B1 /* TestsOpenApi1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A2C05125BBC8A400A045B1 /* TestsOpenApi1.swift */; };
+		F8A2C05725BBC9CC00A045B1 /* TestsSwagger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A2C05625BBC9CC00A045B1 /* TestsSwagger.swift */; };
+		F8AC35E42637FA3F00FEFD87 /* openapi2.json in Resources */ = {isa = PBXBuildFile; fileRef = F8AC35E32637FA3F00FEFD87 /* openapi2.json */; };
+		F8E51B1E263AA03200715F3B /* TestsOpenApi2_get_v1_back-office_clinics.json in Resources */ = {isa = PBXBuildFile; fileRef = F8E51B16263A9F9300715F3B /* TestsOpenApi2_get_v1_back-office_clinics.json */; };
+		F8E51B22263AA60A00715F3B /* TestsOpenApi2_get_v1_back-office_employees_pictures.json in Resources */ = {isa = PBXBuildFile; fileRef = F8E51B21263AA60A00715F3B /* TestsOpenApi2_get_v1_back-office_employees_pictures.json */; };
+		F8E51B28263AA9D800715F3B /* TestsOpenApi2_get_v1_back-office_employees_rewards_leaderboard.json in Resources */ = {isa = PBXBuildFile; fileRef = F8E51B27263AA9D800715F3B /* TestsOpenApi2_get_v1_back-office_employees_rewards_leaderboard.json */; };
+		F8E51B2E263AAC1C00715F3B /* TestsOpenApi2_get_v1_back-office_employees_vacation-requests.json in Resources */ = {isa = PBXBuildFile; fileRef = F8E51B2D263AAC1C00715F3B /* TestsOpenApi2_get_v1_back-office_employees_vacation-requests.json */; };
+		F8E51B34263AACDE00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus.json in Resources */ = {isa = PBXBuildFile; fileRef = F8E51B33263AACDE00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus.json */; };
+		F8E51B3A263AAD7F00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json in Resources */ = {isa = PBXBuildFile; fileRef = F8E51B39263AAD7F00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json */; };
+		F8E51B40263AB1CB00715F3B /* TestsOpenApi2_get_v1_directory_employees_team.json in Resources */ = {isa = PBXBuildFile; fileRef = F8E51B3F263AB1CB00715F3B /* TestsOpenApi2_get_v1_directory_employees_team.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +63,20 @@
 		D45A42CB5CA46DD758FF3B3C /* Pods_SwaggerAutomocker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaggerAutomocker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6B0B9EE8E591B16C8CC13BF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D6CFFE11C1A35307AC4BFD38 /* Pods-SwaggerAutomocker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Example.debug.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		F80E602C263910C000094629 /* TestsOpenApi2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsOpenApi2.swift; sourceTree = "<group>"; };
+		F80E60332639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsOpenApi2_get_v1_social_twitter.json; sourceTree = "<group>"; };
 		F83F6D9F2462C4AB006342C1 /* swagger.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = swagger.json; sourceTree = "<group>"; };
+		F8A2C05125BBC8A400A045B1 /* TestsOpenApi1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsOpenApi1.swift; sourceTree = "<group>"; };
+		F8A2C05325BBC8E200A045B1 /* openapi1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = openapi1.json; sourceTree = "<group>"; };
+		F8A2C05625BBC9CC00A045B1 /* TestsSwagger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsSwagger.swift; sourceTree = "<group>"; };
+		F8AC35E32637FA3F00FEFD87 /* openapi2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = openapi2.json; sourceTree = "<group>"; };
+		F8E51B16263A9F9300715F3B /* TestsOpenApi2_get_v1_back-office_clinics.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "TestsOpenApi2_get_v1_back-office_clinics.json"; sourceTree = "<group>"; };
+		F8E51B21263AA60A00715F3B /* TestsOpenApi2_get_v1_back-office_employees_pictures.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "TestsOpenApi2_get_v1_back-office_employees_pictures.json"; sourceTree = "<group>"; };
+		F8E51B27263AA9D800715F3B /* TestsOpenApi2_get_v1_back-office_employees_rewards_leaderboard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "TestsOpenApi2_get_v1_back-office_employees_rewards_leaderboard.json"; sourceTree = "<group>"; };
+		F8E51B2D263AAC1C00715F3B /* TestsOpenApi2_get_v1_back-office_employees_vacation-requests.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "TestsOpenApi2_get_v1_back-office_employees_vacation-requests.json"; sourceTree = "<group>"; };
+		F8E51B33263AACDE00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsOpenApi2_get_v1_clinics_123_menus.json; sourceTree = "<group>"; };
+		F8E51B39263AAD7F00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json"; sourceTree = "<group>"; };
+		F8E51B3F263AB1CB00715F3B /* TestsOpenApi2_get_v1_directory_employees_team.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsOpenApi2_get_v1_directory_employees_team.json; sourceTree = "<group>"; };
 		FBEBA7AC6CD238DF21B4195A /* Pods_SwaggerAutomocker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaggerAutomocker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +141,8 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				F83F6D9F2462C4AB006342C1 /* swagger.json */,
+				F8A2C05325BBC8E200A045B1 /* openapi1.json */,
+				F8AC35E32637FA3F00FEFD87 /* openapi2.json */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for SwaggerAutomocker";
@@ -130,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				F80E60EA26396FB500094629 /* TestsSwagger */,
+				F841CF47263A4975000FFB18 /* TestsOpenApi */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -160,6 +193,55 @@
 				FBEBA7AC6CD238DF21B4195A /* Pods_SwaggerAutomocker_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F80E602B263910C000094629 /* TestsOpenApi2 */ = {
+			isa = PBXGroup;
+			children = (
+				F80E6032263910C400094629 /* Responses */,
+				F80E602C263910C000094629 /* TestsOpenApi2.swift */,
+			);
+			path = TestsOpenApi2;
+			sourceTree = "<group>";
+		};
+		F80E6032263910C400094629 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				F8E51B2D263AAC1C00715F3B /* TestsOpenApi2_get_v1_back-office_employees_vacation-requests.json */,
+				F8E51B3F263AB1CB00715F3B /* TestsOpenApi2_get_v1_directory_employees_team.json */,
+				F8E51B39263AAD7F00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json */,
+				F8E51B33263AACDE00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus.json */,
+				F8E51B27263AA9D800715F3B /* TestsOpenApi2_get_v1_back-office_employees_rewards_leaderboard.json */,
+				F8E51B21263AA60A00715F3B /* TestsOpenApi2_get_v1_back-office_employees_pictures.json */,
+				F8E51B16263A9F9300715F3B /* TestsOpenApi2_get_v1_back-office_clinics.json */,
+				F80E60332639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		F80E60E926396FA700094629 /* TestsOpenApi1 */ = {
+			isa = PBXGroup;
+			children = (
+				F8A2C05125BBC8A400A045B1 /* TestsOpenApi1.swift */,
+			);
+			path = TestsOpenApi1;
+			sourceTree = "<group>";
+		};
+		F80E60EA26396FB500094629 /* TestsSwagger */ = {
+			isa = PBXGroup;
+			children = (
+				F8A2C05625BBC9CC00A045B1 /* TestsSwagger.swift */,
+			);
+			path = TestsSwagger;
+			sourceTree = "<group>";
+		};
+		F841CF47263A4975000FFB18 /* TestsOpenApi */ = {
+			isa = PBXGroup;
+			children = (
+				F80E60E926396FA700094629 /* TestsOpenApi1 */,
+				F80E602B263910C000094629 /* TestsOpenApi2 */,
+			);
+			path = TestsOpenApi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +337,8 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				F8A2C05425BBC8E200A045B1 /* openapi1.json in Resources */,
+				F8AC35E42637FA3F00FEFD87 /* openapi2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +346,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8E51B3A263AAD7F00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json in Resources */,
+				F80E60E026396ED600094629 /* swagger.json in Resources */,
+				F8E51B28263AA9D800715F3B /* TestsOpenApi2_get_v1_back-office_employees_rewards_leaderboard.json in Resources */,
+				F8E51B1E263AA03200715F3B /* TestsOpenApi2_get_v1_back-office_clinics.json in Resources */,
+				F80E60342639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json in Resources */,
+				F8E51B22263AA60A00715F3B /* TestsOpenApi2_get_v1_back-office_employees_pictures.json in Resources */,
+				F8E51B2E263AAC1C00715F3B /* TestsOpenApi2_get_v1_back-office_employees_vacation-requests.json in Resources */,
+				F80E60E326396ED800094629 /* openapi1.json in Resources */,
+				F8E51B34263AACDE00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus.json in Resources */,
+				F80E60E626396EDA00094629 /* openapi2.json in Resources */,
+				F8E51B40263AB1CB00715F3B /* TestsOpenApi2_get_v1_directory_employees_team.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +449,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8A2C05525BBC96A00A045B1 /* TestsOpenApi1.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				F8A2C05725BBC9CC00A045B1 /* TestsSwagger.swift in Sources */,
+				F80E602D263910C000094629 /* TestsOpenApi2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

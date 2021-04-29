@@ -1,0 +1,53 @@
+[
+    {
+        "infra" : "SMN",
+        "radius" : 123,
+        "id" : 123,
+        "minLongitude" : 1.23,
+        "admissionsEmail" : "string value",
+        "centerLatitude" : 1.23,
+        "name" : "string value",
+        "maxLongitude" : 1.23,
+        "maxLatitude" : 1.23,
+        "code" : "string value",
+        "fluanceCompanyId" : 123,
+        "imagePath" : "string value",
+        "invoicingEmail" : "string value",
+        "centerLongitude" : 1.23,
+        "minLatitude" : 1.23
+    },
+    {
+        "maxLatitude" : 1.23,
+        "fluanceCompanyId" : 123,
+        "infra" : "SMN",
+        "radius" : 123,
+        "centerLatitude" : 1.23,
+        "centerLongitude" : 1.23,
+        "id" : 123,
+        "minLatitude" : 1.23,
+        "admissionsEmail" : "string value",
+        "invoicingEmail" : "string value",
+        "code" : "string value",
+        "imagePath" : "string value",
+        "name" : "string value",
+        "minLongitude" : 1.23,
+        "maxLongitude" : 1.23
+    },
+    {
+        "radius" : 123,
+        "minLongitude" : 1.23,
+        "fluanceCompanyId" : 123,
+        "name" : "string value",
+        "infra" : "SMN",
+        "admissionsEmail" : "string value",
+        "minLatitude" : 1.23,
+        "centerLatitude" : 1.23,
+        "maxLatitude" : 1.23,
+        "centerLongitude" : 1.23,
+        "imagePath" : "string value",
+        "code" : "string value",
+        "maxLongitude" : 1.23,
+        "invoicingEmail" : "string value",
+        "id" : 123
+    }
+]

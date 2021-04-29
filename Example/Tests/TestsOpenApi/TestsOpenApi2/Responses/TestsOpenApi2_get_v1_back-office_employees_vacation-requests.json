@@ -1,0 +1,161 @@
+[
+    {
+        "halfDay" : true,
+        "requesterComment" : "string value",
+        "id" : 123456789,
+        "toDate" : "string value",
+        "lastModifiedDate" : "string value",
+        "vacationType" : "PAID_LEAVE",
+        "daySlice" : "MORNING",
+        "status" : "PENDING",
+        "createdDate" : "string value",
+        "notifyTeam" : true,
+        "approverComment" : "string value",
+        "seen" : true,
+        "approver" : {
+            "firstName" : "string value",
+            "lastName" : "string value",
+            "email" : "string value",
+            "username" : "string value"
+        },
+        "fromDate" : "string value",
+        "requester" : {
+            "email" : "string value",
+            "firstName" : "string value",
+            "username" : "string value",
+            "metadata" : {
+                "gender" : "M",
+                "lastLocalizationAt" : "string value",
+                "externalPhoneNumbers" : [
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    }
+                ],
+                "longitude" : 1.23,
+                "employeeCompany" : "string value",
+                "employeeDepartment" : "string value",
+                "supportContactName" : "string value",
+                "latitude" : 1.23,
+                "supportContactPhoneNumber" : "string value",
+                "lastActivityAt" : "string value",
+                "employeeClinicId" : 123
+            },
+            "lastName" : "string value"
+        }
+    },
+    {
+        "createdDate" : "string value",
+        "status" : "PENDING",
+        "toDate" : "string value",
+        "requesterComment" : "string value",
+        "daySlice" : "MORNING",
+        "approverComment" : "string value",
+        "approver" : {
+            "firstName" : "string value",
+            "lastName" : "string value",
+            "email" : "string value",
+            "username" : "string value"
+        },
+        "vacationType" : "PAID_LEAVE",
+        "requester" : {
+            "email" : "string value",
+            "firstName" : "string value",
+            "username" : "string value",
+            "metadata" : {
+                "gender" : "M",
+                "lastLocalizationAt" : "string value",
+                "externalPhoneNumbers" : [
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    }
+                ],
+                "longitude" : 1.23,
+                "employeeCompany" : "string value",
+                "employeeDepartment" : "string value",
+                "supportContactName" : "string value",
+                "latitude" : 1.23,
+                "supportContactPhoneNumber" : "string value",
+                "lastActivityAt" : "string value",
+                "employeeClinicId" : 123
+            },
+            "lastName" : "string value"
+        },
+        "halfDay" : true,
+        "lastModifiedDate" : "string value",
+        "seen" : true,
+        "id" : 123456789,
+        "notifyTeam" : true,
+        "fromDate" : "string value"
+    },
+    {
+        "fromDate" : "string value",
+        "approver" : {
+            "firstName" : "string value",
+            "lastName" : "string value",
+            "email" : "string value",
+            "username" : "string value"
+        },
+        "vacationType" : "PAID_LEAVE",
+        "lastModifiedDate" : "string value",
+        "status" : "PENDING",
+        "daySlice" : "MORNING",
+        "halfDay" : true,
+        "notifyTeam" : true,
+        "requester" : {
+            "email" : "string value",
+            "firstName" : "string value",
+            "username" : "string value",
+            "metadata" : {
+                "gender" : "M",
+                "lastLocalizationAt" : "string value",
+                "externalPhoneNumbers" : [
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    },
+                    {
+                        "visible" : true,
+                        "phoneNumber" : "string value"
+                    }
+                ],
+                "longitude" : 1.23,
+                "employeeCompany" : "string value",
+                "employeeDepartment" : "string value",
+                "supportContactName" : "string value",
+                "latitude" : 1.23,
+                "supportContactPhoneNumber" : "string value",
+                "lastActivityAt" : "string value",
+                "employeeClinicId" : 123
+            },
+            "lastName" : "string value"
+        },
+        "seen" : true,
+        "id" : 123456789,
+        "createdDate" : "string value",
+        "requesterComment" : "string value",
+        "toDate" : "string value",
+        "approverComment" : "string value"
+    }
+    ]

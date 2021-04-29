@@ -9,6 +9,12 @@
 import Foundation
 import ObjectMapper
 
+enum SwaggerEndPointAttribute: String {
+    case produces
+    case parameters
+    case responses
+}
+
 class SwaggerEndPoint: Mappable {
     var produces: [String] = []
     var parameters: [SwaggerParam] = []
@@ -35,15 +41,15 @@ class SwaggerEndPoint: Mappable {
 
     required init?(map: Map) {}
     func mapping(map: Map) {
-        produces <- map["produces"]
-        parameters <- map["parameters"]
-        responses <- (map["responses"], ResponsesTransformer())
+        produces <- map[SwaggerEndPointAttribute.produces.rawValue]
+        parameters <- map[SwaggerEndPointAttribute.parameters.rawValue]
+        responses <- (map[SwaggerEndPointAttribute.responses.rawValue], ResponsesTransformer())
     }
 
-    func responseDataFromDefications(_ definitions: Definitions) -> String? {
+    func responseStringFromDefinitions(_ definitions: Definitions) -> String? {
         if responses != nil {
             let defaultRes = defaultResponse()
-            return defaultRes.response.responseDataFromDefinations(definitions)
+            return defaultRes.response.responseStringFromDefinitions(definitions)
         }
         return nil
     }
@@ -59,7 +65,8 @@ class SwaggerEndPoint: Mappable {
             }
             let sortedOkResponseKeys = Array(okResponses.keys).sorted(by: <)
             if let firstKey = sortedOkResponseKeys.first,
-                let firstData = responses[firstKey] {
+               let firstData = responses[firstKey]
+            {
                 return (firstKey, firstData)
             }
         }
@@ -71,16 +78,15 @@ private class ResponsesTransformer: TransformType {
     func transformFromJSON(_ value: Any?) -> [String: SwaggerResponse]? {
         if let responses = value as? [String: Any] {
             var returnValue: [String: SwaggerResponse] = [:]
-            for (key, anyObject) in responses {
-                if let jsonObject = anyObject as? [String: Any] {
-                    var nestedJsonObject = (jsonObject["content"] as? [String: Any])?["application/json"] as? [String: Any]
-                    if case .none = nestedJsonObject {
-                        nestedJsonObject = (jsonObject["content"] as? [String: Any])?["*/*"] as? [String: Any]
-                    }
-                    if let nestedJsonObject = nestedJsonObject {
-                        returnValue[key] = SwaggerResponse(JSON: nestedJsonObject)
+
+            for (statusCode, responseData) in responses {
+                if let jsonObject = responseData as? [String: Any] {
+                    let content: [String: Any] = jsonObject["content"] as? [String: Any] ?? [:]
+
+                    if let nestedJsonObject = content.values.first(where: { $0 is [String: Any] }) as? [String: Any] {
+                        returnValue[statusCode] = SwaggerResponse(JSON: nestedJsonObject)
                     } else {
-                        returnValue[key] = SwaggerResponse(JSON: jsonObject)
+                        returnValue[statusCode] = SwaggerResponse(JSON: jsonObject)
                     }
                 }
             }
@@ -91,9 +97,7 @@ private class ResponsesTransformer: TransformType {
 
     func transformToJSON(_ value: [String: SwaggerResponse]?) -> [String: Any]? {
         if let value = value {
-            return value.mapValues { value in
-                value.toJSON()
-            }
+            return value.mapValues { $0.toJSON() }
         }
         return nil
     }

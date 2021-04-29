@@ -9,6 +9,12 @@
 import Foundation
 import ObjectMapper
 
+enum SwaggerHeaderAttribute: String {
+    case type
+    case format
+    case defaultValue = "default"
+}
+
 class SwaggerHeader: Mappable {
     var type: String?
     var format: String?
@@ -16,11 +22,11 @@ class SwaggerHeader: Mappable {
     var value: String {
         return defaultValue ?? ""
     }
-    
+
     required init?(map: Map) {}
     func mapping(map: Map) {
-        type <- map["type"]
-        format <- map["format"]
-        defaultValue <- map["default"]
+        type <- map[SwaggerHeaderAttribute.type.rawValue]
+        format <- map[SwaggerHeaderAttribute.format.rawValue]
+        defaultValue <- map[SwaggerHeaderAttribute.defaultValue.rawValue]
     }
 }

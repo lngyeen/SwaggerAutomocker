@@ -1,430 +1,62 @@
-import XCTest
 import SwaggerAutomocker
+import XCTest
 
 class Tests: XCTestCase {
-    private let PORT = 8080
-    var mockServer: MockServer?
+    static var mockServer: MockServer?
     
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    class var defaultValuesConfig: MockServerConfiguration {
+        let defaultValuesConfig = MockServerConfiguration()
+        return defaultValuesConfig
+    }
+    
+    class var mockServerPort: Int {
+        return 8080
+    }
+    
+    class var jsonFileName: String {
+        return "swagger"
+    }
+    
+    override class func setUp() {
+        super.setUp()
         
-        let json = readJSONFromFile(fileName: "swagger")
-        if let json = json {
-            mockServer = MockServer(port: PORT, swaggerJson: json)
-            mockServer?.start()
+        if let json = readJSONFromFile(fileName: jsonFileName) as? [String: Any] {
+            Tests.mockServer = MockServer(port: mockServerPort, swaggerJson: json, config: defaultValuesConfig)
+            Tests.mockServer?.start()
         }
     }
     
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override class func tearDown() {
+        super.tearDown()
         
-        mockServer?.stop()
-    }
-    
-    
-    // MARK: Inventory tests
-    
-    func testGetInventory() throws {
-        let request = get(path: "/store/inventory")
-        let expectedResponse = formatDictionary([
-            "id": "123",
-            "name": "string"])
-        var jsonResponse: [String: Any]?
-        
-        call(request: request, description: "Loading Inventory") { (data, _, _) in
-            if let jsonData = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any]
-                    jsonResponse = json
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertNotNil(jsonResponse)
-        XCTAssertTrue(jsonResponse ?? [:] == expectedResponse)
-    }
-    
-    func testPostOrder() throws {
-        let request = post(path: "/store/order", body: [:])
-        var responseCode: Int?
-        
-        call(request: request, description: "Posting Order") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 200)
-    }
-    
-    func testGetOrder() throws {
-        let request = get(path: "/store/order/123")
-        let expectedResponse: [String: Any] = formatDictionary([
-            "petId": "123",
-            "quantity": "123",
-            "status": "string",
-            "shipDate": "string",
-            "id": "123",
-            "complete": "true"])
-        var jsonResponse: [String: Any]?
-        
-        call(request: request, description: "Loading Order") { (data, _, _) in
-            if let jsonData = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [String: Any]
-                    jsonResponse = json
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertNotNil(jsonResponse)
-        XCTAssertTrue(jsonResponse ?? [:] == expectedResponse)
-    }
-    
-    func testDeleteOrder() throws {
-        let request = delete(path: "/store/order/123")
-        var responseCode: Int?
-        
-        call(request: request, description: "Deleting Order") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    //MARK: - Pet Tests
-    
-    func testGetPet() throws {
-        let request = get(path: "/pet/123")
-        let expectedResponse: [String: Any] = formatDictionary([
-            "id": "123",
-            "category": [
-                "id": "123",
-                "name": "string"
-            ],
-            "name": "doggie",
-            "photoUrls": [
-                "string",
-                "string",
-                "string"
-            ],
-            "tags": [
-                [
-                    "id": "123",
-                    "name": "string"
-                ],
-                [
-                    "id": "123",
-                    "name": "string"
-                ],
-                [
-                    "id": "123",
-                    "name": "string"
-                ]
-            ],
-            "status": "string"])
-        var jsonResponse: [String: Any]?
-        
-        call(request: request, description: "Loading Pet") { (data, _, _) in
-            if let jsonData = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [String: Any]
-                    jsonResponse = json
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertNotNil(jsonResponse)
-        XCTAssertTrue(jsonResponse ?? [:] == expectedResponse)
-    }
-    
-    func testFindPet() throws {
-        let request = get(path: "/pet/findByStatus")
-        let expectedResponse = [
-            ["id": "123",
-             "category": ["id": "123", "name": "string"],
-             "name": "doggie",
-             "photoUrls": ["string", "string", "string"],
-             "tags": [
-                ["id": "123", "name": "string"],
-                ["id": "123", "name": "string"],
-                ["id": "123", "name": "string"]
-                ],
-             "status": "string"],
-            ["id": "123",
-             "category": ["id": "123", "name": "string"],
-             "name": "doggie",
-             "photoUrls": ["string", "string", "string"],
-             "tags": [
-                ["id": "123", "name": "string"],
-                ["id": "123", "name": "string"],
-                ["id": "123", "name": "string"]
-                ],
-             "status": "string"],
-            ["id": "123",
-             "category": ["id": "123", "name": "string"],
-             "name": "doggie",
-             "photoUrls": ["string", "string", "string"],
-             "tags": [
-                ["id": "123", "name": "string"],
-                ["id": "123", "name": "string"],
-                ["id": "123", "name": "string"]
-                ],
-             "status": "string"]
-            ].map({formatDictionary($0)})
-        
-        var jsonResponse: [[String: Any]]?
-        
-        call(request: request, description: "Finding Pet") { (data, _, _) in
-            if let jsonData = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [[String: Any]]
-                    jsonResponse = json
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertNotNil(jsonResponse)
-        XCTAssertTrue(jsonResponse ?? [] == expectedResponse)
-    }
-    
-    func testPostPet() throws {
-        let request = post(path: "/pet")
-        var responseCode: Int?
-        
-        call(request: request, description: "Posting Pet") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testPostPet2() throws {
-        let request = post(path: "/pet/123")
-        var responseCode: Int?
-        
-        call(request: request, description: "Posting Pet 2") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testPutPet() throws {
-        let request = put(path: "/pet")
-        var responseCode: Int?
-        
-        call(request: request, description: "Updating Pet") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testDeletePet() throws {
-        let request = delete(path: "/pet/123")
-        var responseCode: Int?
-        
-        call(request: request, description: "Deleting Pet") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testPostPetPicture() throws {
-        let request = post(path: "/pet/123/uploadImage")
-        var responseCode: Int?
-        
-        call(request: request, description: "Uploading Pet Picture") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 200)
-    }
-    
-    //MARK: - User tests
-    
-    func testPostUser() throws {
-        let request = post(path: "/user")
-        var responseCode: Int?
-        
-        call(request: request, description: "Posting User") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testPostUserArray() throws {
-        let request = post(path: "/user/createWithArray", body: [])
-        var responseCode: Int?
-        
-        call(request: request, description: "Creating User With Array") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testPostUserList() throws {
-        let request = post(path: "/user/createWithList", body: [])
-        var responseCode: Int?
-        
-        call(request: request, description: "Creating User With List") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testGetLogin() throws {
-        let request = get(path: "/user/login")
-        var stringResponse: String?
-        
-        call(request: request, description: "Login") { (data, _, _) in
-            if let jsonData = data {
-                stringResponse = String(data: jsonData, encoding: .utf8)
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertNotNil(stringResponse)
-        XCTAssertTrue(stringResponse == "string")
-    }
-    
-    func testGetLogout() throws {
-        let request = get(path: "/user/logout")
-        var stringResponse: String?
-        
-        call(request: request, description: "Logout") { (data, _, _) in
-            if let jsonData = data {
-                stringResponse = String(data: jsonData, encoding: .utf8)
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertNotNil(stringResponse)
-        XCTAssertTrue(stringResponse == "")
-    }
-    
-    func testGetUser() throws {
-        let request = get(path: "/user/john")
-        let expectedResponse: [String: Any] = formatDictionary([
-            "id": "123",
-            "username": "string",
-            "firstName": "string",
-            "lastName": "string",
-            "email": "string",
-            "password": "string",
-            "phone": "string",
-            "userStatus": "123"])
-        var jsonResponse: [String: Any]?
-        
-        call(request: request, description: "Loading User") { (data, _, _) in
-            if let jsonData = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [String: Any]
-                    jsonResponse = json
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertNotNil(jsonResponse)
-        XCTAssertTrue(jsonResponse ?? [:] == expectedResponse)
-    }
-    
-    func testPutUser() throws {
-        let request = put(path: "/user/john")
-        var responseCode: Int?
-        call(request: request, description: "Updating User") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
-    }
-    
-    func testDeleteUser() throws {
-        let request = delete(path: "/user/john")
-        var responseCode: Int?
-        call(request: request, description: "Deleting User") { (_, response, _) in
-            if let httpResponse = response as? HTTPURLResponse {
-                responseCode = httpResponse.statusCode
-            }
-        }
-        
-        waitForExpectations(timeout: 10)
-        
-        XCTAssertEqual(responseCode, 204)
+        Tests.mockServer?.stop()
+        Tests.mockServer = nil
     }
 }
 
-
 // MARK: HTTP Request helpers
+
 extension Tests {
-    fileprivate func get(path: String)  -> URLRequest {
+    class func readJSONFromFile(fileName: String) -> Any? {
+        if let fileUrl = Bundle(for: Self.self).url(forResource: fileName, withExtension: "json") {
+            do {
+                // Getting data from JSON file using the file URL
+                let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
+                do {
+                    return try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                } catch {
+                    fatalError("Error!! Unable to parse \(fileName).json")
+                }
+            } catch {
+                fatalError("Error!! Unable to load \(fileName).json")
+            }
+        }
+        
+        return nil
+//        fatalError("Error!! File not found: \(fileName).json")
+    }
+    
+    func get(path: String) -> URLRequest {
         let url = serverURL(path: path)
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -432,25 +64,29 @@ extension Tests {
         return request
     }
     
-    fileprivate func post(path: String, body: Any = [:]) -> URLRequest {
+    func post(path: String, body: Any? = nil) -> URLRequest {
         let url = serverURL(path: path)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [.prettyPrinted, .fragmentsAllowed])
+        if let body = body {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [.prettyPrinted, .fragmentsAllowed])
+        }
         return request
     }
     
-    fileprivate func put(path: String, body: Any = [:]) -> URLRequest {
+    func put(path: String, body: Any? = nil) -> URLRequest {
         let url = serverURL(path: path)
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [.prettyPrinted, .fragmentsAllowed])
+        if let body = body {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [.prettyPrinted, .fragmentsAllowed])
+        }
         return request
     }
     
-    fileprivate func delete(path: String) -> URLRequest {
+    func delete(path: String) -> URLRequest {
         let url = serverURL(path: path)
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
@@ -458,69 +94,115 @@ extension Tests {
         return request
     }
     
-    fileprivate func call(request: URLRequest, description: String = "Requesting", completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+    func head(path: String) -> URLRequest {
+        let url = serverURL(path: path)
+        var request = URLRequest(url: url)
+        request.httpMethod = "HEAD"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        return request
+    }
+    
+    func patch(path: String, body: Any? = nil) -> URLRequest {
+        let url = serverURL(path: path)
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        if let body = body {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [.prettyPrinted, .fragmentsAllowed])
+        }
+        return request
+    }
+    
+    func call(request: URLRequest, description: String = "Requesting", completionHandler: @escaping ([[String: Any]]?, [AnyHashable: Any]?, Int?, Error?) -> Void) {
         let exp = expectation(description: description)
         let httpClient = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: nil)
         let httpTask = httpClient.dataTask(with: request) { data, response, error in
+            
+            let jsonArray: [[String: Any]]? = data?.jsonArray
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
             if let error = error {
-                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
                 print("[CLIENT]", "Request failed - status:", statusCode, "- error: \(error)")
-                completionHandler(nil, nil, error)
-            } else {
-                completionHandler(data, response, nil)
             }
+            print(httpClient.responseDescription(data: data, request: request, response: response))
+            completionHandler(jsonArray,
+                              (response as? HTTPURLResponse)?.allHeaderFields,
+                              statusCode,
+                              error)
             exp.fulfill()
         }
+        print(httpClient.requestDescription(dataTask: httpTask))
         httpTask.resume()
+        wait(for: [exp], timeout: 10)
     }
     
-    fileprivate func serverURL(path: String = "") -> URL {
+    func call(request: URLRequest, description: String = "Requesting", completionHandler: @escaping ([String: Any]?, [AnyHashable: Any]?, Int?, Error?) -> Void) {
+        let exp = expectation(description: description)
+        let httpClient = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: nil)
+        let httpTask = httpClient.dataTask(with: request) { data, response, error in
+            
+            let jsonObject: [String: Any]? = data?.jsonObject
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+            if let error = error {
+                print("[CLIENT]", "Request failed - status:", statusCode, "- error: \(error)")
+            }
+            print(httpClient.responseDescription(data: data, request: request, response: response))
+            completionHandler(jsonObject,
+                              (response as? HTTPURLResponse)?.allHeaderFields,
+                              statusCode,
+                              error)
+            exp.fulfill()
+        }
+        print(httpClient.requestDescription(dataTask: httpTask))
+        httpTask.resume()
+        wait(for: [exp], timeout: 10)
+    }
+    
+    func call(request: URLRequest, description: String = "Requesting", completionHandler: @escaping (String?, [AnyHashable: Any]?, Int?, Error?) -> Void) {
+        let exp = expectation(description: description)
+        let httpClient = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: nil)
+        let httpTask = httpClient.dataTask(with: request) { data, response, error in
+            
+            let responseString: String? = data?.string
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+            if let error = error {
+                print("[CLIENT]", "Request failed - status:", statusCode, "- error: \(error)")
+            }
+            print(httpClient.responseDescription(data: data, request: request, response: response))
+            completionHandler(responseString,
+                              (response as? HTTPURLResponse)?.allHeaderFields,
+                              statusCode,
+                              error)
+            exp.fulfill()
+        }
+        print(httpClient.requestDescription(dataTask: httpTask))
+        httpTask.resume()
+        wait(for: [exp], timeout: 10)
+    }
+    
+    func serverURL(path: String = "") -> URL {
         var components = URLComponents()
-        if let mockServer = mockServer {
+        if let mockServer = Tests.mockServer {
             components.scheme = mockServer.server.isSecure ? "https" : "http"
             components.port = Int(mockServer.port)
         }
         components.host = "localhost"
-        components.path = "/v2" + path
+        components.path = path
         return components.url!
     }
     
-    fileprivate func formatDictionary(_ dictionary: [String: Any]) -> [String: Any] {
-        do {
-            let data = try JSONSerialization.data(withJSONObject: dictionary, options: [.prettyPrinted, .fragmentsAllowed])
-            let formattedDictionary: [String: Any]? = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
-            return formattedDictionary ?? [:]
-        } catch {
-            return [:]
-        }
+    func expectedResponseFromJson(request: URLRequest) -> Any? {
+        let fullPath = String(describing: type(of: self)) +
+            "_" +
+            (request.httpMethod?.lowercased() ?? "") +
+            (request.url?.path ?? "")
+        let jsonFileName = fullPath.replacingOccurrences(of: "/", with: "_")
+        return Tests.readJSONFromFile(fileName: jsonFileName)
     }
 }
-
 
 // MARK: JSON helpers
 
-extension Tests {
-    fileprivate func readJSONFromFile(fileName: String) -> [String: Any]? {
-        var json: Any?
-        
-        if let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "json") {
-            do {
-                // Getting data from JSON file using the file URL
-                let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
-                do {
-                    json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                } catch {
-                    print("Error!! Unable to parse \(fileName).json")
-                }
-            } catch {
-                print("Error!! Unable to load \(fileName).json")
-            }
-        }
-        return json as? [String : Any]
-    }
-}
-
-func areEqual (_ left: Any, _ right: Any) -> Bool {
+func areEqual(_ left: Any, _ right: Any) -> Bool {
     if type(of: left) == type(of: right), String(describing: left) == String(describing: right) { return true }
     if let left = left as? [Any], let right = right as? [Any] { return left == right }
     if let left = left as? [AnyHashable: Any], let right = right as? [AnyHashable: Any] { return left == right }
@@ -543,14 +225,215 @@ extension Array where Element: Any {
     }
 }
 
+extension Dictionary where Key == String, Value == Any {
+    var formatted: [String: Any] {
+        do {
+            let data = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted, .fragmentsAllowed])
+            let formattedDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+            return formattedDictionary ?? self
+        } catch {
+            return self
+        }
+    }
+}
+
 extension Dictionary where Value: Any {
-    static func != (left: [Key : Value], right: [Key : Value]) -> Bool { return !(left == right) }
-    static func == (left: [Key : Value], right: [Key : Value]) -> Bool {
+    static func != (left: [Key: Value], right: [Key: Value]) -> Bool { return !(left == right) }
+    static func == (left: [Key: Value], right: [Key: Value]) -> Bool {
         if left.count != right.count { return false }
         for leftElement in left {
             guard let rightValue = right[leftElement.key],
-                areEqual(rightValue, leftElement.value) else { return false }
+                  areEqual(rightValue, leftElement.value) else { return false }
         }
         return true
+    }
+}
+
+private extension Data {
+    var jsonObject: [String: Any]? {
+        guard let json = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [String: Any],
+              !json.isEmpty else { return nil }
+        return json
+    }
+    
+    var jsonArray: [[String: Any]]? {
+        guard let array = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [[String: Any]],
+              !array.isEmpty else { return nil }
+        return array
+    }
+    
+    var stringArray: [String]? {
+        guard let array = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [String],
+              !array.isEmpty else { return nil }
+        return array
+    }
+    
+    var string: String? {
+        guard !isEmpty else { return nil }
+        return String(data: self, encoding: .utf8)
+    }
+}
+
+private extension URLSession {
+    func shortDescription(dataTask: URLSessionDataTask) -> String {
+        guard let request = dataTask.originalRequest,
+              let url = request.url else { return "Unable to describe request" }
+        
+        return "\(String(describing: request.httpMethod)) - \(url)"
+    }
+    
+    /// Print the request in a nice way
+    func requestDescription(dataTask: URLSessionDataTask) -> String {
+        guard let request = dataTask.originalRequest,
+              let url = request.url else { return "Unable to describe request" }
+        
+        let components = requestComponents(dataTask: dataTask)
+        
+        var logRequest = "Request description (\(String(describing: self)):\n"
+        let urlString = url.absoluteString
+        logRequest += String(repeating: "- ", count: 14 + urlString.count/2)
+        logRequest += "\n|"
+            + String(repeating: " ", count: 13)
+            + "\(urlString)"
+            + String(repeating: " ", count: 12)
+            + "|"
+        logRequest += "\n" + String(repeating: "- ", count: 14 + urlString.count/2)
+        if let httpMethod = request.httpMethod {
+            logRequest += "\n|     Request : \(String(describing: httpMethod)) - \(url)"
+        }
+        
+        if let cookies = components["Cookies"] as? [String: String], !cookies.isEmpty {
+            logRequest += "\n|     Cookies : \(cookies)"
+        }
+        if let headerFields = components["Headers"] as? [String: Any], !headerFields.isEmpty {
+            logRequest += "\n|     Headers : \(headerFields)"
+        }
+        
+        if let payload = request.httpBody {
+            if let payloadObject = payload.jsonObject {
+                logRequest += "\n|     Body    :\n \(payloadObject)"
+            } else if let payloadArray = payload.jsonArray {
+                logRequest += "\n|     Body    :\n \(payloadArray)"
+            } else if let payloadArray = payload.stringArray {
+                logRequest += "\n|     Body    :\n \(payloadArray)"
+            } else if let payloadString = payload.string {
+                logRequest += "\n|     Body    :\n \(payloadString)"
+            }
+        }
+        
+        logRequest += "\n" + String(repeating: "- ", count: 14 + urlString.count/2) + "\n"
+        
+        return logRequest
+    }
+    
+    /// Print the request in a nice way
+    func responseDescription(data: Data?, request: URLRequest, response: URLResponse?) -> String {
+        guard let url = request.url,
+              let response = response as? HTTPURLResponse else { return "Unable to describe response" }
+        
+        let maxResponseLength = 10000000
+        var logResponse = "Response description (\(String(describing: self).hashValue)):\n"
+        let urlString = url.absoluteString
+        logResponse += String(repeating: "- ", count: 14 + urlString.count/2)
+        logResponse += "\n|"
+            + String(repeating: " ", count: 13)
+            + "\(urlString)"
+            + String(repeating: " ", count: 12)
+            + "|"
+        logResponse += "\n" + String(repeating: "- ", count: 14 + urlString.count/2)
+        if let httpMethod = request.httpMethod {
+            logResponse += "\n|     Response : \(String(describing: httpMethod)) - \(url)"
+        }
+        
+        logResponse += "\n|     Status: \(response.statusCode)"
+        if let headerFields = response.allHeaderFields as? [String: String], !headerFields.isEmpty {
+            logResponse += "\n|     Headers : \(headerFields)"
+        }
+        if let responseObject = data?.jsonObject,
+           var responseJSON = responseObject.prettyPrinted
+        {
+            responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
+            if responseJSON.count > maxResponseLength {
+                responseJSON = String(responseJSON.prefix(maxResponseLength))
+                responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
+            }
+            logResponse += "\n|     \(type(of: responseObject)) :\n\(responseJSON)"
+        } else if let responseObjectArray = data?.jsonArray,
+            var responseJSON = responseObjectArray.prettyPrinted
+        {
+            if responseJSON.count > maxResponseLength {
+                responseJSON = String(responseJSON.prefix(maxResponseLength))
+                responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
+            }
+            responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
+            logResponse += "\n|     \(type(of: responseObjectArray)) (\(responseObjectArray.count) objects):\n\(responseJSON)"
+        } else if let responseObjectArray = data?.stringArray,
+            var responseJSON = responseObjectArray.prettyPrinted
+        {
+            if responseJSON.count > maxResponseLength {
+                responseJSON = String(responseJSON.prefix(maxResponseLength))
+                responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
+            }
+            responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
+            logResponse += "\n|     \(type(of: responseObjectArray)) (\(responseObjectArray.count) objects):\n\(responseJSON)"
+        } else if var responseString = data?.string {
+            if responseString.count > maxResponseLength {
+                responseString = String(responseString.prefix(maxResponseLength))
+                responseString += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
+            }
+            responseString = "      " + responseString.replacingOccurrences(of: "\n", with: "\n      ")
+            logResponse += "\n|     \(type(of: responseString)) :\n\(responseString)"
+        }
+        
+        logResponse += "\n" + String(repeating: "- ", count: 14 + urlString.count/2) + "\n"
+        
+        return logResponse
+    }
+    
+    private func requestComponents(dataTask: URLSessionDataTask) -> [String: Any] {
+        guard let url = dataTask.originalRequest?.url else {
+            return [:]
+        }
+        
+        var cookiesComponents: [String: String] = [:]
+        var headersComponents: [AnyHashable: Any] = [:]
+        
+        if let cookies = HTTPCookieStorage.shared.cookies(for: url), !cookies.isEmpty {
+            cookies.forEach { cookiesComponents[$0.name] = $0.value }
+        }
+        
+        var headers: [AnyHashable: Any] = [:]
+        
+        if let additionalHeaders = configuration.httpAdditionalHeaders {
+            for (field, value) in additionalHeaders where field != AnyHashable("Cookie") {
+                headers[field] = value
+            }
+        }
+        
+        if let headerFields = dataTask.originalRequest?.allHTTPHeaderFields {
+            for (field, value) in headerFields where field != "Cookie" {
+                headers[field] = value
+            }
+        }
+        
+        for (field, value) in headers {
+            headersComponents[field] = value
+        }
+        
+        return ["Cookies": cookiesComponents, "Headers": headersComponents]
+    }
+}
+
+extension Array {
+    var prettyPrinted: String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+}
+
+extension Dictionary {
+    var prettyPrinted: String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
+        return String(data: data, encoding: .utf8)
     }
 }

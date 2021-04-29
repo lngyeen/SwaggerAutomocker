@@ -1,0 +1,1124 @@
+[
+    {
+        "manager" : {
+            "lastName" : "string value",
+            "email" : "string value",
+            "username" : "string value",
+            "firstName" : "string value"
+        },
+        "currentMonthGivenRatings" : [
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            },
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            },
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            }
+        ],
+        "isFavorite" : true,
+        "firstName" : "string value",
+        "isManager" : true,
+        "totalRewardScore" : 123,
+        "preferredEmail" : "string value",
+        "ratings" : [
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            },
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            },
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            }
+        ],
+        "settings" : {
+            "language" : "string value",
+            "nickname" : "string value",
+            "notificationSettings" : [
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                },
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                },
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                }
+            ],
+            "anonymous" : true
+        },
+        "fluanceMetadata" : {
+            "externalPhoneNumbertwo" : "string value",
+            "language" : "string value",
+            "lastActivityAt" : "string value",
+            "title" : "string value",
+            "speciality" : "string value",
+            "iban" : "string value",
+            "employeeDepartment" : "string value",
+            "birthDate" : "string value",
+            "googleToken" : "string value",
+            "employeeClinicId" : "string value",
+            "latitude" : 1.23,
+            "pictureUri" : "string value",
+            "pushId" : "string value",
+            "supportContactPhoneNumber" : "string value",
+            "gender" : "string value",
+            "email" : "string value",
+            "longitude" : 1.23,
+            "lastLocalizationAt" : "string value",
+            "externalPhoneNumberOne" : "string value",
+            "preferredPhoneNumber" : "string value",
+            "supportContactName" : "string value",
+            "linkedInToken" : "string value"
+        },
+        "lastName" : "string value",
+        "metadata" : {
+            "gender" : "M",
+            "lastLocalizationAt" : "string value",
+            "longitude" : 1.23,
+            "externalPhoneNumbers" : [
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                },
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                },
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                }
+            ],
+            "supportContactName" : "string value",
+            "employeeCompany" : "string value",
+            "latitude" : 1.23,
+            "employeeDepartment" : "string value",
+            "supportContactPhoneNumber" : "string value",
+            "lastActivityAt" : "string value",
+            "employeeClinicId" : 123
+        },
+        "function" : "string value",
+        "preferredPhoneNumber" : "string value",
+        "emails" : [
+            {
+                "value" : "string value",
+                "type" : "string value"
+            },
+            {
+                "value" : "string value",
+                "type" : "string value"
+            },
+            {
+                "value" : "string value",
+                "type" : "string value"
+            }
+        ],
+        "username" : "string value",
+        "userSocialNetworks" : [
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            },
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            },
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            }
+        ],
+        "isBlacklisted" : true,
+        "phoneNumbers" : [
+            {
+                "type" : "string value",
+                "value" : "string value"
+            },
+            {
+                "type" : "string value",
+                "value" : "string value"
+            },
+            {
+                "type" : "string value",
+                "value" : "string value"
+            }
+        ],
+        "bio" : "string value"
+    },
+    {
+        "isBlacklisted" : true,
+        "settings" : {
+            "language" : "string value",
+            "nickname" : "string value",
+            "notificationSettings" : [
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                },
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                },
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                }
+            ],
+            "anonymous" : true
+        },
+        "firstName" : "string value",
+        "function" : "string value",
+        "preferredPhoneNumber" : "string value",
+        "totalRewardScore" : 123,
+        "manager" : {
+            "lastName" : "string value",
+            "email" : "string value",
+            "username" : "string value",
+            "firstName" : "string value"
+        },
+        "metadata" : {
+            "gender" : "M",
+            "lastLocalizationAt" : "string value",
+            "longitude" : 1.23,
+            "externalPhoneNumbers" : [
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                },
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                },
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                }
+            ],
+            "supportContactName" : "string value",
+            "employeeCompany" : "string value",
+            "latitude" : 1.23,
+            "employeeDepartment" : "string value",
+            "supportContactPhoneNumber" : "string value",
+            "lastActivityAt" : "string value",
+            "employeeClinicId" : 123
+        },
+        "ratings" : [
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            },
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            },
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            }
+        ],
+        "isManager" : true,
+        "lastName" : "string value",
+        "isFavorite" : true,
+        "emails" : [
+            {
+                "value" : "string value",
+                "type" : "string value"
+            },
+            {
+                "value" : "string value",
+                "type" : "string value"
+            },
+            {
+                "value" : "string value",
+                "type" : "string value"
+            }
+        ],
+        "currentMonthGivenRatings" : [
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            },
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            },
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            }
+        ],
+        "fluanceMetadata" : {
+            "externalPhoneNumbertwo" : "string value",
+            "language" : "string value",
+            "lastActivityAt" : "string value",
+            "title" : "string value",
+            "speciality" : "string value",
+            "iban" : "string value",
+            "employeeDepartment" : "string value",
+            "birthDate" : "string value",
+            "googleToken" : "string value",
+            "employeeClinicId" : "string value",
+            "latitude" : 1.23,
+            "pictureUri" : "string value",
+            "pushId" : "string value",
+            "supportContactPhoneNumber" : "string value",
+            "gender" : "string value",
+            "email" : "string value",
+            "longitude" : 1.23,
+            "lastLocalizationAt" : "string value",
+            "externalPhoneNumberOne" : "string value",
+            "preferredPhoneNumber" : "string value",
+            "supportContactName" : "string value",
+            "linkedInToken" : "string value"
+        },
+        "phoneNumbers" : [
+            {
+                "type" : "string value",
+                "value" : "string value"
+            },
+            {
+                "type" : "string value",
+                "value" : "string value"
+            },
+            {
+                "type" : "string value",
+                "value" : "string value"
+            }
+        ],
+        "username" : "string value",
+        "preferredEmail" : "string value",
+        "bio" : "string value",
+        "userSocialNetworks" : [
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            },
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            },
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            }
+        ]
+    },
+    {
+        "currentMonthGivenRatings" : [
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            },
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            },
+            {
+                "createdDate" : "string value",
+                "stars" : 123,
+                "id" : "string value",
+                "ratingType" : "COOL",
+                "commenter" : {
+                    "metadata" : {
+                        "gender" : "M",
+                        "lastLocalizationAt" : "string value",
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "longitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "employeeCompany" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "firstName" : "string value",
+                    "username" : "string value",
+                    "lastName" : "string value",
+                    "email" : "string value"
+                },
+                "comment" : "string value"
+            }
+        ],
+        "isBlacklisted" : true,
+        "metadata" : {
+            "gender" : "M",
+            "lastLocalizationAt" : "string value",
+            "longitude" : 1.23,
+            "externalPhoneNumbers" : [
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                },
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                },
+                {
+                    "visible" : true,
+                    "phoneNumber" : "string value"
+                }
+            ],
+            "supportContactName" : "string value",
+            "employeeCompany" : "string value",
+            "latitude" : 1.23,
+            "employeeDepartment" : "string value",
+            "supportContactPhoneNumber" : "string value",
+            "lastActivityAt" : "string value",
+            "employeeClinicId" : 123
+        },
+        "ratings" : [
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            },
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            },
+            {
+                "stars" : 123,
+                "createdDate" : "string value",
+                "comment" : "string value",
+                "commenter" : {
+                    "email" : "string value",
+                    "firstName" : "string value",
+                    "metadata" : {
+                        "lastLocalizationAt" : "string value",
+                        "gender" : "M",
+                        "longitude" : 1.23,
+                        "externalPhoneNumbers" : [
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            },
+                            {
+                                "visible" : true,
+                                "phoneNumber" : "string value"
+                            }
+                        ],
+                        "employeeCompany" : "string value",
+                        "employeeDepartment" : "string value",
+                        "latitude" : 1.23,
+                        "supportContactName" : "string value",
+                        "supportContactPhoneNumber" : "string value",
+                        "lastActivityAt" : "string value",
+                        "employeeClinicId" : 123
+                    },
+                    "username" : "string value",
+                    "lastName" : "string value"
+                },
+                "id" : "string value",
+                "ratingType" : "COOL"
+            }
+        ],
+        "manager" : {
+            "lastName" : "string value",
+            "email" : "string value",
+            "username" : "string value",
+            "firstName" : "string value"
+        },
+        "firstName" : "string value",
+        "preferredEmail" : "string value",
+        "isManager" : true,
+        "totalRewardScore" : 123,
+        "userSocialNetworks" : [
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            },
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            },
+            {
+                "network" : "FACEBOOK",
+                "username" : "string value",
+                "profileUrl" : "string value"
+            }
+        ],
+        "preferredPhoneNumber" : "string value",
+        "settings" : {
+            "language" : "string value",
+            "nickname" : "string value",
+            "notificationSettings" : [
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                },
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                },
+                {
+                    "type" : "FEE_STATUS_UPDATE",
+                    "channel" : "EMAIL",
+                    "enabled" : true
+                }
+            ],
+            "anonymous" : true
+        },
+        "fluanceMetadata" : {
+            "externalPhoneNumbertwo" : "string value",
+            "language" : "string value",
+            "lastActivityAt" : "string value",
+            "title" : "string value",
+            "speciality" : "string value",
+            "iban" : "string value",
+            "employeeDepartment" : "string value",
+            "birthDate" : "string value",
+            "googleToken" : "string value",
+            "employeeClinicId" : "string value",
+            "latitude" : 1.23,
+            "pictureUri" : "string value",
+            "pushId" : "string value",
+            "supportContactPhoneNumber" : "string value",
+            "gender" : "string value",
+            "email" : "string value",
+            "longitude" : 1.23,
+            "lastLocalizationAt" : "string value",
+            "externalPhoneNumberOne" : "string value",
+            "preferredPhoneNumber" : "string value",
+            "supportContactName" : "string value",
+            "linkedInToken" : "string value"
+        },
+        "emails" : [
+            {
+                "value" : "string value",
+                "type" : "string value"
+            },
+            {
+                "value" : "string value",
+                "type" : "string value"
+            },
+            {
+                "value" : "string value",
+                "type" : "string value"
+            }
+        ],
+        "isFavorite" : true,
+        "phoneNumbers" : [
+            {
+                "type" : "string value",
+                "value" : "string value"
+            },
+            {
+                "type" : "string value",
+                "value" : "string value"
+            },
+            {
+                "type" : "string value",
+                "value" : "string value"
+            }
+        ],
+        "function" : "string value",
+        "bio" : "string value",
+        "username" : "string value",
+        "lastName" : "string value"
+    }
+    ]
