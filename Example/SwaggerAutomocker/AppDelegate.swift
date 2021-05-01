@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var defaultValuesConfig: MockServerConfiguration {
         let defaultValuesConfig = MockServerConfiguration()
-        defaultValuesConfig.defaultArrayElementCount = 4
+        defaultValuesConfig.defaultArrayElementCount = 3
         defaultValuesConfig.defaultValuesConfiguration.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
         return defaultValuesConfig
     }

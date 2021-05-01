@@ -674,46 +674,46 @@ final class TestsOpenApi1: Tests {
         let request = get(path: "/api/v1/user")
         let expectedResponse = [
             [
-                "userRole": "PATIENT",
-                "nickName": "Luu Nguyen 1",
-                "email": "luunguyen1@novahub.vn",
-                "lastName": "Truong Luu 1",
-                "firstName": "Nguyen",
                 "focusmeEntity": [
-                    "name": "Luu Nguyen 1",
+                    "name": "Luu Nguyen A",
                     "id": 3694734
                 ],
-                "status": "ACTIVE",
+                "userRole": "PATIENT",
                 "avatar": "U3dhZ2dlciByb2Nrcw==",
+                "lastName": "Truong Luu A",
+                "firstName": "Nguyen",
+                "email": "luunguyenA@novahub.vn",
+                "nickName": "Luu Nguyen A",
+                "status": "ACTIVE",
                 "id": 98349702
             ],
             [
-                "id": 98349702,
                 "firstName": "Nguyen",
-                "userRole": "PATIENT",
-                "focusmeEntity": [
-                    "name": "Luu Nguyen 2",
-                    "id": 3694734
-                ],
-                "lastName": "Truong Luu 2",
-                "nickName": "Luu Nguyen 2",
                 "avatar": "U3dhZ2dlciByb2Nrcw==",
-                "email": "luunguyen2@novahub.vn",
-                "status": "IN_REGISTRATION"
+                "nickName": "Luu Nguyen B",
+                "status": "ACTIVE",
+                "userRole": "PATIENT",
+                "lastName": "Truong Luu B",
+                "id": 98349702,
+                "email": "luunguyenB@novahub.vn",
+                "focusmeEntity": [
+                    "name": "Luu Nguyen B",
+                    "id": 3694734
+                ]
             ],
             [
-                "userRole": "PATIENT",
-                "lastName": "Truong Luu 3",
+                "nickName": "Luu Nguyen C",
+                "avatar": "U3dhZ2dlciByb2Nrcw==",
+                "status": "ACTIVE",
                 "focusmeEntity": [
-                    "name": "Luu Nguyen 3",
+                    "name": "Luu Nguyen C",
                     "id": 3694734
                 ],
-                "status": "NON_ACTIVE",
+                "lastName": "Truong Luu C",
                 "firstName": "Nguyen",
-                "avatar": "U3dhZ2dlciByb2Nrcw==",
-                "nickName": "Luu Nguyen 3",
+                "email": "luunguyenC@novahub.vn",
                 "id": 98349702,
-                "email": "luunguyen3@novahub.vn"
+                "userRole": "PATIENT"
             ]
         ].map { $0.formatted }
 

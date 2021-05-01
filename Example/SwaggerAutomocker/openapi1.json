@@ -1511,6 +1511,50 @@
                                    "avatar" : "U3dhZ2dlciByb2Nrcw=="
                                }
                            ]
+                        },
+                        "examples": {
+                            "user1": {
+                                "nickName" : "Luu Nguyen A",
+                                "lastName" : "Truong Luu A",
+                                "firstName" : "Nguyen",
+                                "email" : "luunguyenA@novahub.vn",
+                                "avatar" : "U3dhZ2dlciByb2Nrcw==",
+                                "focusmeEntity" : {
+                                    "name" : "Luu Nguyen A",
+                                    "id" : 3694734
+                                },
+                                "status" : "ACTIVE",
+                                "userRole" : "PATIENT",
+                                "id" : 98349702
+                            },
+                            "user2": {
+                                "nickName" : "Luu Nguyen B",
+                                "lastName" : "Truong Luu B",
+                                "firstName" : "Nguyen",
+                                "email" : "luunguyenB@novahub.vn",
+                                "avatar" : "U3dhZ2dlciByb2Nrcw==",
+                                "focusmeEntity" : {
+                                    "name" : "Luu Nguyen B",
+                                    "id" : 3694734
+                                },
+                                "status" : "ACTIVE",
+                                "userRole" : "PATIENT",
+                                "id" : 98349702
+                            },
+                            "user3": {
+                                "nickName" : "Luu Nguyen C",
+                                "lastName" : "Truong Luu C",
+                                "firstName" : "Nguyen",
+                                "email" : "luunguyenC@novahub.vn",
+                                "avatar" : "U3dhZ2dlciByb2Nrcw==",
+                                "focusmeEntity" : {
+                                    "name" : "Luu Nguyen C",
+                                    "id" : 3694734
+                                },
+                                "status" : "ACTIVE",
+                                "userRole" : "PATIENT",
+                                "id" : 98349702
+                            }
                         }
                      }
                   }

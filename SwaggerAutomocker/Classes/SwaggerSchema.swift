@@ -9,67 +9,6 @@
 import Foundation
 import ObjectMapper
 
-public enum SwaggerDataType: String {
-    case string
-    case integer
-    case number
-    case boolean
-    case array
-    case object
-    /// Default is object
-    
-    var formats: [SwaggerSchemaFormatType]? {
-        switch self {
-        case .string: return [.date, .dateTime, .email,
-                              .uuid, .uri, .hostname,
-                              .ipv4, .ipv6, .others]
-        case .integer: return [.int32, .int64]
-        case .number: return [.float, .double]
-        case .boolean, .array, .object: return nil
-        }
-    }
-}
-
-public protocol DefaultValuable {
-    associatedtype DefaultValueType
-    var defaultValue: DefaultValueType { get set }
-}
-
-/// Format is an open value, so you can use any formats, even not those defined by the OpenAPI Specification
-public enum SwaggerSchemaFormatType: String, CaseIterable {
-    /// Numbers
-    case float
-    case double
-    case int32
-    case int64
-    
-    /// String
-    case date // full-date notation as defined by RFC 3339, section 5.6, for example, 2017-07-21
-    case dateTime // the date-time notation as defined by RFC 3339, section 5.6, for example, 2017-07-21T17:32:28Z
-    case password // a hint to UIs to mask the input
-    case byte // base64-encoded characters, for example, U3dhZ2dlciByb2Nrcw==
-    case binary // binary data, used to describe files
-    
-    /// Others...
-    case email
-    case uuid
-    case uri
-    case hostname
-    case ipv4
-    case ipv6
-    case others
-}
-
-enum SwaggerSchemaResponse {
-    case string(content: String)
-    case integer(content: Int)
-    case number(content: Double)
-    case boolean(content: Bool)
-    case object(content: [String: Any])
-    case array(content: [Any])
-    case none
-}
-
 enum SwaggerSchemaAttribute: String {
     case type
     case format
@@ -89,7 +28,7 @@ class SwaggerSchema: Mappable {
     var properties: [String: Any]?
     var additionalProperties: [String: Any]?
     var example: Any?
-
+    var examples: Any?
     var minLength: Int? // Appears only if type is string
     var maxLength: Int? // Appears only if type is string
     
@@ -113,12 +52,11 @@ class SwaggerSchema: Mappable {
         defer {
             if
                 MockServer.configuration.enableDebugPrint,
-                let json = root?.json,
-                let jsonString = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            {
-                print(jsonString)
+                let prettyPrinted = root?.json.prettyPrinted {
+                print(prettyPrinted)
             }
         }
+        root = nil
         return valueFromJson(toJSON(), definitions: definitions, currentNode: root)
     }
     
@@ -127,19 +65,19 @@ class SwaggerSchema: Mappable {
             let value = generateValueFor(type: type, from: json)
             
             switch type {
-            case SwaggerDataType.string.rawValue:
+            case SwaggerSchemaDataType.string.rawValue:
                 return .string(content: (value as? String) ?? "")
                 
-            case SwaggerDataType.integer.rawValue:
+            case SwaggerSchemaDataType.integer.rawValue:
                 return .integer(content: (value as? Int) ?? 0)
                 
-            case SwaggerDataType.number.rawValue:
+            case SwaggerSchemaDataType.number.rawValue:
                 return .number(content: (value as? Double) ?? 0)
                 
-            case SwaggerDataType.boolean.rawValue:
+            case SwaggerSchemaDataType.boolean.rawValue:
                 return .boolean(content: (value as? Bool) ?? true)
                 
-            case SwaggerDataType.array.rawValue:
+            case SwaggerSchemaDataType.array.rawValue:
                 var array: [Any] = []
                 if let arrayExample = value as? [Any] {
                     /// Example in array-level
@@ -150,7 +88,7 @@ class SwaggerSchema: Mappable {
                     if let example = items[SwaggerSchemaAttribute.example.rawValue] {
                         array = [example, example, example]
                     } else {
-                        switch valueFromJson(items, definitions: definitions, currentNode: currentNode) {
+                        switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode) {
                         case .string(let content):
                             array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: MockServer.configuration.defaultArrayElementCount))
                             
@@ -213,9 +151,10 @@ class SwaggerSchema: Mappable {
                     
                     /// additionalProperties
                     if let propertyName = propertyName,
-                       let additionalProperties = json[SwaggerSchemaAttribute.additionalProperties.rawValue] as? [String: Any] {
-                        for i in 0..<MockServer.configuration.defaultArrayElementCount {
-                            switch valueFromJson(additionalProperties, definitions: definitions, currentNode: currentNode) {
+                       let additionalProperties = json[SwaggerSchemaAttribute.additionalProperties.rawValue] as? [String: Any]
+                    {
+                        for i in 1 ... MockServer.configuration.defaultArrayElementCount {
+                            switch valueFromJson(additionalProperties, for: propertyName, definitions: definitions, currentNode: currentNode) {
                             case .string(let content):
                                 object["\(propertyName)\(i)"] = content
                                 
@@ -248,7 +187,7 @@ class SwaggerSchema: Mappable {
             /// Stop creating child objects if there are more than one ancestors of the same type
             guard (currentNode?.ancestors(name: referenceName).count ?? 0) < 2 else { return .none }
             
-            let childNode = Node(name: referenceName, parent: currentNode)
+            let childNode = Node(className: referenceName, propertyName: propertyName ?? "", parent: currentNode)
             if case .none = root { root = childNode }
             return valueFromReference(referenceName, definitions: definitions, currentNode: childNode)
         } else {
@@ -282,16 +221,16 @@ class SwaggerSchema: Mappable {
                 value = defaultValue
             } else {
                 switch type {
-                case SwaggerDataType.string.rawValue:
+                case SwaggerSchemaDataType.string.rawValue:
                     value = MockServer.configuration.defaultValuesConfiguration.othersDefaultValue
                     
-                case SwaggerDataType.integer.rawValue:
+                case SwaggerSchemaDataType.integer.rawValue:
                     value = MockServer.configuration.defaultValuesConfiguration.int64DefaultValue
                     
-                case SwaggerDataType.number.rawValue:
+                case SwaggerSchemaDataType.number.rawValue:
                     value = MockServer.configuration.defaultValuesConfiguration.doubleDefaultValue
                     
-                case SwaggerDataType.boolean.rawValue:
+                case SwaggerSchemaDataType.boolean.rawValue:
                     value = MockServer.configuration.defaultValuesConfiguration.booleanDefaultValue
                     
                 default: break
@@ -304,30 +243,33 @@ class SwaggerSchema: Mappable {
 }
 
 private class Node: NSObject {
-    private(set) var name: String
+    
+    private(set) var className: String
+    private(set) var propertyName: String
     private(set) var children: Set<Node> = []
     private(set) weak var parent: Node?
     
     var json: [String: Any] {
         if children.isEmpty {
-            return [name: ""]
+            return ["\(propertyName) - \(className)": ""]
         } else {
-            return [name: children.map { $0.json }]
+            return ["\(propertyName) - \(className)": children.map { $0.json }]
         }
     }
     
-    init(name: String, parent: Node?) {
-        self.name = name
+    init(className: String, propertyName: String, parent: Node?) {
+        self.className = className
+        self.propertyName = propertyName
         super.init()
         self.parent = parent
         self.parent?.children.insert(self)
     }
     
     func ancestors(name: String) -> [Node] {
-        var ancestors: [Node] = self.name == name ? [self] : []
+        var ancestors: [Node] = self.className == name ? [self] : []
         var current = parent
         while current != nil {
-            if let current = current, current.name == name {
+            if let current = current, current.className == name {
                 ancestors.append(current)
             }
             current = current?.parent

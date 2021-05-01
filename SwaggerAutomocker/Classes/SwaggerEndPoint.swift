@@ -12,6 +12,7 @@ import ObjectMapper
 enum SwaggerEndPointAttribute: String {
     case produces
     case parameters
+    case requestBody
     case responses
 }
 
@@ -19,6 +20,7 @@ class SwaggerEndPoint: Mappable {
     var produces: [String] = []
     var parameters: [SwaggerParam] = []
     var responses: [String: SwaggerResponse]?
+    var requestBody: SwaggerResponse?
     var contentType: String {
         return produces.first ?? ""
     }
@@ -44,12 +46,13 @@ class SwaggerEndPoint: Mappable {
         produces <- map[SwaggerEndPointAttribute.produces.rawValue]
         parameters <- map[SwaggerEndPointAttribute.parameters.rawValue]
         responses <- (map[SwaggerEndPointAttribute.responses.rawValue], ResponsesTransformer())
+        requestBody <- (map[SwaggerEndPointAttribute.requestBody.rawValue], RequestBodyTransformer())
     }
 
     func responseStringFromDefinitions(_ definitions: Definitions) -> String? {
         if responses != nil {
             let defaultRes = defaultResponse()
-            return defaultRes.response.responseStringFromDefinitions(definitions)
+            return defaultRes.response.responseFromDefinitions(definitions)
         }
         return nil
     }
@@ -82,8 +85,9 @@ private class ResponsesTransformer: TransformType {
             for (statusCode, responseData) in responses {
                 if let jsonObject = responseData as? [String: Any] {
                     let content: [String: Any] = jsonObject["content"] as? [String: Any] ?? [:]
-
-                    if let nestedJsonObject = content.values.first(where: { $0 is [String: Any] }) as? [String: Any] {
+                    /// Get "application/json" first, if not exists, try to get other types
+                    if let nestedJsonObject = (content["application/json"] as? [String: Any]) ??
+                        content.values.first(where: { $0 is [String: Any] }) as? [String: Any] {
                         returnValue[statusCode] = SwaggerResponse(JSON: nestedJsonObject)
                     } else {
                         returnValue[statusCode] = SwaggerResponse(JSON: jsonObject)
@@ -100,5 +104,28 @@ private class ResponsesTransformer: TransformType {
             return value.mapValues { $0.toJSON() }
         }
         return nil
+    }
+}
+
+private class RequestBodyTransformer: TransformType {
+    func transformFromJSON(_ value: Any?) -> SwaggerResponse? {
+        if let requestBody = value as? [String: Any] {
+            var returnValue: SwaggerResponse?
+            let content: [String: Any] = requestBody["content"] as? [String: Any] ?? [:]
+            /// Get "application/json" first, if not exists, try to get other types
+            if let nestedJsonObject = (content["application/json"] as? [String: Any]) ??
+                content.values.first(where: { $0 is [String: Any] }) as? [String: Any] {
+                returnValue = SwaggerResponse(JSON: nestedJsonObject)
+            } else {
+                returnValue = SwaggerResponse(JSON: requestBody)
+            }
+            
+            return returnValue
+        }
+        return nil
+    }
+    
+    func transformToJSON(_ value: SwaggerResponse?) -> [String: Any]? {
+        return value?.toJSON()
     }
 }

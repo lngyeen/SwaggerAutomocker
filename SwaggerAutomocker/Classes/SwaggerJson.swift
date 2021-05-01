@@ -31,14 +31,11 @@ public class SwaggerJson: Mappable {
         if let paths = paths {
             var endPoints: [EndPoint] = []
             for (path, jsonPath) in paths {
-                for (method, jsonEndPoint) in jsonPath {
+                for (method, swaggerEndPoint) in jsonPath {
                     let endpoint = EndPoint(method: method.uppercased(),
                                             path: (basePath ?? "") + path,
-                                            contentType: jsonEndPoint.contentType,
-                                            statusCode: jsonEndPoint.responseCode,
-                                            headers: jsonEndPoint.headers,
-                                            params: jsonEndPoint.parameters,
-                                            responseString: definitions != nil ? jsonEndPoint.responseStringFromDefinitions(definitions!) : nil)
+                                            swaggerEndPoint: swaggerEndPoint,
+                                            definitions: definitions)
                     endPoints.append(endpoint)
                 }
             }
