@@ -49,10 +49,10 @@ class SwaggerEndPoint: Mappable {
         requestBody <- (map[SwaggerEndPointAttribute.requestBody.rawValue], RequestBodyTransformer())
     }
 
-    func responseStringFromDefinitions(_ definitions: Definitions) -> String? {
+    func responseStringFromDefinitions(_ definitions: Definitions, using dataGenerator: DataGenerator) -> String? {
         if responses != nil {
             let defaultRes = defaultResponse()
-            return defaultRes.response.responseFromDefinitions(definitions)
+            return defaultRes.response.responseFromDefinitions(definitions, using: dataGenerator)
         }
         return nil
     }

@@ -18,6 +18,12 @@ enum SwaggerSchemaAttribute: String {
     case additionalProperties
     case example
     case enumValues = "enum"
+    
+    /// Number only
+    case minimum
+    case maximum
+    case exclusiveMinimum
+    case exclusiveMaximum
 }
 
 class SwaggerSchema: Mappable {
@@ -29,11 +35,11 @@ class SwaggerSchema: Mappable {
     var additionalProperties: [String: Any]?
     var example: Any?
     var examples: Any?
-    var minLength: Int? // Appears only if type is string
-    var maxLength: Int? // Appears only if type is string
     
-    var minimum: Double? // Appears only if type is integer or number
-    var maximum: Double? // Appears only if type is integer or number
+    var minimum: Int?
+    var maximum: Int?
+    var exclusiveMinimum: Bool?
+    var exclusiveMaximum: Bool?
     
     private var root: Node?
     
@@ -46,23 +52,22 @@ class SwaggerSchema: Mappable {
         properties <- map[SwaggerSchemaAttribute.properties.rawValue]
         additionalProperties <- map[SwaggerSchemaAttribute.additionalProperties.rawValue]
         example <- map[SwaggerSchemaAttribute.example.rawValue]
+        
+        /// Number only
+        minimum <- map[SwaggerSchemaAttribute.minimum.rawValue]
+        maximum <- map[SwaggerSchemaAttribute.maximum.rawValue]
+        exclusiveMinimum <- map[SwaggerSchemaAttribute.exclusiveMinimum.rawValue]
+        exclusiveMaximum <- map[SwaggerSchemaAttribute.exclusiveMaximum.rawValue]
     }
     
-    func valueFromDefinitions(_ definitions: Definitions) -> SwaggerSchemaResponse {
-        defer {
-            if
-                MockServer.configuration.enableDebugPrint,
-                let prettyPrinted = root?.json.prettyPrinted {
-                print(prettyPrinted)
-            }
-        }
+    func valueFromDefinitions(_ definitions: Definitions, dataGenerator: DataGenerator) -> SwaggerSchemaResponse {
         root = nil
-        return valueFromJson(toJSON(), definitions: definitions, currentNode: root)
+        return valueFromJson(toJSON(), definitions: definitions, currentNode: root, dataGenerator: dataGenerator)
     }
     
-    private func valueFromJson(_ json: [String: Any], for propertyName: String? = nil, definitions: Definitions, currentNode: Node?) -> SwaggerSchemaResponse {
+    private func valueFromJson(_ json: [String: Any], for propertyName: String? = nil, definitions: Definitions, currentNode: Node?, dataGenerator: DataGenerator) -> SwaggerSchemaResponse {
         if let type = json[SwaggerSchemaAttribute.type.rawValue] as? String {
-            let value = generateValueFor(type: type, from: json)
+            let value = generateValueFor(type: type, from: json, dataGenerator: dataGenerator)
             
             switch type {
             case SwaggerSchemaDataType.string.rawValue:
@@ -88,27 +93,51 @@ class SwaggerSchema: Mappable {
                     if let example = items[SwaggerSchemaAttribute.example.rawValue] {
                         array = [example, example, example]
                     } else {
-                        switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode) {
+                        switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
                         case .string(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: MockServer.configuration.defaultArrayElementCount))
+                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
                             
                         case .integer(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: MockServer.configuration.defaultArrayElementCount))
+                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
                             
                         case .number(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: MockServer.configuration.defaultArrayElementCount))
+                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
                             
                         case .boolean(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: MockServer.configuration.defaultArrayElementCount))
+                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
                             
                         case .array(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: MockServer.configuration.defaultArrayElementCount))
+                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
                             
                         case .object(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: MockServer.configuration.defaultArrayElementCount))
+                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
                             
                         case .none: break
                         }
+
+//                        for _ in 0..<MockServer.dataGenerator.defaultArrayElementCount {
+//                            switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode) {
+//                            case .string(let content):
+//                                array.append(content)
+//
+//                            case .integer(let content):
+//                                array.append(content)
+//
+//                            case .number(let content):
+//                                array.append(content)
+//
+//                            case .boolean(let content):
+//                                array.append(content)
+//
+//                            case .array(let content):
+//                                array.append(content)
+//
+//                            case .object(let content):
+//                                array.append(content)
+//
+//                            case .none: break
+//                            }
+//                        }
                     }
                 }
                 return .array(content: array)
@@ -123,7 +152,7 @@ class SwaggerSchema: Mappable {
                     let properties: [String: Any] = json[SwaggerSchemaAttribute.properties.rawValue] as? [String: Any] ?? [:]
                     for (propertyName, propertyDefinition) in properties {
                         if let jsonObject = propertyDefinition as? [String: Any] {
-                            switch valueFromJson(jsonObject, for: propertyName, definitions: definitions, currentNode: currentNode) {
+                            switch valueFromJson(jsonObject, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
                             case .string(let content):
                                 object[propertyName] = content
                                 
@@ -153,8 +182,8 @@ class SwaggerSchema: Mappable {
                     if let propertyName = propertyName,
                        let additionalProperties = json[SwaggerSchemaAttribute.additionalProperties.rawValue] as? [String: Any]
                     {
-                        for i in 1 ... MockServer.configuration.defaultArrayElementCount {
-                            switch valueFromJson(additionalProperties, for: propertyName, definitions: definitions, currentNode: currentNode) {
+                        for i in 1 ... dataGenerator.defaultArrayElementCount {
+                            switch valueFromJson(additionalProperties, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
                             case .string(let content):
                                 object["\(propertyName)\(i)"] = content
                                 
@@ -189,21 +218,21 @@ class SwaggerSchema: Mappable {
             
             let childNode = Node(className: referenceName, propertyName: propertyName ?? "", parent: currentNode)
             if case .none = root { root = childNode }
-            return valueFromReference(referenceName, definitions: definitions, currentNode: childNode)
+            return valueFromReference(referenceName, definitions: definitions, currentNode: childNode, dataGenerator: dataGenerator)
         } else {
             return .string(content: "")
         }
     }
     
-    private func valueFromReference(_ referenceName: String, definitions: Definitions, currentNode: Node) -> SwaggerSchemaResponse {
+    private func valueFromReference(_ referenceName: String, definitions: Definitions, currentNode: Node, dataGenerator: DataGenerator) -> SwaggerSchemaResponse {
         if let jsonObject = definitions[referenceName] {
-            return valueFromJson(jsonObject, definitions: definitions, currentNode: currentNode)
+            return valueFromJson(jsonObject, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator)
         } else {
             return .string(content: "")
         }
     }
     
-    private func generateValueFor(type: String, from json: [String: Any]) -> Any? {
+    private func generateValueFor(type: String, from json: [String: Any], dataGenerator: DataGenerator) -> Any? {
         /// Get example value
         var value = json[SwaggerSchemaAttribute.example.rawValue]
         
@@ -217,21 +246,20 @@ class SwaggerSchema: Mappable {
         /// If has no example value, try to generate default values
         if case .none = value {
             if let format = json[SwaggerSchemaAttribute.format.rawValue] as? String {
-                let defaultValue = MockServer.configuration.defaultValuesConfiguration.defaultValueFor(type: format)
-                value = defaultValue
+                value = dataGenerator.generateValueFor(format: format, schema: json)
             } else {
                 switch type {
                 case SwaggerSchemaDataType.string.rawValue:
-                    value = MockServer.configuration.defaultValuesConfiguration.othersDefaultValue
+                    value = dataGenerator.othersDefaultValue
                     
                 case SwaggerSchemaDataType.integer.rawValue:
-                    value = MockServer.configuration.defaultValuesConfiguration.int64DefaultValue
+                    value = dataGenerator.int64DefaultValue
                     
                 case SwaggerSchemaDataType.number.rawValue:
-                    value = MockServer.configuration.defaultValuesConfiguration.doubleDefaultValue
+                    value = dataGenerator.doubleDefaultValue
                     
                 case SwaggerSchemaDataType.boolean.rawValue:
-                    value = MockServer.configuration.defaultValuesConfiguration.booleanDefaultValue
+                    value = dataGenerator.booleanDefaultValue
                     
                 default: break
                 }

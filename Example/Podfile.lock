@@ -1,8 +1,10 @@
 PODS:
   - CocoaAsyncSocket (7.6.4)
+  - Fakery (5.1.0)
   - HTTPParserC (2.9.2)
   - ObjectMapper (3.5.2)
-  - SwaggerAutomocker (0.1.1):
+  - SwaggerAutomocker (0.2.0):
+    - Fakery (~> 5.1.0)
     - ObjectMapper (~> 3.5.0)
     - Telegraph (~> 0.28.0)
   - Telegraph (0.28):
@@ -15,6 +17,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - CocoaAsyncSocket
+    - Fakery
     - HTTPParserC
     - ObjectMapper
     - Telegraph
@@ -25,11 +28,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
+  Fakery: a90caff00ca5cacde6c161c3eafc72314a03d34d
   HTTPParserC: 1ed389f80bb57a5b967d87d5358b8a94418394ee
   ObjectMapper: b53ae947d370bf89423e86be7d4e2d2b2a8d3f40
-  SwaggerAutomocker: 47b53b31fe808821e6e62c21e0f146e2d2effe14
+  SwaggerAutomocker: ea93974415c569ad83e9609a09ebc3a506be92fb
   Telegraph: 6820cf262064f2c15a393fb56401834141d0310e
 
 PODFILE CHECKSUM: 7292e2485e093b7932ff3105beb395b278986c87
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1

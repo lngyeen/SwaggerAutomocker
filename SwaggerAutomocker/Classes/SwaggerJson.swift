@@ -27,23 +27,6 @@ public class SwaggerJson: Mappable {
     var paths: [String: [String: SwaggerEndPoint]]?
     var definitions: Definitions?
     
-    var endPoints: [EndPoint] {
-        if let paths = paths {
-            var endPoints: [EndPoint] = []
-            for (path, jsonPath) in paths {
-                for (method, swaggerEndPoint) in jsonPath {
-                    let endpoint = EndPoint(method: method.uppercased(),
-                                            path: (basePath ?? "") + path,
-                                            swaggerEndPoint: swaggerEndPoint,
-                                            definitions: definitions)
-                    endPoints.append(endpoint)
-                }
-            }
-            return endPoints
-        }
-        return []
-    }
-
     public required init?(map: Map) {}
     public func mapping(map: Map) {
         swagger <- map[SwaggerJsonAttribute.swagger.rawValue]
@@ -55,6 +38,26 @@ public class SwaggerJson: Mappable {
         } else if case .some = openapi {
             definitions <- map[SwaggerJsonAttribute.schemas.rawValue]
         }
+    }
+    
+    func endPoints(dataGenerator: DataGenerator) -> [EndPoint] {
+        if let paths = paths {
+            var endPoints: [EndPoint] = []
+            for (path, jsonPath) in paths {
+                for (method, swaggerEndPoint) in jsonPath {
+                    let endpoint = EndPoint(method: method.uppercased(),
+                                            path: (basePath ?? "") + path,
+                                            parameters: swaggerEndPoint.parameters,
+                                            contentType: swaggerEndPoint.contentType,
+                                            statusCode: swaggerEndPoint.responseCode,
+                                            headers: swaggerEndPoint.headers,
+                                            responseString: definitions != nil ? swaggerEndPoint.responseStringFromDefinitions(definitions!, using: dataGenerator) : nil)
+                    endPoints.append(endpoint)
+                }
+            }
+            return endPoints
+        }
+        return []
     }
 }
 

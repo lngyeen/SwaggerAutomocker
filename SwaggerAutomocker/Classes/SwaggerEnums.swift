@@ -16,7 +16,7 @@ enum SwaggerSchemaDataType: String {
 enum SwaggerSchemaFormatType: String, CaseIterable {
     case float, double
     case int32, int64
-    case date, dateTime, password, byte, binary
+    case date, dateTime, password, byte
     case email, uuid, uri, hostname, ipv4, ipv6
     case others
 }

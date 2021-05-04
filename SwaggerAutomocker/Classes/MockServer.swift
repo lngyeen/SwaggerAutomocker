@@ -10,71 +10,20 @@ import Foundation
 import ObjectMapper
 import Telegraph
 
-public class MockServerConfiguration {
-    public var defaultValuesConfiguration: MockServerDefaultValueConfiguration = MockServerDefaultValueConfiguration()
-    public var defaultArrayElementCount: Int = 3
-    public var enableDebugPrint: Bool = true
-    public init() {}
-}
-
-public class MockServerDefaultValueConfiguration {
-    public var booleanDefaultValue = true
-    public var floatDefaultValue = 1.23
-    public var doubleDefaultValue = 2.34
-    public var int32DefaultValue = 123
-    public var int64DefaultValue = 123456789
-    public var dateDefaultValue = "2017-07-21"
-    public var dateTimeDefaultValue = "2017-07-21T17:32:28Z"
-    public var passwordDefaultValue = "********"
-    public var byteDefaultValue = "U3dhZ2dlciByb2Nrcw=="
-    public var binaryDefaultValue = "TWFuIGlzIGRpc3Rpb"
-    public var emailDefaultValue = "firstname@domain.com"
-    public var uuidDefaultValue = "123e4567-e89b-12d3-a456-426614174000"
-    public var uriDefaultValue = "https://www.example.com/foo.html"
-    public var hostnameDefaultValue = "www.example.com"
-    public var ipv4DefaultValue = "192.0.2.235"
-    public var ipv6DefaultValue = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-    public var othersDefaultValue = "string value"
-    
-    public init() {}
-    
-    public func defaultValueFor(type: String) -> Any {
-        guard let format = SwaggerSchemaFormatType(rawValue: type) else { return othersDefaultValue }
-        switch format {
-        case .float: return floatDefaultValue
-        case .double: return doubleDefaultValue
-        case .int32: return int32DefaultValue
-        case .int64: return int64DefaultValue
-        case .date: return dateDefaultValue
-        case .dateTime: return dateTimeDefaultValue
-        case .password: return passwordDefaultValue
-        case .byte: return byteDefaultValue
-        case .binary: return binaryDefaultValue
-        case .email: return emailDefaultValue
-        case .uuid: return uuidDefaultValue
-        case .uri: return uriDefaultValue
-        case .hostname: return hostnameDefaultValue
-        case .ipv4: return ipv4DefaultValue
-        case .ipv6: return ipv6DefaultValue
-        case .others: return othersDefaultValue
-        }
-    }
-}
-
 public class MockServer {
     public let port: Int
     public let swaggerJson: [String: Any]
+    public let dataGenerator: DataGenerator
     public let server = Server()
     private var swagger: SwaggerJson?
-    private(set) static var configuration = MockServerConfiguration()
     
     public init(port: Int = 8080,
                 swaggerJson: [String: Any],
-                config: MockServerConfiguration = MockServerConfiguration())
+                dataGenerator: DataGenerator = DataGenerator())
     {
         self.port = port
         self.swaggerJson = swaggerJson
-        MockServer.configuration = config
+        self.dataGenerator = dataGenerator
     }
     
     public func start() {
@@ -93,7 +42,7 @@ public class MockServer {
              */
             
             print("[SERVER]", "Server is preparing the endpoints")
-            let allEndpoints = swagger.endPoints.sorted(by: { $0.path < $1.path })
+            let allEndpoints = swagger.endPoints(dataGenerator: dataGenerator).sorted(by: { $0.path < $1.path })
             
             for endpoint in allEndpoints {
                 print(endpoint.description)

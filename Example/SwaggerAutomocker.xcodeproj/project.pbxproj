@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131C8C56CD90113CA5B2D5DB /* Pods_SwaggerAutomocker_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30AF251729BCF81D2A69F3B /* Pods_SwaggerAutomocker_Tests.framework */; };
+		5E4D6474266844105B160632 /* Pods_SwaggerAutomocker_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F70AD5C9987699D240F5262 /* Pods_SwaggerAutomocker_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		78794F885A5B68982425C934 /* Pods_SwaggerAutomocker_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBEBA7AC6CD238DF21B4195A /* Pods_SwaggerAutomocker_Tests.framework */; };
-		8364ECFAFD3F013E48E379E8 /* Pods_SwaggerAutomocker_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45A42CB5CA46DD758FF3B3C /* Pods_SwaggerAutomocker_Example.framework */; };
 		F80E602D263910C000094629 /* TestsOpenApi2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80E602C263910C000094629 /* TestsOpenApi2.swift */; };
 		F80E60342639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json in Resources */ = {isa = PBXBuildFile; fileRef = F80E60332639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json */; };
 		F80E60E026396ED600094629 /* swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F83F6D9F2462C4AB006342C1 /* swagger.json */; };
@@ -45,7 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C4261046783133BBCCE7749 /* Pods-SwaggerAutomocker_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Tests/Pods-SwaggerAutomocker_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		2F70AD5C9987699D240F5262 /* Pods_SwaggerAutomocker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaggerAutomocker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5979600547140C04978E5C9E /* Pods-SwaggerAutomocker_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Tests/Pods-SwaggerAutomocker_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		5AB1A255F74CB35BBE82AA5E /* Pods-SwaggerAutomocker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Example.debug.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SwaggerAutomocker_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwaggerAutomocker_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,12 +59,11 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6170EE8E24D4F549DB91A493 /* SwaggerAutomocker.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwaggerAutomocker.podspec; path = ../SwaggerAutomocker.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		67AD62D359BCA24D2B026412 /* Pods-SwaggerAutomocker_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Tests.release.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Tests/Pods-SwaggerAutomocker_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6BAF0918240596D534C21AC9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		AD19AE7215CE29FD35CCCF46 /* Pods-SwaggerAutomocker_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Tests.release.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Tests/Pods-SwaggerAutomocker_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		BBD3677194E09A33B84014A8 /* Pods-SwaggerAutomocker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Example.release.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D45A42CB5CA46DD758FF3B3C /* Pods_SwaggerAutomocker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaggerAutomocker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A375C7DF665A3D30C1337721 /* Pods-SwaggerAutomocker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Example.release.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D6B0B9EE8E591B16C8CC13BF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		D6CFFE11C1A35307AC4BFD38 /* Pods-SwaggerAutomocker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwaggerAutomocker_Example.debug.xcconfig"; path = "Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E30AF251729BCF81D2A69F3B /* Pods_SwaggerAutomocker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaggerAutomocker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80E602C263910C000094629 /* TestsOpenApi2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsOpenApi2.swift; sourceTree = "<group>"; };
 		F80E60332639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsOpenApi2_get_v1_social_twitter.json; sourceTree = "<group>"; };
 		F83F6D9F2462C4AB006342C1 /* swagger.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = swagger.json; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		F8E51B33263AACDE00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsOpenApi2_get_v1_clinics_123_menus.json; sourceTree = "<group>"; };
 		F8E51B39263AAD7F00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json"; sourceTree = "<group>"; };
 		F8E51B3F263AB1CB00715F3B /* TestsOpenApi2_get_v1_directory_employees_team.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsOpenApi2_get_v1_directory_employees_team.json; sourceTree = "<group>"; };
-		FBEBA7AC6CD238DF21B4195A /* Pods_SwaggerAutomocker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaggerAutomocker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8364ECFAFD3F013E48E379E8 /* Pods_SwaggerAutomocker_Example.framework in Frameworks */,
+				5E4D6474266844105B160632 /* Pods_SwaggerAutomocker_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,20 +93,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78794F885A5B68982425C934 /* Pods_SwaggerAutomocker_Tests.framework in Frameworks */,
+				131C8C56CD90113CA5B2D5DB /* Pods_SwaggerAutomocker_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E8224A839EC6AA633B561D7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F70AD5C9987699D240F5262 /* Pods_SwaggerAutomocker_Example.framework */,
+				E30AF251729BCF81D2A69F3B /* Pods_SwaggerAutomocker_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		33D856C630352BD60B2631FC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D6CFFE11C1A35307AC4BFD38 /* Pods-SwaggerAutomocker_Example.debug.xcconfig */,
-				BBD3677194E09A33B84014A8 /* Pods-SwaggerAutomocker_Example.release.xcconfig */,
-				2C4261046783133BBCCE7749 /* Pods-SwaggerAutomocker_Tests.debug.xcconfig */,
-				AD19AE7215CE29FD35CCCF46 /* Pods-SwaggerAutomocker_Tests.release.xcconfig */,
+				5AB1A255F74CB35BBE82AA5E /* Pods-SwaggerAutomocker_Example.debug.xcconfig */,
+				A375C7DF665A3D30C1337721 /* Pods-SwaggerAutomocker_Example.release.xcconfig */,
+				5979600547140C04978E5C9E /* Pods-SwaggerAutomocker_Tests.debug.xcconfig */,
+				67AD62D359BCA24D2B026412 /* Pods-SwaggerAutomocker_Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -119,7 +128,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				33D856C630352BD60B2631FC /* Pods */,
-				E28FE0A7164F13C333B53925 /* Frameworks */,
+				2E8224A839EC6AA633B561D7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,15 +195,6 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		E28FE0A7164F13C333B53925 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D45A42CB5CA46DD758FF3B3C /* Pods_SwaggerAutomocker_Example.framework */,
-				FBEBA7AC6CD238DF21B4195A /* Pods_SwaggerAutomocker_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		F80E602B263910C000094629 /* TestsOpenApi2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,11 +251,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SwaggerAutomocker_Example" */;
 			buildPhases = (
-				5E4DB72132D41909320E8744 /* [CP] Check Pods Manifest.lock */,
+				C2D5C8E016586916412136A7 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				7AD1A13998731058F5E861B8 /* [CP] Embed Pods Frameworks */,
+				8EF056A068512C2ACCB91AC2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -270,7 +270,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SwaggerAutomocker_Tests" */;
 			buildPhases = (
-				E85ED194B4528558B51F65F3 /* [CP] Check Pods Manifest.lock */,
+				F53C52AFEC2FF6E356D8A1BC /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -363,7 +363,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5E4DB72132D41909320E8744 /* [CP] Check Pods Manifest.lock */ = {
+		8EF056A068512C2ACCB91AC2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/Fakery/Fakery.framework",
+				"${BUILT_PRODUCTS_DIR}/HTTPParserC/HTTPParserC.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SwaggerAutomocker/SwaggerAutomocker.framework",
+				"${BUILT_PRODUCTS_DIR}/Telegraph/Telegraph.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fakery.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTTPParserC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwaggerAutomocker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Telegraph.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2D5C8E016586916412136A7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -385,33 +413,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7AD1A13998731058F5E861B8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/HTTPParserC/HTTPParserC.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/SwaggerAutomocker/SwaggerAutomocker.framework",
-				"${BUILT_PRODUCTS_DIR}/Telegraph/Telegraph.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HTTPParserC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwaggerAutomocker.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Telegraph.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwaggerAutomocker_Example/Pods-SwaggerAutomocker_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E85ED194B4528558B51F65F3 /* [CP] Check Pods Manifest.lock */ = {
+		F53C52AFEC2FF6E356D8A1BC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -589,7 +591,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6CFFE11C1A35307AC4BFD38 /* Pods-SwaggerAutomocker_Example.debug.xcconfig */;
+			baseConfigurationReference = 5AB1A255F74CB35BBE82AA5E /* Pods-SwaggerAutomocker_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6P62CCW5K5;
@@ -606,7 +608,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBD3677194E09A33B84014A8 /* Pods-SwaggerAutomocker_Example.release.xcconfig */;
+			baseConfigurationReference = A375C7DF665A3D30C1337721 /* Pods-SwaggerAutomocker_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 6P62CCW5K5;
@@ -623,7 +625,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C4261046783133BBCCE7749 /* Pods-SwaggerAutomocker_Tests.debug.xcconfig */;
+			baseConfigurationReference = 5979600547140C04978E5C9E /* Pods-SwaggerAutomocker_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 6P62CCW5K5;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -647,7 +649,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD19AE7215CE29FD35CCCF46 /* Pods-SwaggerAutomocker_Tests.release.xcconfig */;
+			baseConfigurationReference = 67AD62D359BCA24D2B026412 /* Pods-SwaggerAutomocker_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 6P62CCW5K5;
 				FRAMEWORK_SEARCH_PATHS = (

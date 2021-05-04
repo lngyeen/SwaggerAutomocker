@@ -3704,7 +3704,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -3730,7 +3731,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -3753,7 +3755,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -3776,7 +3779,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -3824,7 +3828,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                }
             }
          },
@@ -3849,7 +3854,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -3881,7 +3887,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -3910,7 +3917,8 @@
                   }
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -3939,7 +3947,8 @@
                   }
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -4300,7 +4309,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -4321,7 +4331,8 @@
                   "format":"byte"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                },
                "status":{
                   "type":"string",
@@ -4351,10 +4362,12 @@
                   "type":"string"
                },
                "email":{
-                  "type":"string"
+                  "type":"string",
+                  "format": "email"
                },
                "firstName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"firstName"
                },
                "focusmeEntityId":{
                   "type":"integer",
@@ -4368,7 +4381,8 @@
                   "format":"int64"
                },
                "lastName":{
-                  "type":"string"
+                  "type":"string",
+                  "format":"lastName"
                },
                "nickName":{
                   "type":"string"
@@ -4424,7 +4438,8 @@
                   "format":"int64"
                },
                "name":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"name"
                }
             }
          },
@@ -4441,10 +4456,12 @@
                   "format":"byte"
                },
                "email":{
-                  "type":"string"
+                   "type":"string",
+                   "format": "email"
                },
                "firstName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"firstName"
                },
                "focusmeEntity":{
                   "$ref":"#/components/schemas/FocusmeEntityDTOShort"
@@ -4454,7 +4471,8 @@
                   "format":"int64"
                },
                "lastName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"lastName"
                },
                "nickName":{
                   "type":"string"
@@ -4491,10 +4509,12 @@
                   "type":"string"
                },
                "email":{
-                  "type":"string"
+                   "type":"string",
+                   "format": "email"
                },
                "firstName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"firstName"
                },
                "focusmeEntityId":{
                   "type":"integer",
@@ -4504,7 +4524,8 @@
                   "type":"string"
                },
                "lastName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"lastName"
                },
                "nickName":{
                   "type":"string"
@@ -4535,10 +4556,12 @@
                   "type":"string"
                },
                "email":{
-                  "type":"string"
+                   "type":"string",
+                   "format": "email"
                },
                "firstName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"firstName"
                },
                "focusmeEntityId":{
                   "type":"integer",
@@ -4548,7 +4571,8 @@
                   "type":"string"
                },
                "lastName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"lastName"
                },
                "nickName":{
                   "type":"string"
@@ -4593,10 +4617,12 @@
                   "type":"string"
                },
                "email":{
-                  "type":"string"
+                   "type":"string",
+                   "format": "email"
                },
                "firstName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"firstName"
                },
                "focusmeEntityId":{
                   "type":"integer",
@@ -4613,7 +4639,8 @@
                   "type":"string"
                },
                "lastName":{
-                  "type":"string"
+                   "type":"string",
+                   "format":"lastName"
                },
                "nickName":{
                   "type":"string"

@@ -12,26 +12,12 @@ import Telegraph
 class EndPoint {
     let method: HTTPMethod
     let path: String
-    let swaggerEndPoint: SwaggerEndPoint
-    let definitions: Definitions?
+    let parameters: [SwaggerParam]
     let route: String
-    
-    var contentType: String? {
-        return swaggerEndPoint.contentType
-    }
-    
-    var statusCode: Int {
-        return swaggerEndPoint.responseCode
-    }
-    
-    var headers: [String: String] {
-        return swaggerEndPoint.headers
-    }
-    
-    var responseString: String? {
-        guard let definitions = definitions else { return nil }
-        return swaggerEndPoint.responseStringFromDefinitions(definitions)
-    }
+    let contentType: String?
+    let statusCode: Int
+    let headers: [String: String]
+    let responseString: String?
     
     var hasPathParameters: Bool {
         return path != route
@@ -46,17 +32,22 @@ class EndPoint {
 
     init(method: String,
          path: String,
-         swaggerEndPoint: SwaggerEndPoint,
-         definitions: Definitions?)
+         parameters: [SwaggerParam],
+         contentType: String?,
+         statusCode: Int,
+         headers: [String: String],
+         responseString: String?)
     {
         self.method = HTTPMethod(stringLiteral: method)
-        self.swaggerEndPoint = swaggerEndPoint
-        self.definitions = definitions
         self.path = path
+        self.parameters = parameters
+        self.responseString = responseString
+        self.contentType = contentType
+        self.statusCode = statusCode
+        self.headers = headers
         
         var route = path
-        let pathParams = swaggerEndPoint.parameters.filter { $0.position == "path" }
-        
+        let pathParams = parameters.filter { $0.position == "path" }
         for pathParam in pathParams {
             switch pathParam.type {
             case "integer":

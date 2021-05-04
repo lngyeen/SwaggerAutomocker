@@ -3978,7 +3978,8 @@
                         "type":"string"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "maxLatitude":{
                         "type":"number",
@@ -4014,12 +4015,14 @@
                     "admissionsEmail":{
                         "maxLength":255,
                         "minLength":5,
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "invoicingEmail":{
                         "maxLength":255,
                         "minLength":5,
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "infra":{
                         "type":"string",
@@ -4040,12 +4043,14 @@
                     "admissionsEmail":{
                         "maxLength":255,
                         "minLength":5,
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "invoicingEmail":{
                         "maxLength":255,
                         "minLength":5,
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     }
                 }
             },
@@ -4060,7 +4065,8 @@
                         "type":"string"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "maxLatitude":{
                         "type":"number",
@@ -4091,10 +4097,12 @@
                         "format":"int32"
                     },
                     "admissionsEmail":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "invoicingEmail":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "infra":{
                         "type":"string",
@@ -4133,13 +4141,16 @@
                         "type":"string"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     }
                 }
             },
@@ -4148,11 +4159,11 @@
                 "properties":{
                     "latitude":{
                         "type":"number",
-                        "format":"float"
+                        "format":"latitude"
                     },
                     "longitude":{
                         "type":"number",
-                        "format":"float"
+                        "format":"longitude"
                     },
                     "gender":{
                         "type":"string",
@@ -4200,13 +4211,16 @@
                         "type":"string"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "metadata":{
                         "$ref":"#/components/schemas/UserMetadataDTO"
@@ -4384,13 +4398,16 @@
                         "type":"string"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "metadata":{
                         "$ref":"#/components/schemas/UserMetadataDTO"
@@ -4599,13 +4616,16 @@
                         "type":"string"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     }
                 }
             },
@@ -4631,7 +4651,8 @@
                         "type":"string"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "externalPhoneNumberOne":{
                         "type":"string"
@@ -4647,11 +4668,11 @@
                     },
                     "latitude":{
                         "type":"number",
-                        "format":"float"
+                        "format":"latitude"
                     },
                     "longitude":{
                         "type":"number",
-                        "format":"float"
+                        "format":"longitude"
                     },
                     "pushId":{
                         "type":"string"
@@ -4702,13 +4723,16 @@
                         "type":"string"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "preferredEmail":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "preferredPhoneNumber":{
                         "type":"string"
@@ -4973,11 +4997,11 @@
                 "properties":{
                     "latitude":{
                         "type":"number",
-                        "format":"double"
+                        "format":"latitude"
                     },
                     "longitude":{
                         "type":"number",
-                        "format":"double"
+                        "format":"longitude"
                     }
                 }
             },
@@ -5066,16 +5090,19 @@
                 "type":"object",
                 "properties":{
                     "country":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "country"
                     },
                     "fullName":{
                         "type":"string"
                     },
                     "countryCode":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "countryCode"
                     },
                     "streetAddress":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "streetAddress"
                     },
                     "placeType":{
                         "type":"string"
@@ -5111,10 +5138,12 @@
                         }
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "url":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "uri"
                     },
                     "id":{
                         "type":"string"
@@ -5513,13 +5542,15 @@
                         "type":"string"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "lang":{
                         "type":"string"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "location":{
                         "type":"string"
@@ -5561,7 +5592,8 @@
                         "format":"int32"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "id":{
                         "type":"integer",
@@ -5616,11 +5648,11 @@
                 "properties":{
                     "latitude":{
                         "type":"number",
-                        "format":"float"
+                        "format":"latitude"
                     },
                     "longitude":{
                         "type":"number",
-                        "format":"float"
+                        "format":"longitude"
                     }
                 }
             },
@@ -5628,7 +5660,8 @@
                 "type":"object",
                 "properties":{
                     "preferredEmail":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "preferredPhoneNumber":{
                         "type":"string"
@@ -5663,7 +5696,8 @@
                         "type":"string"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "infra":{
                         "type":"string",
@@ -5903,13 +5937,16 @@
                         "type":"string"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "clinicId":{
                         "type":"integer",
@@ -5995,10 +6032,12 @@
                         "format":"int32"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "birthDate":{
                         "type":"string",
@@ -6012,7 +6051,8 @@
                         ]
                     },
                     "fullName":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "fullName"
                     },
                     "test":{
                         "type":"boolean"
@@ -6059,10 +6099,12 @@
                         "type":"string"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "pictureUri":{
                         "type":"string"
@@ -6079,10 +6121,12 @@
                 "type":"object",
                 "properties":{
                     "addressLine":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "streetAddress"
                     },
                     "addressLine2":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "streetAddress"
                     },
                     "adressComplement":{
                         "type":"string"
@@ -6094,16 +6138,19 @@
                         "type":"string"
                     },
                     "country":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "country"
                     },
                     "locality":{
                         "type":"string"
                     },
                     "postCode":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "postCode"
                     },
                     "subPostCode":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "postCode"
                     }
                 }
             },
@@ -6129,10 +6176,12 @@
                         "format":"int32"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "birthDate":{
                         "type":"string",
@@ -6179,7 +6228,8 @@
                         }
                     },
                     "fullName":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "fullName"
                     },
                     "test":{
                         "type":"boolean"
@@ -6321,7 +6371,8 @@
                         "type":"string"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     }
                 }
             },
@@ -6355,7 +6406,8 @@
                         "type":"string"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "empty":{
                         "type":"boolean"
@@ -6500,10 +6552,12 @@
                         "format":"int32"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "gender":{
                         "type":"string",
@@ -7074,10 +7128,12 @@
                         "type":"string"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "phoneNumbers":{
                         "type":"array",
@@ -7112,7 +7168,8 @@
                         "type":"string"
                     },
                     "name":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"name"
                     },
                     "doctor":{
                         "$ref":"#/components/schemas/OnCallDoctorDTO"
@@ -7129,7 +7186,8 @@
                         "type":"string"
                     },
                     "userEmail":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "pinCode":{
                         "type":"string"
@@ -7178,13 +7236,16 @@
                         "type":"string"
                     },
                     "email":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "email"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "metadata":{
                         "$ref":"#/components/schemas/UserMetadataDTO"
@@ -7218,10 +7279,12 @@
                         "format":"int32"
                     },
                     "firstName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"firstName"
                     },
                     "lastName":{
-                        "type":"string"
+                        "type":"string",
+                        "format":"lastName"
                     },
                     "birthDate":{
                         "type":"string",
@@ -7238,7 +7301,8 @@
                         "$ref":"#/components/schemas/PatientFromSearchLastVisitDTO"
                     },
                     "fullName":{
-                        "type":"string"
+                        "type":"string",
+                        "format": "fullName"
                     },
                     "test":{
                         "type":"boolean"

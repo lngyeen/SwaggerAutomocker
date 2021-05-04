@@ -13,10 +13,10 @@ final class TestsOpenApi1: Tests {
         let request = post(path: "/api/v1/registration/user", body: [
             "comment": "string value",
             "email": "string value",
-            "firstName": "string value",
+            "firstName": "Ida",
             "focusmeEntityId": 123,
             "glnNumber": "string value",
-            "lastName": "string value",
+            "lastName": "Adams",
             "nickName": "string value",
             "password": "string value",
             "phone": "0123456789",
@@ -24,91 +24,91 @@ final class TestsOpenApi1: Tests {
             "userRole": "PATIENT"
         ])
         let expectedResponse = [
-            "nickName": "string value",
-            "status": "ACTIVE",
-            "userRole": "ADMIN",
-            "comment": "string value",
             "focusmeEntityId": 123456789,
-            "description": "string value",
-            "topics": [
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ],
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ],
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ]
-            ],
-            "settings": [
-                "availability": "EVERY_TIME",
-                "id": 123456789,
-                "availabilityUntil": [
-                    "hour": 123,
-                    "nano": 123,
-                    "minute": 123,
-                    "second": 123
-                ],
-                "pushNotifications": true,
-                "showPostCode": true,
-                "daysOfWeek": [
-                    "FRIDAY",
-                    "FRIDAY",
-                    "FRIDAY"
-                ],
-                "availabilityFrom": [
-                    "nano": 123,
-                    "second": 123,
-                    "minute": 123,
-                    "hour": 123
-                ],
-                "viewType": "EVERY_BODY",
-                "language": "DE",
-                "showHospital": true,
-                "revealFullName": true
-            ],
-            "lastName": "string value",
-            "glnNumber": "string value",
             "registration": [
                 "id": 123456789,
                 "invitationCode": "string value",
                 "invitationLink": "string value"
             ],
-            "avatar": "U3dhZ2dlciByb2Nrcw==",
-            "phone": "string value",
-            "firstName": "string value",
-            "id": 123456789,
             "termAndConditions": true,
-            "email": "string value",
+            "id": 123456789,
+            "nickName": "string value",
+            "comment": "string value",
+            "lastName": "Adams",
+            "phone": "string value",
+            "email": "firstname@domain.com",
+            "description": "string value",
+            "status": "ACTIVE",
+            "avatar": "U3dhZ2dlciByb2Nrcw==",
+            "glnNumber": "string value",
+            "userRole": "ADMIN",
+            "firstName": "Ida",
+            "settings": [
+                "showPostCode": true,
+                "availabilityUntil": [
+                    "nano": 123,
+                    "second": 123,
+                    "minute": 123,
+                    "hour": 123
+                ],
+                "id": 123456789,
+                "pushNotifications": true,
+                "showHospital": true,
+                "availabilityFrom": [
+                    "second": 123,
+                    "nano": 123,
+                    "minute": 123,
+                    "hour": 123
+                ],
+                "daysOfWeek": [
+                    "FRIDAY",
+                    "FRIDAY",
+                    "FRIDAY"
+                ],
+                "viewType": "EVERY_BODY",
+                "language": "DE",
+                "revealFullName": true,
+                "availability": "EVERY_TIME"
+            ],
+            "topics": [
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ],
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ],
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ]
+            ],
             "profile": [
                 "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
+                "id": 123456789,
+                "ageGroup": "FIFTY_TO_FIFTY_NINE",
+                "postCode": "string value",
                 "additionalHospitals": [
                     [
-                        "name": "string value",
+                        "name": "Ida Adams",
                         "id": 123456789
                     ],
                     [
-                        "name": "string value",
+                        "name": "Ida Adams",
                         "id": 123456789
                     ],
                     [
-                        "name": "string value",
+                        "name": "Ida Adams",
                         "id": 123456789
                     ]
                 ],
-                "id": 123456789,
-                "postCode": "string value",
-                "ageGroup": "FIFTY_TO_FIFTY_NINE",
                 "diseaseStatuses": [
                     "BRCA_PLUS",
                     "BRCA_PLUS",
@@ -132,97 +132,97 @@ final class TestsOpenApi1: Tests {
         // Given
         let request = post(path: "/api/v1/registration/resend-code/123")
         let expectedResponse = [
-            "nickName": "string value",
             "status": "ACTIVE",
-            "userRole": "ADMIN",
+            "glnNumber": "string value",
+            "profile": [
+                "ageGroup": "FIFTY_TO_FIFTY_NINE",
+                "id": 123456789,
+                "additionalHospitals": [
+                    [
+                        "id": 123456789,
+                        "name": "Ida Adams"
+                    ],
+                    [
+                        "id": 123456789,
+                        "name": "Ida Adams"
+                    ],
+                    [
+                        "id": 123456789,
+                        "name": "Ida Adams"
+                    ]
+                ],
+                "postCode": "string value",
+                "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
+                "diseaseStatuses": [
+                    "BRCA_PLUS",
+                    "BRCA_PLUS",
+                    "BRCA_PLUS"
+                ]
+            ],
+            "lastName": "Adams",
+            "firstName": "Ida",
+            "registration": [
+                "id": 123456789,
+                "invitationCode": "string value",
+                "invitationLink": "string value"
+            ],
             "comment": "string value",
             "focusmeEntityId": 123456789,
-            "description": "string value",
             "topics": [
                 [
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ],
                 [
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ],
                 [
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ]
             ],
+            "phone": "string value",
             "settings": [
                 "availability": "EVERY_TIME",
                 "id": 123456789,
+                "revealFullName": true,
+                "showPostCode": true,
+                "pushNotifications": true,
+                "availabilityFrom": [
+                    "nano": 123,
+                    "hour": 123,
+                    "minute": 123,
+                    "second": 123
+                ],
+                "language": "DE",
+                "daysOfWeek": [
+                    "FRIDAY",
+                    "FRIDAY",
+                    "FRIDAY"
+                ],
                 "availabilityUntil": [
                     "hour": 123,
                     "nano": 123,
                     "minute": 123,
                     "second": 123
                 ],
-                "pushNotifications": true,
-                "showPostCode": true,
-                "daysOfWeek": [
-                    "FRIDAY",
-                    "FRIDAY",
-                    "FRIDAY"
-                ],
-                "availabilityFrom": [
-                    "nano": 123,
-                    "second": 123,
-                    "minute": 123,
-                    "hour": 123
-                ],
-                "viewType": "EVERY_BODY",
-                "language": "DE",
                 "showHospital": true,
-                "revealFullName": true
+                "viewType": "EVERY_BODY"
             ],
-            "lastName": "string value",
-            "glnNumber": "string value",
-            "registration": [
-                "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
-            ],
-            "avatar": "U3dhZ2dlciByb2Nrcw==",
-            "phone": "string value",
-            "firstName": "string value",
             "id": 123456789,
+            "userRole": "ADMIN",
             "termAndConditions": true,
-            "email": "string value",
-            "profile": [
-                "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
-                "additionalHospitals": [
-                    [
-                        "name": "string value",
-                        "id": 123456789
-                    ],
-                    [
-                        "name": "string value",
-                        "id": 123456789
-                    ],
-                    [
-                        "name": "string value",
-                        "id": 123456789
-                    ]
-                ],
-                "id": 123456789,
-                "postCode": "string value",
-                "ageGroup": "FIFTY_TO_FIFTY_NINE",
-                "diseaseStatuses": [
-                    "BRCA_PLUS",
-                    "BRCA_PLUS",
-                    "BRCA_PLUS"
-                ]
-            ]
+            "email": "firstname@domain.com",
+            "nickName": "string value",
+            "avatar": "U3dhZ2dlciByb2Nrcw==",
+            "description": "string value"
         ].formatted
         
         // When
@@ -240,97 +240,97 @@ final class TestsOpenApi1: Tests {
         // Given
         let request = post(path: "/api/v1/registration/verification/123")
         let expectedResponse = [
-            "email": "string value",
-            "id": 123456789,
-            "userRole": "ADMIN",
-            "focusmeEntityId": 123456789,
-            "glnNumber": "string value",
-            "topics": [
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ],
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ],
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ]
-            ],
-            "description": "string value",
-            "comment": "string value",
-            "lastName": "string value",
-            "settings": [
-                "availability": "EVERY_TIME",
-                "availabilityUntil": [
-                    "hour": 123,
-                    "nano": 123,
-                    "minute": 123,
-                    "second": 123
-                ],
-                "id": 123456789,
-                "pushNotifications": true,
-                "showHospital": true,
-                "daysOfWeek": [
-                    "FRIDAY",
-                    "FRIDAY",
-                    "FRIDAY"
-                ],
-                "revealFullName": true,
-                "viewType": "EVERY_BODY",
-                "showPostCode": true,
-                "language": "DE",
-                "availabilityFrom": [
-                    "second": 123,
-                    "nano": 123,
-                    "minute": 123,
-                    "hour": 123
-                ]
-            ],
             "status": "ACTIVE",
-            "firstName": "string value",
-            "nickName": "string value",
+            "registration": [
+                "id": 123456789,
+                "invitationCode": "string value",
+                "invitationLink": "string value"
+            ],
             "profile": [
                 "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                 "additionalHospitals": [
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ]
                 ],
                 "id": 123456789,
-                "postCode": "string value",
                 "ageGroup": "FIFTY_TO_FIFTY_NINE",
+                "postCode": "string value",
                 "diseaseStatuses": [
                     "BRCA_PLUS",
                     "BRCA_PLUS",
                     "BRCA_PLUS"
                 ]
             ],
+            "email": "firstname@domain.com",
+            "nickName": "string value",
+            "topics": [
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ],
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ],
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ]
+            ],
+            "id": 123456789,
+            "userRole": "ADMIN",
+            "glnNumber": "string value",
+            "firstName": "Ida",
+            "lastName": "Adams",
             "termAndConditions": true,
-            "phone": "string value",
             "avatar": "U3dhZ2dlciByb2Nrcw==",
-            "registration": [
+            "focusmeEntityId": 123456789,
+            "comment": "string value",
+            "phone": "string value",
+            "settings": [
+                "showPostCode": true,
                 "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
-            ]
+                "revealFullName": true,
+                "availabilityUntil": [
+                    "second": 123,
+                    "nano": 123,
+                    "minute": 123,
+                    "hour": 123
+                ],
+                "showHospital": true,
+                "language": "DE",
+                "daysOfWeek": [
+                    "FRIDAY",
+                    "FRIDAY",
+                    "FRIDAY"
+                ],
+                "viewType": "EVERY_BODY",
+                "availability": "EVERY_TIME",
+                "availabilityFrom": [
+                    "nano": 123,
+                    "second": 123,
+                    "minute": 123,
+                    "hour": 123
+                ],
+                "pushNotifications": true
+            ],
+            "description": "string value"
         ].formatted
         
         // When
@@ -348,86 +348,51 @@ final class TestsOpenApi1: Tests {
         // Given
         let request = post(path: "/api/v1/registration/approve/123")
         let expectedResponse = [
-            "topics": [
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ],
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ],
-                [
-                    "status": "ACTIVE",
-                    "id": 123456789,
-                    "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
-                ]
-            ],
-            "registration": [
-                "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
-            ],
+            "firstName": "Ida",
             "settings": [
-                "availability": "EVERY_TIME",
                 "showPostCode": true,
-                "revealFullName": true,
-                "pushNotifications": true,
                 "id": 123456789,
+                "revealFullName": true,
+                "availability": "EVERY_TIME",
+                "showHospital": true,
+                "language": "DE",
+                "availabilityFrom": [
+                    "hour": 123,
+                    "nano": 123,
+                    "minute": 123,
+                    "second": 123
+                ],
                 "daysOfWeek": [
                     "FRIDAY",
                     "FRIDAY",
                     "FRIDAY"
                 ],
-                "availabilityFrom": [
-                    "nano": 123,
+                "viewType": "EVERY_BODY",
+                "pushNotifications": true,
+                "availabilityUntil": [
                     "second": 123,
+                    "nano": 123,
                     "minute": 123,
                     "hour": 123
-                ],
-                "viewType": "EVERY_BODY",
-                "showHospital": true,
-                "availabilityUntil": [
-                    "nano": 123,
-                    "hour": 123,
-                    "minute": 123,
-                    "second": 123
-                ],
-                "language": "DE"
+                ]
             ],
-            "firstName": "string value",
-            "phone": "string value",
-            "status": "ACTIVE",
-            "avatar": "U3dhZ2dlciByb2Nrcw==",
-            "nickName": "string value",
-            "termAndConditions": true,
-            "description": "string value",
-            "comment": "string value",
-            "lastName": "string value",
-            "id": 123456789,
-            "glnNumber": "string value",
             "profile": [
-                "ageGroup": "FIFTY_TO_FIFTY_NINE",
+                "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                 "additionalHospitals": [
                     [
-                        "name": "string value",
+                        "name": "Ida Adams",
                         "id": 123456789
                     ],
                     [
-                        "name": "string value",
+                        "name": "Ida Adams",
                         "id": 123456789
                     ],
                     [
-                        "name": "string value",
+                        "name": "Ida Adams",
                         "id": 123456789
                     ]
                 ],
-                "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
+                "ageGroup": "FIFTY_TO_FIFTY_NINE",
                 "postCode": "string value",
                 "id": 123456789,
                 "diseaseStatuses": [
@@ -436,8 +401,43 @@ final class TestsOpenApi1: Tests {
                     "BRCA_PLUS"
                 ]
             ],
+            "description": "string value",
+            "topics": [
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ],
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ],
+                [
+                    "status": "ACTIVE",
+                    "id": 123456789,
+                    "icon": "U3dhZ2dlciByb2Nrcw==",
+                    "name": "Ida Adams"
+                ]
+            ],
             "focusmeEntityId": 123456789,
-            "email": "string value",
+            "lastName": "Adams",
+            "avatar": "U3dhZ2dlciByb2Nrcw==",
+            "comment": "string value",
+            "email": "firstname@domain.com",
+            "status": "ACTIVE",
+            "nickName": "string value",
+            "glnNumber": "string value",
+            "phone": "string value",
+            "registration": [
+                "id": 123456789,
+                "invitationCode": "string value",
+                "invitationLink": "string value"
+            ],
+            "id": 123456789,
+            "termAndConditions": true,
             "userRole": "ADMIN"
         ].formatted
         
@@ -465,15 +465,15 @@ final class TestsOpenApi1: Tests {
                 "additionalHospitals": [
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ]
                 ],
                 "diseaseStatuses": [
@@ -482,7 +482,7 @@ final class TestsOpenApi1: Tests {
                     "BRCA_PLUS"
                 ]
             ],
-            "email": "string value",
+            "email": "firstname@domain.com",
             "registration": [
                 "id": 123456789,
                 "invitationCode": "string value",
@@ -497,24 +497,24 @@ final class TestsOpenApi1: Tests {
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ],
                 [
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ],
                 [
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ]
             ],
             "termAndConditions": true,
             "phone": "string value",
-            "lastName": "string value",
+            "lastName": "Adams",
             "id": 123456789,
             "comment": "string value",
             "description": "string value",
@@ -546,7 +546,7 @@ final class TestsOpenApi1: Tests {
                 "language": "DE"
             ],
             "userRole": "ADMIN",
-            "firstName": "string value"
+            "firstName": "Ida"
         ].formatted
         
         // When
@@ -573,15 +573,15 @@ final class TestsOpenApi1: Tests {
                 "additionalHospitals": [
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "id": 123456789,
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ]
                 ],
                 "diseaseStatuses": [
@@ -590,7 +590,7 @@ final class TestsOpenApi1: Tests {
                     "BRCA_PLUS"
                 ]
             ],
-            "email": "string value",
+            "email": "firstname@domain.com",
             "registration": [
                 "id": 123456789,
                 "invitationCode": "string value",
@@ -605,24 +605,24 @@ final class TestsOpenApi1: Tests {
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ],
                 [
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ],
                 [
                     "status": "ACTIVE",
                     "id": 123456789,
                     "icon": "U3dhZ2dlciByb2Nrcw==",
-                    "name": "string value"
+                    "name": "Ida Adams"
                 ]
             ],
             "termAndConditions": true,
             "phone": "string value",
-            "lastName": "string value",
+            "lastName": "Adams",
             "id": 123456789,
             "comment": "string value",
             "description": "string value",
@@ -654,7 +654,7 @@ final class TestsOpenApi1: Tests {
                 "language": "DE"
             ],
             "userRole": "ADMIN",
-            "firstName": "string value"
+            "firstName": "Ida"
         ].formatted
         
         // When
@@ -742,15 +742,15 @@ final class TestsOpenApi1: Tests {
                     "additionalHospitals": [
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ]
                     ],
                     "diseaseStatuses": [
@@ -759,7 +759,7 @@ final class TestsOpenApi1: Tests {
                         "BRCA_PLUS"
                     ]
                 ],
-                "email": "string value",
+                "email": "firstname@domain.com",
                 "registration": [
                     "id": 123456789,
                     "invitationCode": "string value",
@@ -774,24 +774,24 @@ final class TestsOpenApi1: Tests {
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ]
                 ],
                 "termAndConditions": true,
                 "phone": "string value",
-                "lastName": "string value",
+                "lastName": "Adams",
                 "id": 123456789,
                 "comment": "string value",
                 "description": "string value",
@@ -823,7 +823,7 @@ final class TestsOpenApi1: Tests {
                     "language": "DE"
                 ],
                 "userRole": "ADMIN",
-                "firstName": "string value"
+                "firstName": "Ida"
             ].formatted
 
         // When
@@ -886,7 +886,7 @@ final class TestsOpenApi1: Tests {
         let request = get(path: "/api/v1/topic")
         let expectedResponse = [
             [
-                "name": "string value",
+                "name": "Ida Adams",
                 "icon": "U3dhZ2dlciByb2Nrcw==",
                 "status": "ACTIVE",
                 "id": 123456789
@@ -894,11 +894,11 @@ final class TestsOpenApi1: Tests {
             [
                 "icon": "U3dhZ2dlciByb2Nrcw==",
                 "id": 123456789,
-                "name": "string value",
+                "name": "Ida Adams",
                 "status": "ACTIVE"
             ],
             [
-                "name": "string value",
+                "name": "Ida Adams",
                 "icon": "U3dhZ2dlciByb2Nrcw==",
                 "id": 123456789,
                 "status": "ACTIVE"
@@ -920,7 +920,7 @@ final class TestsOpenApi1: Tests {
         // Given
         let request = get(path: "/api/v1/topic/123")
         let expectedResponse = [
-            "name": "string value",
+            "name": "Ida Adams",
             "icon": "U3dhZ2dlciByb2Nrcw==",
             "status": "ACTIVE",
             "id": 123456789
@@ -941,7 +941,7 @@ final class TestsOpenApi1: Tests {
         // Given
         let request = post(path: "/api/v1/topic")
         let expectedResponse = [
-            "name": "string value",
+            "name": "Ida Adams",
             "icon": "U3dhZ2dlciByb2Nrcw==",
             "status": "ACTIVE",
             "id": 123456789
@@ -962,7 +962,7 @@ final class TestsOpenApi1: Tests {
         // Given
         let request = put(path: "/api/v1/topic/123")
         let expectedResponse = [
-            "name": "string value",
+            "name": "Ida Adams",
             "icon": "U3dhZ2dlciByb2Nrcw==",
             "status": "ACTIVE",
             "id": 123456789
@@ -1002,19 +1002,19 @@ final class TestsOpenApi1: Tests {
             [
                 "contactDetails": "string value",
                 "contact": [
-                    "name": "string value",
+                    "name": "Ida Adams",
                     "id": 123456789
                 ],
-                "name": "string value",
+                "name": "Ida Adams",
                 "status": "ACTIVE",
                 "id": 123456789
             ],
             [
-                "name": "string value",
+                "name": "Ida Adams",
                 "contactDetails": "string value",
                 "id": 123456789,
                 "contact": [
-                    "name": "string value",
+                    "name": "Ida Adams",
                     "id": 123456789
                 ],
                 "status": "ACTIVE"
@@ -1023,10 +1023,10 @@ final class TestsOpenApi1: Tests {
                 "status": "ACTIVE",
                 "id": 123456789,
                 "contact": [
-                    "name": "string value",
+                    "name": "Ida Adams",
                     "id": 123456789
                 ],
-                "name": "string value",
+                "name": "Ida Adams",
                 "contactDetails": "string value"
             ]
         ].map { $0.formatted }
@@ -1057,15 +1057,15 @@ final class TestsOpenApi1: Tests {
                     "additionalHospitals": [
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ]
                     ],
                     "diseaseStatuses": [
@@ -1074,9 +1074,9 @@ final class TestsOpenApi1: Tests {
                         "BRCA_PLUS"
                     ]
                 ],
-                "firstName": "string value",
+                "firstName": "Ida",
                 "glnNumber": "string value",
-                "lastName": "string value",
+                "lastName": "Adams",
                 "phone": "string value",
                 "userRole": "ADMIN",
                 "registration": [
@@ -1119,29 +1119,29 @@ final class TestsOpenApi1: Tests {
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ]
                 ],
                 "nickName": "string value",
-                "email": "string value",
+                "email": "firstname@domain.com",
                 "status": "ACTIVE",
                 "termAndConditions": true
             ],
             "contactDetails": "string value",
             "id": 123456789,
-            "name": "string value",
+            "name": "Ida Adams",
             "status": "ACTIVE"
         ].formatted
         
@@ -1171,15 +1171,15 @@ final class TestsOpenApi1: Tests {
                     "additionalHospitals": [
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "id": 123456789,
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ]
                     ],
                     "diseaseStatuses": [
@@ -1188,9 +1188,9 @@ final class TestsOpenApi1: Tests {
                         "BRCA_PLUS"
                     ]
                 ],
-                "firstName": "string value",
+                "firstName": "Ida",
                 "glnNumber": "string value",
-                "lastName": "string value",
+                "lastName": "Adams",
                 "phone": "string value",
                 "userRole": "ADMIN",
                 "registration": [
@@ -1233,29 +1233,29 @@ final class TestsOpenApi1: Tests {
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ],
                     [
                         "status": "ACTIVE",
                         "id": 123456789,
                         "icon": "U3dhZ2dlciByb2Nrcw==",
-                        "name": "string value"
+                        "name": "Ida Adams"
                     ]
                 ],
                 "nickName": "string value",
-                "email": "string value",
+                "email": "firstname@domain.com",
                 "status": "ACTIVE",
                 "termAndConditions": true
             ],
             "contactDetails": "string value",
             "id": 123456789,
-            "name": "string value",
+            "name": "Ida Adams",
             "status": "ACTIVE"
         ].formatted
 
@@ -1286,15 +1286,15 @@ final class TestsOpenApi1: Tests {
                         "additionalHospitals": [
                             [
                                 "id": 123456789,
-                                "name": "string value"
+                                "name": "Ida Adams"
                             ],
                             [
                                 "id": 123456789,
-                                "name": "string value"
+                                "name": "Ida Adams"
                             ],
                             [
                                 "id": 123456789,
-                                "name": "string value"
+                                "name": "Ida Adams"
                             ]
                         ],
                         "diseaseStatuses": [
@@ -1303,9 +1303,9 @@ final class TestsOpenApi1: Tests {
                             "BRCA_PLUS"
                         ]
                     ],
-                    "firstName": "string value",
+                    "firstName": "Ida",
                     "glnNumber": "string value",
-                    "lastName": "string value",
+                    "lastName": "Adams",
                     "phone": "string value",
                     "userRole": "ADMIN",
                     "registration": [
@@ -1348,29 +1348,29 @@ final class TestsOpenApi1: Tests {
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ]
                     ],
                     "nickName": "string value",
-                    "email": "string value",
+                    "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
                 "contactDetails": "string value",
                 "id": 123456789,
-                "name": "string value",
+                "name": "Ida Adams",
                 "status": "ACTIVE"
             ].formatted
         
@@ -1425,10 +1425,10 @@ final class TestsOpenApi1: Tests {
                 ],
                 "contactDetails": "string value",
                 "contact": [
-                    "name": "string value",
+                    "name": "Ida Adams",
                     "id": 123456789
                 ],
-                "name": "string value",
+                "name": "Ida Adams",
                 "id": 123456789,
                 "status": "ACTIVE"
             ],
@@ -1451,9 +1451,9 @@ final class TestsOpenApi1: Tests {
                         "description": "string value"
                     ]
                 ],
-                "name": "string value",
+                "name": "Ida Adams",
                 "contact": [
-                    "name": "string value",
+                    "name": "Ida Adams",
                     "id": 123456789
                 ],
                 "status": "ACTIVE",
@@ -1462,7 +1462,7 @@ final class TestsOpenApi1: Tests {
             [
                 "contactDetails": "string value",
                 "contact": [
-                    "name": "string value",
+                    "name": "Ida Adams",
                     "id": 123456789
                 ],
                 "emailDomains": [
@@ -1484,7 +1484,7 @@ final class TestsOpenApi1: Tests {
                 ],
                 "status": "ACTIVE",
                 "id": 123456789,
-                "name": "string value"
+                "name": "Ida Adams"
             ]
         ].map { $0.formatted }
         
@@ -1515,15 +1515,15 @@ final class TestsOpenApi1: Tests {
                         "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                         "additionalHospitals": [
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ],
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ],
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ]
                         ],
@@ -1536,12 +1536,12 @@ final class TestsOpenApi1: Tests {
                             "BRCA_PLUS"
                         ]
                     ],
-                    "firstName": "string value",
+                    "firstName": "Ida",
                     "glnNumber": "string value",
                     "phone": "string value",
                     "description": "string value",
                     "userRole": "ADMIN",
-                    "lastName": "string value",
+                    "lastName": "Adams",
                     "settings": [
                         "showPostCode": true,
                         "availabilityUntil": [
@@ -1577,29 +1577,29 @@ final class TestsOpenApi1: Tests {
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ]
                     ],
                     "nickName": "string value",
-                    "email": "string value",
+                    "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
                 "contactDetails": "string value",
                 "id": 123456789,
-                "name": "string value",
+                "name": "Ida Adams",
                 "emailDomains": [
                     [
                         "id": 123456789,
@@ -1647,15 +1647,15 @@ final class TestsOpenApi1: Tests {
                         "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                         "additionalHospitals": [
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ],
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ],
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ]
                         ],
@@ -1668,12 +1668,12 @@ final class TestsOpenApi1: Tests {
                             "BRCA_PLUS"
                         ]
                     ],
-                    "firstName": "string value",
+                    "firstName": "Ida",
                     "glnNumber": "string value",
                     "phone": "string value",
                     "description": "string value",
                     "userRole": "ADMIN",
-                    "lastName": "string value",
+                    "lastName": "Adams",
                     "settings": [
                         "showPostCode": true,
                         "availabilityUntil": [
@@ -1709,29 +1709,29 @@ final class TestsOpenApi1: Tests {
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ]
                     ],
                     "nickName": "string value",
-                    "email": "string value",
+                    "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
                 "contactDetails": "string value",
                 "id": 123456789,
-                "name": "string value",
+                "name": "Ida Adams",
                 "emailDomains": [
                     [
                         "id": 123456789,
@@ -1779,15 +1779,15 @@ final class TestsOpenApi1: Tests {
                         "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                         "additionalHospitals": [
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ],
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ],
                             [
-                                "name": "string value",
+                                "name": "Ida Adams",
                                 "id": 123456789
                             ]
                         ],
@@ -1800,12 +1800,12 @@ final class TestsOpenApi1: Tests {
                             "BRCA_PLUS"
                         ]
                     ],
-                    "firstName": "string value",
+                    "firstName": "Ida",
                     "glnNumber": "string value",
                     "phone": "string value",
                     "description": "string value",
                     "userRole": "ADMIN",
-                    "lastName": "string value",
+                    "lastName": "Adams",
                     "settings": [
                         "showPostCode": true,
                         "availabilityUntil": [
@@ -1841,29 +1841,29 @@ final class TestsOpenApi1: Tests {
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ],
                         [
                             "status": "ACTIVE",
                             "id": 123456789,
                             "icon": "U3dhZ2dlciByb2Nrcw==",
-                            "name": "string value"
+                            "name": "Ida Adams"
                         ]
                     ],
                     "nickName": "string value",
-                    "email": "string value",
+                    "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
                 "contactDetails": "string value",
                 "id": 123456789,
-                "name": "string value",
+                "name": "Ida Adams",
                 "emailDomains": [
                     [
                         "id": 123456789,

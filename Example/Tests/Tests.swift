@@ -4,9 +4,11 @@ import XCTest
 class Tests: XCTestCase {
     static var mockServer: MockServer?
     
-    class var defaultValuesConfig: MockServerConfiguration {
-        let defaultValuesConfig = MockServerConfiguration()
-        return defaultValuesConfig
+    class var dataGenerator: DataGenerator {
+        let dataGenerator = DataGenerator()
+        dataGenerator.defaultArrayElementCount = 3
+        dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
+        return dataGenerator
     }
     
     class var mockServerPort: Int {
@@ -21,7 +23,9 @@ class Tests: XCTestCase {
         super.setUp()
         
         if let json = readJSONFromFile(fileName: jsonFileName) as? [String: Any] {
-            Tests.mockServer = MockServer(port: mockServerPort, swaggerJson: json, config: defaultValuesConfig)
+            Tests.mockServer = MockServer(port: mockServerPort,
+                                          swaggerJson: json,
+                                          dataGenerator: dataGenerator)
             Tests.mockServer?.start()
         }
     }

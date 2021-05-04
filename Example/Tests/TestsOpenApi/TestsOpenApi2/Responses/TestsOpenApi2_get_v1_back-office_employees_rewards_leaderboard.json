@@ -1,7 +1,8 @@
 [
     {
         "user" : {
-            "email" : "string value",
+            "lastName" : "Adams",
+            "username" : "string value",
             "metadata" : {
                 "gender" : "M",
                 "lastLocalizationAt" : "string value",
@@ -19,46 +20,46 @@
                         "phoneNumber" : "string value"
                     }
                 ],
-                "longitude" : 1.23,
-                "employeeCompany" : "string value",
+                "longitude" : -156.65548382095133,
                 "supportContactName" : "string value",
-                "latitude" : 1.23,
                 "employeeDepartment" : "string value",
+                "employeeCompany" : "string value",
+                "latitude" : -58.17256227443719,
                 "supportContactPhoneNumber" : "string value",
                 "lastActivityAt" : "string value",
                 "employeeClinicId" : 123
             },
-            "firstName" : "string value",
-            "username" : "string value",
             "settings" : {
                 "language" : "string value",
                 "nickname" : "string value",
                 "notificationSettings" : [
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     },
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     },
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     }
                 ],
                 "anonymous" : true
             },
-            "lastName" : "string value"
+            "email" : "firstname@domain.com",
+            "firstName" : "Ida"
         },
         "score" : 123
     },
     {
         "user" : {
-            "email" : "string value",
+            "lastName" : "Adams",
+            "username" : "string value",
             "metadata" : {
                 "gender" : "M",
                 "lastLocalizationAt" : "string value",
@@ -76,46 +77,46 @@
                         "phoneNumber" : "string value"
                     }
                 ],
-                "longitude" : 1.23,
-                "employeeCompany" : "string value",
+                "longitude" : -156.65548382095133,
                 "supportContactName" : "string value",
-                "latitude" : 1.23,
                 "employeeDepartment" : "string value",
+                "employeeCompany" : "string value",
+                "latitude" : -58.17256227443719,
                 "supportContactPhoneNumber" : "string value",
                 "lastActivityAt" : "string value",
                 "employeeClinicId" : 123
             },
-            "firstName" : "string value",
-            "username" : "string value",
             "settings" : {
                 "language" : "string value",
                 "nickname" : "string value",
                 "notificationSettings" : [
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     },
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     },
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     }
                 ],
                 "anonymous" : true
             },
-            "lastName" : "string value"
+            "email" : "firstname@domain.com",
+            "firstName" : "Ida"
         },
         "score" : 123
     },
     {
         "user" : {
-            "email" : "string value",
+            "lastName" : "Adams",
+            "username" : "string value",
             "metadata" : {
                 "gender" : "M",
                 "lastLocalizationAt" : "string value",
@@ -133,41 +134,40 @@
                         "phoneNumber" : "string value"
                     }
                 ],
-                "longitude" : 1.23,
-                "employeeCompany" : "string value",
+                "longitude" : -156.65548382095133,
                 "supportContactName" : "string value",
-                "latitude" : 1.23,
                 "employeeDepartment" : "string value",
+                "employeeCompany" : "string value",
+                "latitude" : -58.17256227443719,
                 "supportContactPhoneNumber" : "string value",
                 "lastActivityAt" : "string value",
                 "employeeClinicId" : 123
             },
-            "firstName" : "string value",
-            "username" : "string value",
             "settings" : {
                 "language" : "string value",
                 "nickname" : "string value",
                 "notificationSettings" : [
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     },
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     },
                     {
-                        "enabled" : true,
                         "channel" : "EMAIL",
+                        "enabled" : true,
                         "type" : "FEE_STATUS_UPDATE"
                     }
                 ],
                 "anonymous" : true
             },
-            "lastName" : "string value"
+            "email" : "firstname@domain.com",
+            "firstName" : "Ida"
         },
         "score" : 123
     }
-    ]
+]

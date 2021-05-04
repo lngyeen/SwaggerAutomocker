@@ -38,54 +38,54 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "minLongitude": 1.23,
+                "name": "Ida Adams",
                 "maxLatitude": 1.23,
-                "admissionsEmail": "string value",
-                "id": 123,
-                "fluanceCompanyId": 123,
-                "centerLatitude": 1.23,
-                "code": "string value",
-                "centerLongitude": 1.23,
-                "imagePath": "string value",
-                "invoicingEmail": "string value",
                 "minLatitude": 1.23,
+                "centerLatitude": 1.23,
+                "centerLongitude": 1.23,
                 "radius": 123,
+                "admissionsEmail": "firstname@domain.com",
+                "code": "string value",
+                "fluanceCompanyId": 123,
+                "imagePath": "string value",
                 "infra": "SMN",
-                "name": "string value",
+                "invoicingEmail": "firstname@domain.com",
+                "id": 123,
+                "minLongitude": 1.23,
                 "maxLongitude": 1.23
             ],
             [
-                "invoicingEmail": "string value",
-                "centerLongitude": 1.23,
-                "centerLatitude": 1.23,
-                "code": "string value",
-                "radius": 123,
-                "maxLatitude": 1.23,
-                "admissionsEmail": "string value",
-                "minLatitude": 1.23,
-                "minLongitude": 1.23,
-                "imagePath": "string value",
-                "infra": "SMN",
-                "name": "string value",
                 "id": 123,
-                "fluanceCompanyId": 123,
-                "maxLongitude": 1.23
-            ],
-            [
+                "infra": "SMN",
+                "radius": 123,
                 "centerLongitude": 1.23,
-                "minLatitude": 1.23,
-                "invoicingEmail": "string value",
+                "name": "Ida Adams",
                 "maxLongitude": 1.23,
-                "minLongitude": 1.23,
-                "id": 123,
-                "centerLatitude": 1.23,
-                "code": "string value",
-                "infra": "SMN",
                 "fluanceCompanyId": 123,
+                "minLatitude": 1.23,
+                "admissionsEmail": "firstname@domain.com",
+                "code": "string value",
+                "invoicingEmail": "firstname@domain.com",
+                "centerLatitude": 1.23,
+                "maxLatitude": 1.23,
+                "minLongitude": 1.23,
+                "imagePath": "string value"
+            ],
+            [
+                "code": "string value",
+                "invoicingEmail": "firstname@domain.com",
+                "maxLongitude": 1.23,
+                "fluanceCompanyId": 123,
+                "centerLatitude": 1.23,
                 "imagePath": "string value",
-                "name": "string value",
-                "admissionsEmail": "string value",
                 "radius": 123,
+                "infra": "SMN",
+                "name": "Ida Adams",
+                "admissionsEmail": "firstname@domain.com",
+                "centerLongitude": 1.23,
+                "minLongitude": 1.23,
+                "minLatitude": 1.23,
+                "id": 123,
                 "maxLatitude": 1.23
             ]
         ].map { $0.formatted }
@@ -143,22 +143,22 @@ final class TestsOpenApi2: Tests {
         let path = "/v1/back-office/clinics/123/emails"
         let request = patch(path: path)
         let expectedResponse = [
+            "invoicingEmail": "firstname@domain.com",
+            "admissionsEmail": "firstname@domain.com",
             "minLatitude": 1.23,
+            "maxLatitude": 1.23,
+            "visible": true,
+            "minLongitude": 1.23,
+            "maxLongitude": 1.23,
+            "centerLatitude": 1.23,
+            "dwhClinicCode": "string value",
+            "centerLongitude": 1.23,
+            "name": "Ida Adams",
+            "id": 123,
             "radius": 123,
-            "name": "string value",
-            "invoicingEmail": "string value",
             "fluanceCompanyId": 123,
             "code": "string value",
-            "centerLatitude": 1.23,
-            "id": 123,
-            "admissionsEmail": "string value",
-            "infra": "SMN",
-            "visible": true,
-            "centerLongitude": 1.23,
-            "maxLongitude": 1.23,
-            "dwhClinicCode": "string value",
-            "minLongitude": 1.23,
-            "maxLatitude": 1.23
+            "infra": "SMN"
         ].formatted
         
         // When
@@ -296,21 +296,7 @@ final class TestsOpenApi2: Tests {
         let path = "/v1/back-office/employees/pictures/123/award"
         let request = post(path: path)
         let expectedResponse = [
-            "clinicId": 123,
             "comment": "string value",
-            "picture": [
-                "id": 123456789,
-                "hash": "string value",
-                "uploadedBy": [
-                    "firstName": "string value",
-                    "email": "string value",
-                    "lastName": "string value",
-                    "username": "string value"
-                ],
-                "uriPath": "string value"
-            ],
-            "id": 123456789,
-            "submittedAt": "string value",
             "awards": [
                 [
                     "award": "PICTURE_OF_THE_WEEK",
@@ -324,7 +310,21 @@ final class TestsOpenApi2: Tests {
                     "award": "PICTURE_OF_THE_WEEK",
                     "awardedAt": "string value"
                 ]
-            ]
+            ],
+            "clinicId": 123,
+            "picture": [
+                "id": 123456789,
+                "hash": "string value",
+                "uploadedBy": [
+                    "email": "firstname@domain.com",
+                    "username": "string value",
+                    "lastName": "Adams",
+                    "firstName": "Ida"
+                ],
+                "uriPath": "string value"
+            ],
+            "id": 123456789,
+            "submittedAt": "string value"
         ].formatted
         
         // When
@@ -435,25 +435,25 @@ final class TestsOpenApi2: Tests {
         let path = "/v1/clinics/123/menus/1-1-2021/456/ratings"
         let request = post(path: path)
         let expectedResponse = [
-            "id": 123456789,
-            "comment": "string value",
-            "commenter": [
-                "lastName": "string value",
-                "username": "string value",
-                "firstName": "string value",
-                "clinicId": 123,
-                "email": "string value"
-            ],
-            "menu": 123,
-            "rating": 123,
             "clinic": [
                 "code": "string value",
                 "id": 123,
-                "name": "string value",
-                "fluanceCompanyId": 123,
-                "infra": "SMN"
+                "name": "Ida Adams",
+                "infra": "SMN",
+                "fluanceCompanyId": 123
             ],
-            "date": "2017-07-21"
+            "comment": "string value",
+            "menu": 123,
+            "rating": 123,
+            "date": "2017-07-21",
+            "id": 123456789,
+            "commenter": [
+                "firstName": "Ida",
+                "lastName": "Adams",
+                "email": "firstname@domain.com",
+                "clinicId": 123,
+                "username": "string value"
+            ]
         ].formatted
         
         // When
@@ -475,67 +475,67 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "menu": 123,
-                "clinic": [
-                    "code": "string value",
-                    "id": 123,
-                    "infra": "SMN",
-                    "name": "string value",
-                    "fluanceCompanyId": 123
-                ],
-                "comment": "string value",
-                "commenter": [
-                    "firstName": "string value",
-                    "email": "string value",
-                    "username": "string value",
-                    "clinicId": 123,
-                    "lastName": "string value"
-                ],
-                "id": 123456789,
-                "date": "2017-07-21",
-                "rating": 123
-            ],
-            [
-                "clinic": [
-                    "code": "string value",
-                    "id": 123,
-                    "infra": "SMN",
-                    "name": "string value",
-                    "fluanceCompanyId": 123
-                ],
-                "comment": "string value",
-                "menu": 123,
-                "date": "2017-07-21",
                 "rating": 123,
                 "commenter": [
-                    "firstName": "string value",
-                    "email": "string value",
+                    "lastName": "Adams",
                     "username": "string value",
+                    "firstName": "Ida",
                     "clinicId": 123,
-                    "lastName": "string value"
+                    "email": "firstname@domain.com"
                 ],
+                "date": "2017-07-21",
+                "menu": 123,
+                "clinic": [
+                    "code": "string value",
+                    "id": 123,
+                    "name": "Ida Adams",
+                    "infra": "SMN",
+                    "fluanceCompanyId": 123
+                ],
+                "comment": "string value",
                 "id": 123456789
             ],
             [
-                "menu": 123,
+                "comment": "string value",
+                "rating": 123,
+                "commenter": [
+                    "lastName": "Adams",
+                    "username": "string value",
+                    "firstName": "Ida",
+                    "clinicId": 123,
+                    "email": "firstname@domain.com"
+                ],
                 "id": 123456789,
                 "clinic": [
                     "code": "string value",
                     "id": 123,
+                    "name": "Ida Adams",
                     "infra": "SMN",
-                    "name": "string value",
                     "fluanceCompanyId": 123
                 ],
                 "date": "2017-07-21",
-                "rating": 123,
+                "menu": 123
+            ],
+            [
+                "comment": "string value",
                 "commenter": [
-                    "firstName": "string value",
-                    "email": "string value",
+                    "lastName": "Adams",
                     "username": "string value",
+                    "firstName": "Ida",
                     "clinicId": 123,
-                    "lastName": "string value"
+                    "email": "firstname@domain.com"
                 ],
-                "comment": "string value"
+                "menu": 123,
+                "rating": 123,
+                "date": "2017-07-21",
+                "id": 123456789,
+                "clinic": [
+                    "code": "string value",
+                    "id": 123,
+                    "name": "Ida Adams",
+                    "infra": "SMN",
+                    "fluanceCompanyId": 123
+                ]
             ]
         ].map { $0.formatted }
         
@@ -560,7 +560,9 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "lastName": "string value",
+                "email": "firstname@domain.com",
+                "firstName": "Ida",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -578,23 +580,22 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "isFavorite": true,
+                "lastName": "Adams",
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "isFavorite": true
             ],
             [
-                "lastName": "string value",
+                "email": "firstname@domain.com",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -612,10 +613,10 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
@@ -623,12 +624,14 @@ final class TestsOpenApi2: Tests {
                 ],
                 "isFavorite": true,
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "firstName": "Ida",
+                "lastName": "Adams"
             ],
             [
-                "lastName": "string value",
+                "isFavorite": true,
+                "firstName": "Ida",
+                "lastName": "Adams",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -646,20 +649,17 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "isFavorite": true,
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "email": "firstname@domain.com"
             ]
         ].map { $0.formatted }
         
@@ -682,7 +682,9 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "lastName": "string value",
+                "email": "firstname@domain.com",
+                "firstName": "Ida",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -700,23 +702,22 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "isFavorite": true,
+                "lastName": "Adams",
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "isFavorite": true
             ],
             [
-                "lastName": "string value",
+                "email": "firstname@domain.com",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -734,10 +735,10 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
@@ -745,12 +746,14 @@ final class TestsOpenApi2: Tests {
                 ],
                 "isFavorite": true,
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "firstName": "Ida",
+                "lastName": "Adams"
             ],
             [
-                "lastName": "string value",
+                "isFavorite": true,
+                "firstName": "Ida",
+                "lastName": "Adams",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -768,20 +771,17 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "isFavorite": true,
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "email": "firstname@domain.com"
             ]
         ].map { $0.formatted }
         
@@ -804,7 +804,9 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "lastName": "string value",
+                "email": "firstname@domain.com",
+                "firstName": "Ida",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -822,23 +824,22 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "isFavorite": true,
+                "lastName": "Adams",
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "isFavorite": true
             ],
             [
-                "lastName": "string value",
+                "email": "firstname@domain.com",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -856,10 +857,10 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
@@ -867,12 +868,14 @@ final class TestsOpenApi2: Tests {
                 ],
                 "isFavorite": true,
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "firstName": "Ida",
+                "lastName": "Adams"
             ],
             [
-                "lastName": "string value",
+                "isFavorite": true,
+                "firstName": "Ida",
+                "lastName": "Adams",
+                "distance": 123,
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -890,20 +893,17 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "supportContactName": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
+                    "latitude": -58.17256227443719,
                     "employeeCompany": "string value",
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "isFavorite": true,
                 "username": "string value",
-                "distance": 123,
-                "email": "string value",
-                "firstName": "string value"
+                "email": "firstname@domain.com"
             ]
         ].map { $0.formatted }
         
@@ -928,7 +928,7 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "firstName": "string value",
+                "email": "firstname@domain.com",
                 "username": "string value",
                 "metadata": [
                     "gender": "M",
@@ -947,21 +947,21 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "email": "string value",
-                "lastName": "string value"
+                "firstName": "Ida",
+                "lastName": "Adams"
             ],
             [
-                "firstName": "string value",
                 "username": "string value",
+                "lastName": "Adams",
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -979,21 +979,23 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "email": "string value",
-                "lastName": "string value"
+                "firstName": "Ida",
+                "email": "firstname@domain.com"
             ],
             [
-                "firstName": "string value",
                 "username": "string value",
+                "email": "firstname@domain.com",
+                "firstName": "Ida",
+                "lastName": "Adams",
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -1011,17 +1013,15 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
-                ],
-                "email": "string value",
-                "lastName": "string value"
+                ]
             ]
         ].map { $0.formatted }
         
@@ -1044,7 +1044,7 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "firstName": "string value",
+                "email": "firstname@domain.com",
                 "username": "string value",
                 "metadata": [
                     "gender": "M",
@@ -1063,21 +1063,21 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "email": "string value",
-                "lastName": "string value"
+                "firstName": "Ida",
+                "lastName": "Adams"
             ],
             [
-                "firstName": "string value",
                 "username": "string value",
+                "lastName": "Adams",
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -1095,21 +1095,23 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "email": "string value",
-                "lastName": "string value"
+                "firstName": "Ida",
+                "email": "firstname@domain.com"
             ],
             [
-                "firstName": "string value",
                 "username": "string value",
+                "email": "firstname@domain.com",
+                "firstName": "Ida",
+                "lastName": "Adams",
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -1127,17 +1129,15 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
-                ],
-                "email": "string value",
-                "lastName": "string value"
+                ]
             ]
         ].map { $0.formatted }
         
@@ -1160,7 +1160,7 @@ final class TestsOpenApi2: Tests {
         let request = get(path: path)
         let expectedResponse = [
             [
-                "firstName": "string value",
+                "email": "firstname@domain.com",
                 "username": "string value",
                 "metadata": [
                     "gender": "M",
@@ -1179,21 +1179,21 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "email": "string value",
-                "lastName": "string value"
+                "firstName": "Ida",
+                "lastName": "Adams"
             ],
             [
-                "firstName": "string value",
                 "username": "string value",
+                "lastName": "Adams",
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -1211,21 +1211,23 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
                 ],
-                "email": "string value",
-                "lastName": "string value"
+                "firstName": "Ida",
+                "email": "firstname@domain.com"
             ],
             [
-                "firstName": "string value",
                 "username": "string value",
+                "email": "firstname@domain.com",
+                "firstName": "Ida",
+                "lastName": "Adams",
                 "metadata": [
                     "gender": "M",
                     "lastLocalizationAt": "string value",
@@ -1243,17 +1245,15 @@ final class TestsOpenApi2: Tests {
                             "phoneNumber": "string value"
                         ]
                     ],
-                    "longitude": 1.23,
+                    "longitude": -156.65548382095133,
                     "employeeCompany": "string value",
                     "employeeDepartment": "string value",
-                    "latitude": 1.23,
                     "supportContactName": "string value",
+                    "latitude": -58.17256227443719,
                     "supportContactPhoneNumber": "string value",
                     "lastActivityAt": "string value",
                     "employeeClinicId": 123
-                ],
-                "email": "string value",
-                "lastName": "string value"
+                ]
             ]
         ].map { $0.formatted }
         
@@ -1307,17 +1307,17 @@ final class TestsOpenApi2: Tests {
                 "gender": "M",
                 "test": true,
                 "birthDate": "2017-07-21",
-                "lastName": "string value",
-                "fullName": "string value",
+                "lastName": "Adams",
+                "fullName": "Ida Adams",
                 "id": 123,
-                "firstName": "string value"
+                "firstName": "Ida"
             ],
             [
                 "test": true,
                 "birthDate": "2017-07-21",
-                "firstName": "string value",
-                "fullName": "string value",
-                "lastName": "string value",
+                "firstName": "Ida",
+                "fullName": "Ida Adams",
+                "lastName": "Adams",
                 "lastVisit": [
                     "id": 123456789,
                     "patientRoom": "string value"
@@ -1332,9 +1332,9 @@ final class TestsOpenApi2: Tests {
                     "id": 123456789,
                     "patientRoom": "string value"
                 ],
-                "fullName": "string value",
-                "firstName": "string value",
-                "lastName": "string value",
+                "fullName": "Ida Adams",
+                "firstName": "Ida",
+                "lastName": "Adams",
                 "id": 123,
                 "birthDate": "2017-07-21"
             ]
@@ -1366,17 +1366,17 @@ final class TestsOpenApi2: Tests {
                 "gender": "M",
                 "test": true,
                 "birthDate": "2017-07-21",
-                "lastName": "string value",
-                "fullName": "string value",
+                "lastName": "Adams",
+                "fullName": "Ida Adams",
                 "id": 123,
-                "firstName": "string value"
+                "firstName": "Ida"
             ],
             [
                 "test": true,
                 "birthDate": "2017-07-21",
-                "firstName": "string value",
-                "fullName": "string value",
-                "lastName": "string value",
+                "firstName": "Ida",
+                "fullName": "Ida Adams",
+                "lastName": "Adams",
                 "lastVisit": [
                     "id": 123456789,
                     "patientRoom": "string value"
@@ -1391,9 +1391,9 @@ final class TestsOpenApi2: Tests {
                     "id": 123456789,
                     "patientRoom": "string value"
                 ],
-                "fullName": "string value",
-                "firstName": "string value",
-                "lastName": "string value",
+                "fullName": "Ida Adams",
+                "firstName": "Ida",
+                "lastName": "Adams",
                 "id": 123,
                 "birthDate": "2017-07-21"
             ]

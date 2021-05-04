@@ -34,13 +34,13 @@ class SwaggerResponse: Mappable {
         examples <- map[SwaggerResponseAttribute.examples.rawValue]
     }
 
-    func responseFromDefinitions(_ definitions: Definitions) -> String? {
+    func responseFromDefinitions(_ definitions: Definitions, using dataGenerator: DataGenerator) -> String? {
         guard let schema = schema else { return nil }
-        if let responseStringFromExamples = responseStringFromExamples(type: schema.type) {
+        if let responseStringFromExamples = responseStringFromExamples(type: schema.type, arrayEmelementCount: dataGenerator.defaultArrayElementCount) {
             return responseStringFromExamples
         }
         
-        let responseData = schema.valueFromDefinitions(definitions)
+        let responseData = schema.valueFromDefinitions(definitions, dataGenerator: dataGenerator)
         switch responseData {
         case .string(let content):
             return content
@@ -77,7 +77,7 @@ class SwaggerResponse: Mappable {
         return nil
     }
     
-    private func responseStringFromExamples(type: String?) -> String? {
+    private func responseStringFromExamples(type: String?, arrayEmelementCount: Int) -> String? {
         switch type {
         case SwaggerSchemaDataType.string.rawValue:
             if let string = example as? String {
@@ -106,7 +106,7 @@ class SwaggerResponse: Mappable {
             {
                 array = Array(examples.values)
             } else if let example = example {
-                array = responseArrayFromExample(example)
+                array = responseArrayFromExample(example, elementCount: arrayEmelementCount)
             }
             
             if !array.isEmpty,
@@ -132,25 +132,25 @@ class SwaggerResponse: Mappable {
         return nil
     }
     
-    private func responseArrayFromExample(_ example: Any) -> [Any] {
+    private func responseArrayFromExample(_ example: Any, elementCount: Int) -> [Any] {
         if let string = example as? String {
-            return Array(repeating: string, count: MockServer.configuration.defaultArrayElementCount)
+            return Array(repeating: string, count: elementCount)
         }
         
         if let integer = example as? Int {
-            return Array(repeating: integer, count: MockServer.configuration.defaultArrayElementCount)
+            return Array(repeating: integer, count: elementCount)
         }
         
         if let number = example as? Double {
-            return Array(repeating: number, count: MockServer.configuration.defaultArrayElementCount)
+            return Array(repeating: number, count: elementCount)
         }
         
         if let boolean = example as? Bool {
-            return Array(repeating: boolean, count: MockServer.configuration.defaultArrayElementCount)
+            return Array(repeating: boolean, count: elementCount)
         }
         
         if let object = example as? [String: Any] {
-            return Array(repeating: object, count: MockServer.configuration.defaultArrayElementCount)
+            return Array(repeating: object, count: elementCount)
         }
         
         return []

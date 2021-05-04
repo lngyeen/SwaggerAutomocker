@@ -1,36 +1,19 @@
 [
     {
-        "awards" : [
-            {
-                "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
-            },
-            {
-                "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
-            },
-            {
-                "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
-            }
-        ],
+        "submittedAt" : "string value",
+        "comment" : "string value",
+        "clinicId" : 123,
         "picture" : {
             "id" : 123456789,
             "hash" : "string value",
             "uploadedBy" : {
-                "username" : "string value",
-                "firstName" : "string value",
-                "email" : "string value",
-                "lastName" : "string value"
+                "firstName" : "Ida",
+                "email" : "firstname@domain.com",
+                "lastName" : "Adams",
+                "username" : "string value"
             },
             "uriPath" : "string value"
         },
-        "comment" : "string value",
-        "clinicId" : 123,
-        "id" : 123456789,
-        "submittedAt" : "string value"
-    },
-    {
         "awards" : [
             {
                 "award" : "PICTURE_OF_THE_WEEK",
@@ -45,24 +28,44 @@
                 "awardedAt" : "string value"
             }
         ],
+        "id" : 123456789
+    },
+    {
+        "comment" : "string value",
         "picture" : {
             "id" : 123456789,
             "hash" : "string value",
             "uploadedBy" : {
-                "username" : "string value",
-                "firstName" : "string value",
-                "email" : "string value",
-                "lastName" : "string value"
+                "firstName" : "Ida",
+                "email" : "firstname@domain.com",
+                "lastName" : "Adams",
+                "username" : "string value"
             },
             "uriPath" : "string value"
         },
         "clinicId" : 123,
         "submittedAt" : "string value",
-        "id" : 123456789,
-        "comment" : "string value"
+        "awards" : [
+            {
+                "award" : "PICTURE_OF_THE_WEEK",
+                "awardedAt" : "string value"
+            },
+            {
+                "award" : "PICTURE_OF_THE_WEEK",
+                "awardedAt" : "string value"
+            },
+            {
+                "award" : "PICTURE_OF_THE_WEEK",
+                "awardedAt" : "string value"
+            }
+        ],
+        "id" : 123456789
     },
     {
+        "submittedAt" : "string value",
         "comment" : "string value",
+        "clinicId" : 123,
+        "id" : 123456789,
         "awards" : [
             {
                 "award" : "PICTURE_OF_THE_WEEK",
@@ -81,15 +84,12 @@
             "id" : 123456789,
             "hash" : "string value",
             "uploadedBy" : {
-                "username" : "string value",
-                "firstName" : "string value",
-                "email" : "string value",
-                "lastName" : "string value"
+                "firstName" : "Ida",
+                "email" : "firstname@domain.com",
+                "lastName" : "Adams",
+                "username" : "string value"
             },
             "uriPath" : "string value"
-        },
-        "id" : 123456789,
-        "submittedAt" : "string value",
-        "clinicId" : 123
+        }
     }
-    ]
+]

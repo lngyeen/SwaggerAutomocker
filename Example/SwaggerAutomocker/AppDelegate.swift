@@ -14,11 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var mockServer: MockServer?
     var window: UIWindow?
     
-    var defaultValuesConfig: MockServerConfiguration {
-        let defaultValuesConfig = MockServerConfiguration()
-        defaultValuesConfig.defaultArrayElementCount = 3
-        defaultValuesConfig.defaultValuesConfiguration.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
-        return defaultValuesConfig
+    var dataGenerator: DataGenerator {
+        let dataGenerator = DataGenerator()
+        dataGenerator.defaultArrayElementCount = 3
+        dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
+        return dataGenerator
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -27,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let jsonFileName = "openapi1"
         let json = readJSONFromFile(fileName: jsonFileName)
         if let json = json as? [String: Any] {
-            mockServer = MockServer(port: 8089, swaggerJson: json, config: defaultValuesConfig)
+            mockServer = MockServer(port: 8089,
+                                    swaggerJson: json,
+                                    dataGenerator: dataGenerator)
             mockServer?.start()
         }
         
