@@ -74,10 +74,20 @@ class SwaggerSchema: Mappable {
                 return .string(content: (value as? String) ?? "")
                 
             case SwaggerSchemaDataType.integer.rawValue:
-                return .integer(content: (value as? Int) ?? 0)
+                var int: Int = (value as? Int) ?? 0
+                if let int32 = value as? Int32 {
+                    int = Int(int32)
+                } else if let int64 = value as? Int64 {
+                    int = Int(truncatingIfNeeded: int64)
+                }
+                return .integer(content: int)
                 
             case SwaggerSchemaDataType.number.rawValue:
-                return .number(content: (value as? Double) ?? 0)
+                var double: Double = (value as? Double) ?? 0
+                if let float = value as? Float {
+                    double = Double("\(float)") ?? 0
+                }
+                return .number(content: double)
                 
             case SwaggerSchemaDataType.boolean.rawValue:
                 return .boolean(content: (value as? Bool) ?? true)
@@ -271,7 +281,6 @@ class SwaggerSchema: Mappable {
 }
 
 private class Node: NSObject {
-    
     private(set) var className: String
     private(set) var propertyName: String
     private(set) var children: Set<Node> = []
@@ -294,7 +303,7 @@ private class Node: NSObject {
     }
     
     func ancestors(name: String) -> [Node] {
-        var ancestors: [Node] = self.className == name ? [self] : []
+        var ancestors: [Node] = className == name ? [self] : []
         var current = parent
         while current != nil {
             if let current = current, current.className == name {

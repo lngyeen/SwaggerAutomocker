@@ -20,6 +20,11 @@
 		F80E60E026396ED600094629 /* swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F83F6D9F2462C4AB006342C1 /* swagger.json */; };
 		F80E60E326396ED800094629 /* openapi1.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A2C05325BBC8E200A045B1 /* openapi1.json */; };
 		F80E60E626396EDA00094629 /* openapi2.json in Resources */ = {isa = PBXBuildFile; fileRef = F8AC35E32637FA3F00FEFD87 /* openapi2.json */; };
+		F839C4962641450F005DCA6F /* TestsMockServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F839C4952641450F005DCA6F /* TestsMockServer.swift */; };
+		F839C49D26414710005DCA6F /* empty_swagger.json in Sources */ = {isa = PBXBuildFile; fileRef = F839C49C26414710005DCA6F /* empty_swagger.json */; };
+		F839C4A92641484B005DCA6F /* four_endpoints_swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F839C4A62641484A005DCA6F /* four_endpoints_swagger.json */; };
+		F839C4AA2641484B005DCA6F /* two_endpoints_swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F839C4A72641484A005DCA6F /* two_endpoints_swagger.json */; };
+		F839C4AB2641484B005DCA6F /* one_endpoint_swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F839C4A82641484B005DCA6F /* one_endpoint_swagger.json */; };
 		F83F6DC42462CDC8006342C1 /* swagger.json in Resources */ = {isa = PBXBuildFile; fileRef = F83F6D9F2462C4AB006342C1 /* swagger.json */; };
 		F8A2C05425BBC8E200A045B1 /* openapi1.json in Resources */ = {isa = PBXBuildFile; fileRef = F8A2C05325BBC8E200A045B1 /* openapi1.json */; };
 		F8A2C05525BBC96A00A045B1 /* TestsOpenApi1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A2C05125BBC8A400A045B1 /* TestsOpenApi1.swift */; };
@@ -66,6 +71,11 @@
 		E30AF251729BCF81D2A69F3B /* Pods_SwaggerAutomocker_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwaggerAutomocker_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80E602C263910C000094629 /* TestsOpenApi2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsOpenApi2.swift; sourceTree = "<group>"; };
 		F80E60332639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestsOpenApi2_get_v1_social_twitter.json; sourceTree = "<group>"; };
+		F839C4952641450F005DCA6F /* TestsMockServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsMockServer.swift; sourceTree = "<group>"; };
+		F839C49C26414710005DCA6F /* empty_swagger.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = empty_swagger.json; sourceTree = "<group>"; };
+		F839C4A62641484A005DCA6F /* four_endpoints_swagger.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = four_endpoints_swagger.json; sourceTree = "<group>"; };
+		F839C4A72641484A005DCA6F /* two_endpoints_swagger.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = two_endpoints_swagger.json; sourceTree = "<group>"; };
+		F839C4A82641484B005DCA6F /* one_endpoint_swagger.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = one_endpoint_swagger.json; sourceTree = "<group>"; };
 		F83F6D9F2462C4AB006342C1 /* swagger.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = swagger.json; sourceTree = "<group>"; };
 		F8A2C05125BBC8A400A045B1 /* TestsOpenApi1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsOpenApi1.swift; sourceTree = "<group>"; };
 		F8A2C05325BBC8E200A045B1 /* openapi1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = openapi1.json; sourceTree = "<group>"; };
@@ -170,7 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
-				F80E60EA26396FB500094629 /* TestsSwagger */,
+				F839C49B264146E2005DCA6F /* TestsMockServer */,
+				F839C4B62641556C005DCA6F /* TestsSwagger */,
 				F841CF47263A4975000FFB18 /* TestsOpenApi */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -227,7 +238,19 @@
 			path = TestsOpenApi1;
 			sourceTree = "<group>";
 		};
-		F80E60EA26396FB500094629 /* TestsSwagger */ = {
+		F839C49B264146E2005DCA6F /* TestsMockServer */ = {
+			isa = PBXGroup;
+			children = (
+				F839C4952641450F005DCA6F /* TestsMockServer.swift */,
+				F839C4A62641484A005DCA6F /* four_endpoints_swagger.json */,
+				F839C4A72641484A005DCA6F /* two_endpoints_swagger.json */,
+				F839C4A82641484B005DCA6F /* one_endpoint_swagger.json */,
+				F839C49C26414710005DCA6F /* empty_swagger.json */,
+			);
+			path = TestsMockServer;
+			sourceTree = "<group>";
+		};
+		F839C4B62641556C005DCA6F /* TestsSwagger */ = {
 			isa = PBXGroup;
 			children = (
 				F8A2C05625BBC9CC00A045B1 /* TestsSwagger.swift */,
@@ -348,11 +371,14 @@
 			files = (
 				F8E51B3A263AAD7F00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus_1-1-2021.json in Resources */,
 				F80E60E026396ED600094629 /* swagger.json in Resources */,
+				F839C4AB2641484B005DCA6F /* one_endpoint_swagger.json in Resources */,
 				F8E51B28263AA9D800715F3B /* TestsOpenApi2_get_v1_back-office_employees_rewards_leaderboard.json in Resources */,
 				F8E51B1E263AA03200715F3B /* TestsOpenApi2_get_v1_back-office_clinics.json in Resources */,
 				F80E60342639111A00094629 /* TestsOpenApi2_get_v1_social_twitter.json in Resources */,
+				F839C4A92641484B005DCA6F /* four_endpoints_swagger.json in Resources */,
 				F8E51B22263AA60A00715F3B /* TestsOpenApi2_get_v1_back-office_employees_pictures.json in Resources */,
 				F8E51B2E263AAC1C00715F3B /* TestsOpenApi2_get_v1_back-office_employees_vacation-requests.json in Resources */,
+				F839C4AA2641484B005DCA6F /* two_endpoints_swagger.json in Resources */,
 				F80E60E326396ED800094629 /* openapi1.json in Resources */,
 				F8E51B34263AACDE00715F3B /* TestsOpenApi2_get_v1_clinics_123_menus.json in Resources */,
 				F80E60E626396EDA00094629 /* openapi2.json in Resources */,
@@ -452,6 +478,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8A2C05525BBC96A00A045B1 /* TestsOpenApi1.swift in Sources */,
+				F839C4962641450F005DCA6F /* TestsMockServer.swift in Sources */,
+				F839C49D26414710005DCA6F /* empty_swagger.json in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				F8A2C05725BBC9CC00A045B1 /* TestsSwagger.swift in Sources */,
 				F80E602D263910C000094629 /* TestsOpenApi2.swift in Sources */,

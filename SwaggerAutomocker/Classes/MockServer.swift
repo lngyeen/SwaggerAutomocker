@@ -10,12 +10,16 @@ import Foundation
 import ObjectMapper
 import Telegraph
 
-public class MockServer {
+public final class MockServer {
     public let port: Int
     public let swaggerJson: [String: Any]
     public let dataGenerator: DataGenerator
     public let server = Server()
     private var swagger: SwaggerJson?
+    
+    public var endPoints: [EndPoint] {
+        return swagger?.endPoints ?? []
+    }
     
     public init(port: Int = 8080,
                 swaggerJson: [String: Any],
@@ -27,7 +31,7 @@ public class MockServer {
     }
     
     public func start() {
-        swagger = SwaggerJson(JSON: swaggerJson)
+        swagger = SwaggerJson(JSON: swaggerJson, dataGenerator: dataGenerator)
         if let swagger = swagger {
             /*
              Suppose we have 2 endpoints: "GET: /user/{username}" and "GET: /user/login".
@@ -42,7 +46,7 @@ public class MockServer {
              */
             
             print("[SERVER]", "Server is preparing the endpoints")
-            let allEndpoints = swagger.endPoints(dataGenerator: dataGenerator).sorted(by: { $0.path < $1.path })
+            let allEndpoints = swagger.endPoints.sorted(by: { $0.path < $1.path })
             
             for endpoint in allEndpoints {
                 print(endpoint.description)
@@ -93,7 +97,7 @@ public class MockServer {
             } catch {
                 print(error.localizedDescription)
             }
-            print("[SERVER]", "Server is running")
+            print("[SERVER]", "Server is running at port \(server.port)")
         } else {
             print("[SERVER]", "Mock server can not start because no json swagger was found")
         }

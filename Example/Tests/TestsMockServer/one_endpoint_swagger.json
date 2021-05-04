@@ -1,0 +1,73 @@
+{
+    "openapi" : "3.0.1",
+    "paths" : {
+        "/api/v1/company" : {
+            "get" : {
+                "responses" : {
+                    "200" : {
+                        "content" : {
+                            "*/*" : {
+                                "schema" : {
+                                    "items" : {
+                                        "$ref" : "#/components/schemas/CompanyDTO"
+                                    },
+                                    "type" : "array"
+                                }
+                            }
+                        },
+                        "description" : "OK"
+                    },
+                    "401" : {
+                        "description" : "Unauthorized",
+                        "content" : [
+                            
+                        ]
+                    },
+                    "403" : {
+                        "content" : [
+                            
+                        ],
+                        "description" : "Forbidden"
+                    },
+                    "404" : {
+                        "description" : "Not Found",
+                        "content" : [
+                            
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "components" : {
+        "schemas" : {
+            "CompanyDTO" : {
+                "title" : "CompanyDTO",
+                "type" : "object",
+                "properties" : {
+                    "status" : {
+                        "type" : "string",
+                        "enum" : [
+                            "ACTIVE",
+                            "NON_ACTIVE"
+                        ]
+                    },
+                    "contactDetails" : {
+                        "type" : "string"
+                    },
+                    "contact" : {
+                        "$ref" : "#/components/schemas/UserDTO"
+                    },
+                    "id" : {
+                        "type" : "integer",
+                        "format" : "int64"
+                    },
+                    "name" : {
+                        "format" : "name",
+                        "type" : "string"
+                    }
+                }
+            }
+        }
+    }
+}

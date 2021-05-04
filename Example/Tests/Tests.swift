@@ -6,12 +6,13 @@ class Tests: XCTestCase {
     
     class var dataGenerator: DataGenerator {
         let dataGenerator = DataGenerator()
+        dataGenerator.useFakeryDataGenerator = false
         dataGenerator.defaultArrayElementCount = 3
         dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
         return dataGenerator
     }
     
-    class var mockServerPort: Int {
+    class var port: Int {
         return 8080
     }
     
@@ -23,9 +24,9 @@ class Tests: XCTestCase {
         super.setUp()
         
         if let json = readJSONFromFile(fileName: jsonFileName) as? [String: Any] {
-            Tests.mockServer = MockServer(port: mockServerPort,
+            Tests.mockServer = MockServer(port: Self.port,
                                           swaggerJson: json,
-                                          dataGenerator: dataGenerator)
+                                          dataGenerator: Self.dataGenerator)
             Tests.mockServer?.start()
         }
     }
@@ -57,7 +58,6 @@ extension Tests {
         }
         
         return nil
-//        fatalError("Error!! File not found: \(fileName).json")
     }
     
     func get(path: String) -> URLRequest {
@@ -183,12 +183,10 @@ extension Tests {
         wait(for: [exp], timeout: 10)
     }
     
-    func serverURL(path: String = "") -> URL {
+    func serverURL(path: String) -> URL {
         var components = URLComponents()
-        if let mockServer = Tests.mockServer {
-            components.scheme = mockServer.server.isSecure ? "https" : "http"
-            components.port = Int(mockServer.port)
-        }
+        components.scheme = "http"
+        components.port = Self.port
         components.host = "localhost"
         components.path = path
         return components.url!

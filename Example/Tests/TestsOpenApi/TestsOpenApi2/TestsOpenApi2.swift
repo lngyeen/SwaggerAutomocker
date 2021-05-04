@@ -1565,6 +1565,251 @@ final class TestsOpenApi2: Tests {
         XCTAssertTrue(responseJson ?? [:] == expectedResponse)
     }
     
+    func testGetValidInvoices() {
+        typealias ResponseType = [[String: Any]]
+        
+        // Given
+        let path = "/v1/doctors/fees/invoices/valid"
+        let request = get(path: path)
+        let expectedResponse = [
+            [
+                "accountingDate": "string value",
+                "id": 123,
+                "visa": "APPROVED",
+                "clinicId": 123,
+                "treatments": [
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ],
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ],
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ]
+                ],
+                "visitId": 123,
+                "patient": [
+                    "firstName": "Ida",
+                    "id": 123,
+                    "gender": "M",
+                    "lastName": "Adams",
+                    "birthDate": "2017-07-21"
+                ],
+                "paymentStatus": "PAID",
+                "contestedAt": "string value"
+            ],
+            [
+                "clinicId": 123,
+                "treatments": [
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ],
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ],
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ]
+                ],
+                "paymentStatus": "PAID",
+                "id": 123,
+                "accountingDate": "string value",
+                "visitId": 123,
+                "patient": [
+                    "firstName": "Ida",
+                    "id": 123,
+                    "gender": "M",
+                    "lastName": "Adams",
+                    "birthDate": "2017-07-21"
+                ],
+                "visa": "APPROVED",
+                "contestedAt": "string value"
+            ],
+            [
+                "patient": [
+                    "firstName": "Ida",
+                    "id": 123,
+                    "gender": "M",
+                    "lastName": "Adams",
+                    "birthDate": "2017-07-21"
+                ],
+                "treatments": [
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ],
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ],
+                    [
+                        "grossAmount": 2.3399999999999999,
+                        "feeType": "M",
+                        "quantity": 123,
+                        "id": "string value",
+                        "description": "string value",
+                        "netAmount": 2.3399999999999999,
+                        "grpRateCode": "string value",
+                        "points": 2.3399999999999999,
+                        "clinicId": 123,
+                        "visitId": 123,
+                        "invoiceId": 123,
+                        "designationRate": "string value",
+                        "treatmentDate": "string value",
+                        "visa": "APPROVED",
+                        "refundRate": 2.3399999999999999,
+                        "patientId": 123,
+                        "contestedAt": "string value"
+                    ]
+                ],
+                "contestedAt": "string value",
+                "visa": "APPROVED",
+                "visitId": 123,
+                "paymentStatus": "PAID",
+                "id": 123,
+                "accountingDate": "string value",
+                "clinicId": 123
+            ]
+        ].map { $0.formatted }
+        
+        // When
+        var responseJson: ResponseType?
+        call(request: request, description: "Get valid invoices") { (response: ResponseType?, _, _, _) in
+            responseJson = response
+        }
+        
+        // Then
+        XCTAssertNotNil(responseJson)
+        XCTAssertTrue(responseJson ?? [[:]] == expectedResponse)
+    }
+
     // MARK: Inventory tests
     
     func testGetTwitterPosts() {

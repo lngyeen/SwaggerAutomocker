@@ -8,7 +8,7 @@ final class TestsSwagger: Tests {
     
     // MARK: Inventory tests
     
-    func testGetInventory() throws {
+    func testGetInventory() {
         // Given
         let request = get(path: "/v2/store/inventory")
         let expectedResponse = [
@@ -27,7 +27,7 @@ final class TestsSwagger: Tests {
         XCTAssertTrue(responseJson ?? [:] == expectedResponse)
     }
     
-    func testPostOrder() throws {
+    func testPostOrder() {
         // Given
         let request = post(path: "/v2/store/order")
         
@@ -41,7 +41,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 200)
     }
     
-    func testGetOrder() throws {
+    func testGetOrder() {
         // Given
         let request = get(path: "/v2/store/order/123")
         let expectedResponse = [
@@ -64,7 +64,7 @@ final class TestsSwagger: Tests {
         XCTAssertTrue(responseJson ?? [:] == expectedResponse)
     }
     
-    func testDeleteOrder() throws {
+    func testDeleteOrder() {
         // Given
         let request = delete(path: "/v2/store/order/123")
         
@@ -80,7 +80,7 @@ final class TestsSwagger: Tests {
     
     // MARK: - Pet Tests
     
-    func testGetPetById() throws {
+    func testGetPetById() {
         // Given
         let request = get(path: "/v2/pet/123")
         let expectedResponse = [
@@ -123,7 +123,7 @@ final class TestsSwagger: Tests {
         XCTAssertTrue(responseJson ?? [:] == expectedResponse)
     }
     
-    func testFindPet() throws {
+    func testFindPet() {
         // Given
         let request = get(path: "/v2/pet/findByStatus")
         let expectedResponse = [
@@ -170,7 +170,7 @@ final class TestsSwagger: Tests {
         XCTAssertTrue(responseJson ?? [] == expectedResponse)
     }
     
-    func testPostPet() throws {
+    func testPostPet() {
         // Given
         let request = post(path: "/v2/pet")
         
@@ -184,7 +184,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testPostPet2() throws {
+    func testPostPet2() {
         // Given
         let request = post(path: "/v2/pet/123")
         
@@ -198,7 +198,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testPutPet() throws {
+    func testPutPet() {
         // Given
         let request = put(path: "/v2/pet")
         
@@ -212,7 +212,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testDeletePet() throws {
+    func testDeletePet() {
         // Given
         let request = delete(path: "/v2/pet/123")
         
@@ -226,7 +226,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testPostPetPicture() throws {
+    func testPostPetPicture() {
         // Given
         let request = post(path: "/v2/pet/123/uploadImage")
         
@@ -242,7 +242,7 @@ final class TestsSwagger: Tests {
     
     // MARK: - User tests
     
-    func testPostUser() throws {
+    func testPostUser() {
         // Given
         let request = post(path: "/v2/user")
         
@@ -256,7 +256,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testPostUserArray() throws {
+    func testPostUserArray() {
         // Given
         let request = post(path: "/v2/user/createWithArray", body: [])
         
@@ -270,7 +270,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testPostUserList() throws {
+    func testPostUserList() {
         // Given
         let request = post(path: "/v2/user/createWithList", body: [])
         
@@ -284,7 +284,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testGetLogin() throws {
+    func testGetLogin() {
         // Given
         let request = get(path: "/v2/user/login")
         
@@ -299,7 +299,7 @@ final class TestsSwagger: Tests {
         XCTAssertTrue(responseString == "string value")
     }
     
-    func testGetLogout() throws {
+    func testGetLogout() {
         // Given
         let request = get(path: "/v2/user/logout")
         
@@ -313,7 +313,7 @@ final class TestsSwagger: Tests {
         XCTAssertNil(responseString)
     }
     
-    func testGetUser() throws {
+    func testGetUser() {
         // Given
         let request = get(path: "/v2/user/john")
         let expectedResponse = [
@@ -338,7 +338,7 @@ final class TestsSwagger: Tests {
         XCTAssertTrue(responseJson ?? [:] == expectedResponse)
     }
     
-    func testPutUser() throws {
+    func testPutUser() {
         // Given
         let request = put(path: "/v2/user/john")
         
@@ -352,7 +352,7 @@ final class TestsSwagger: Tests {
         XCTAssertEqual(responseCode, 204)
     }
     
-    func testDeleteUser() throws {
+    func testDeleteUser() {
         // Given
         let request = delete(path: "/v2/user/john")
         

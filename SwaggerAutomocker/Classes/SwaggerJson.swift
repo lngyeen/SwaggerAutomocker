@@ -20,13 +20,19 @@ enum SwaggerJsonAttribute: String {
     case schemas = "components.schemas" // open api 3.0
 }
 
-public class SwaggerJson: Mappable {
+public final class SwaggerJson: Mappable {
     var openapi: String?
     var swagger: String?
     var basePath: String?
     var paths: [String: [String: SwaggerEndPoint]]?
     var definitions: Definitions?
-    
+    var dataGenerator = DataGenerator()
+
+    convenience init?(JSON: [String: Any], dataGenerator: DataGenerator) {
+        self.init(JSON: JSON)
+        self.dataGenerator = dataGenerator
+    }
+
     public required init?(map: Map) {}
     public func mapping(map: Map) {
         swagger <- map[SwaggerJsonAttribute.swagger.rawValue]
@@ -39,8 +45,8 @@ public class SwaggerJson: Mappable {
             definitions <- map[SwaggerJsonAttribute.schemas.rawValue]
         }
     }
-    
-    func endPoints(dataGenerator: DataGenerator) -> [EndPoint] {
+
+    var endPoints: [EndPoint] {
         if let paths = paths {
             var endPoints: [EndPoint] = []
             for (path, jsonPath) in paths {
@@ -65,15 +71,15 @@ private class PathsTransformer: TransformType {
     func transformFromJSON(_ value: Any?) -> [String: [String: SwaggerEndPoint]]? {
         if let definitions = value as? [String: [String: Any]] {
             var returnValue: [String: [String: SwaggerEndPoint]] = [:]
-            
+
             for (key, value) in definitions {
                 var stringJsonEndPoint: [String: SwaggerEndPoint] = [:]
-                
+
                 if let mapStringJsonObject = value as? [String: [String: Any]] {
                     for (string, jsonObject) in mapStringJsonObject {
                         stringJsonEndPoint[string] = SwaggerEndPoint(JSON: jsonObject)
                     }
-                    
+
                     returnValue[key] = stringJsonEndPoint
                 }
             }

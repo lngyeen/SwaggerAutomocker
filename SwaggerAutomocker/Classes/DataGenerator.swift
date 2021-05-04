@@ -8,67 +8,67 @@
 import Fakery
 import Foundation
 
-public class DataGenerator {
+public final class DataGenerator {
     /// If this variable is set to true, the data generator will use the Fakery library to generate dummy data. If false, generator will use default values
-    public var useFakeryDataGenerator = false
+    public var useFakeryDataGenerator: Bool = false
     
     // MARK: Default values
 
     public var defaultArrayElementCount: Int = 3
-    public var booleanDefaultValue = true
-    public var floatDefaultValue = 1.23
-    public var doubleDefaultValue = 2.34
-    public var int32DefaultValue = 123
-    public var int64DefaultValue = 123456789
-    public var dateDefaultValue = "2017-07-21"
-    public var dateTimeDefaultValue = "2017-07-21T17:32:28Z"
-    public var byteDefaultValue = "U3dhZ2dlciByb2Nrcw=="
-    public var uuidDefaultValue = "123e4567-e89b-12d3-a456-426614174000"
-    public var othersDefaultValue = "string value"
+    public var booleanDefaultValue: Bool = true
+    public var floatDefaultValue: Float = 1.23
+    public var doubleDefaultValue: Double = 2.34
+    public var int32DefaultValue: Int32 = 123
+    public var int64DefaultValue: Int64 = 123456789
+    public var dateDefaultValue: String = "2017-07-21"
+    public var dateTimeDefaultValue: String = "2017-07-21T17:32:28Z"
+    public var byteDefaultValue: String = "U3dhZ2dlciByb2Nrcw=="
+    public var uuidDefaultValue: String = "123e4567-e89b-12d3-a456-426614174000"
+    public var othersDefaultValue: String = "string value"
     
     // MARK: Internet
     
-    public var passwordDefaultValue = "********"
-    public var emailDefaultValue = "firstname@domain.com"
-    public var uriDefaultValue = "https://www.example.com/foo.html"
-    public var uriPathDefaultValue = "/foo/bar/123"
-    public var hostnameDefaultValue = "www.example.com"
-    public var domainnameDefaultValue = "example.com"
-    public var ipv4DefaultValue = "192.0.2.235"
-    public var ipv6DefaultValue = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+    public var passwordDefaultValue: String = "********"
+    public var emailDefaultValue: String = "firstname@domain.com"
+    public var uriDefaultValue: String = "https://www.example.com/foo.html"
+    public var uriPathDefaultValue: String = "/foo/bar/123"
+    public var hostnameDefaultValue: String = "www.example.com"
+    public var domainnameDefaultValue: String = "example.com"
+    public var ipv4DefaultValue: String = "192.0.2.235"
+    public var ipv6DefaultValue: String = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
     
     // MARK: Address
     
-    public var cityDefaultValue = "Oslo"
-    public var streetNameDefaultValue = "North Avenue"
-    public var secondaryAddressDefaultValue = "Apt. 123"
-    public var streetAddressDefaultValue = "12 North Avenue"
-    public var buildingNumberDefaultValue = "123"
-    public var postCodeDefaultValue = "0884"
-    public var timeZoneDefaultValue = "America/Los_Angeles"
-    public var streetSuffixDefaultValue = "Avenue"
-    public var citySuffixDefaultValue = "town"
-    public var cityPrefixDefaultValue = "North"
-    public var stateAbbreviationDefaultValue = "CA"
-    public var stateDefaultValue = "California"
-    public var countyDefaultValue = "Autauga County"
-    public var countryDefaultValue = "United States of America"
-    public var countryCodeDefaultValue = "US"
-    public var latitudeDefaultValue = -58.17256227443719
-    public var longitudeDefaultValue = -156.65548382095133
-    public var coordinateDefaultValue = "(-58.17256227443719, -156.65548382095133)"
-    public var phoneNumberDefaultValue = "1-333-333-3333"
+    public var cityDefaultValue: String = "Oslo"
+    public var streetNameDefaultValue: String = "North Avenue"
+    public var secondaryAddressDefaultValue: String = "Apt. 123"
+    public var streetAddressDefaultValue: String = "12 North Avenue"
+    public var buildingNumberDefaultValue: String = "123"
+    public var postCodeDefaultValue: String = "0884"
+    public var timeZoneDefaultValue: String = "America/Los_Angeles"
+    public var streetSuffixDefaultValue: String = "Avenue"
+    public var citySuffixDefaultValue: String = "town"
+    public var cityPrefixDefaultValue: String = "North"
+    public var stateAbbreviationDefaultValue: String = "CA"
+    public var stateDefaultValue: String = "California"
+    public var countyDefaultValue: String = "Autauga County"
+    public var countryDefaultValue: String = "United States of America"
+    public var countryCodeDefaultValue: String = "US"
+    public var latitudeDefaultValue: Double = -58.17256227443719
+    public var longitudeDefaultValue: Double = -156.65548382095133
+    public var coordinateDefaultValue: String = "(-58.17256227443719, -156.65548382095133)"
+    public var phoneNumberDefaultValue: String = "1-333-333-3333"
     
     // MARK: App
     
-    public var appNameDefaultValue = "Namfix"
-    public var appVersionDefaultValue = "0.1.1"
-    public var appAuthorDefaultValue = "Ida Adams"
+    public var appNameDefaultValue: String = "Namfix"
+    public var appVersionDefaultValue: String = "0.1.1"
+    public var appAuthorDefaultValue: String = "Ida Adams"
     
     // MARK: Business
     
-    public var creditCardNumberDefaultValue = "1234-2121-1221-1211"
-    public var creditCardTypeDefaultValue = "visa"
+    public var creditCardNumberDefaultValue: String = "1234-2121-1221-1211"
+    public var creditCardTypeDefaultValue: String = "visa"
     public var creditCardExpiryDateDefaultValue: Date = {
         let isoDate = "2025-01-01T00:00:00+0000"
         let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: "en_US_POSIX")
@@ -78,12 +78,12 @@ public class DataGenerator {
     
     // MARK: Person
     
-    public var nameDefaultValue = "Ida Adams"
-    public var firstNameDefaultValue = "Ida"
-    public var lastNameDefaultValue = "Adams"
-    public var prefixDefaultValue = "Mrs."
-    public var suffixDefaultValue = "PhD"
-    public var titleDefaultValue = "Lead"
+    public var nameDefaultValue: String = "Ida Adams"
+    public var firstNameDefaultValue: String = "Ida"
+    public var lastNameDefaultValue: String = "Adams"
+    public var prefixDefaultValue: String = "Mrs."
+    public var suffixDefaultValue: String = "PhD"
+    public var titleDefaultValue: String = "Lead"
     
     public init() {}
     

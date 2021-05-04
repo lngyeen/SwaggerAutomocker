@@ -40,6 +40,6 @@ SwaggerAutomocker will read a swagger json file and launch a mock server which w
   # s.frameworks = 'UIKit', 'MapKit'
 
   s.dependency 'Telegraph', '~> 0.28.0'
-  s.dependency 'ObjectMapper', '~> 3.5.0'
+  s.dependency 'ObjectMapper', '~> 4.1.0'
   s.dependency 'Fakery', '~> 5.1.0'
 end

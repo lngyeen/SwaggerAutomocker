@@ -87,7 +87,8 @@ private class ResponsesTransformer: TransformType {
                     let content: [String: Any] = jsonObject["content"] as? [String: Any] ?? [:]
                     /// Get "application/json" first, if not exists, try to get other types
                     if let nestedJsonObject = (content["application/json"] as? [String: Any]) ??
-                        content.values.first(where: { $0 is [String: Any] }) as? [String: Any] {
+                        content.values.first(where: { $0 is [String: Any] }) as? [String: Any]
+                    {
                         returnValue[statusCode] = SwaggerResponse(JSON: nestedJsonObject)
                     } else {
                         returnValue[statusCode] = SwaggerResponse(JSON: jsonObject)
@@ -114,17 +115,18 @@ private class RequestBodyTransformer: TransformType {
             let content: [String: Any] = requestBody["content"] as? [String: Any] ?? [:]
             /// Get "application/json" first, if not exists, try to get other types
             if let nestedJsonObject = (content["application/json"] as? [String: Any]) ??
-                content.values.first(where: { $0 is [String: Any] }) as? [String: Any] {
+                content.values.first(where: { $0 is [String: Any] }) as? [String: Any]
+            {
                 returnValue = SwaggerResponse(JSON: nestedJsonObject)
             } else {
                 returnValue = SwaggerResponse(JSON: requestBody)
             }
-            
+
             return returnValue
         }
         return nil
     }
-    
+
     func transformToJSON(_ value: SwaggerResponse?) -> [String: Any]? {
         return value?.toJSON()
     }

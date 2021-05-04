@@ -9,7 +9,7 @@
 import Foundation
 import Telegraph
 
-class EndPoint {
+public final class EndPoint {
     let method: HTTPMethod
     let path: String
     let parameters: [SwaggerParam]
@@ -86,7 +86,7 @@ class EndPoint {
             }
             logResponse += "\n|     Response example: \(type(of: responseObject)) :\n\(responseJSON)"
         } else if let responseArray = response?.jsonArray,
-                  var responseJSON = responseArray.prettyPrinted
+            var responseJSON = responseArray.prettyPrinted
         {
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
@@ -95,7 +95,7 @@ class EndPoint {
             responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
             logResponse += "\n|     Response example: \(type(of: responseArray)) (\(responseArray.count) objects):\n\(responseJSON)"
         } else if let responseArray = response?.stringArray,
-                  var responseJSON = responseArray.prettyPrinted
+            var responseJSON = responseArray.prettyPrinted
         {
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
