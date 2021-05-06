@@ -6,33 +6,38 @@
 //  Copyright (c) 2020 lngyeen. All rights reserved.
 //
 
-import UIKit
 import SwaggerAutomocker
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var mockServer: MockServer?
     var window: UIWindow?
-    
+
     var dataGenerator: DataGenerator {
         let dataGenerator = DataGenerator()
-        dataGenerator.defaultArrayElementCount = 3
+        dataGenerator.useFakeryDataGenerator = true
+        dataGenerator.distinctElementsInArray = true
+        dataGenerator.generateDummyDataLazily = true
+        dataGenerator.rootArrayElementCount = 3
+        dataGenerator.childrenArrayElementCount = 3
         dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
         return dataGenerator
     }
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+
         let jsonFileName = "openapi1"
         let json = readJSONFromFile(fileName: jsonFileName)
         if let json = json as? [String: Any] {
-            mockServer = MockServer(port: 8089,
+            mockServer = MockServer(port: 8080,
                                     swaggerJson: json,
                                     dataGenerator: dataGenerator)
+            mockServer?.responseDatasource = self
             mockServer?.start()
         }
-        
+
         return true
     }
 
@@ -62,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func readJSONFromFile(fileName: String) -> Any? {
         var json: Any?
-        
+
         if let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "json") {
             do {
                 // Getting data from JSON file using the file URL
@@ -80,3 +85,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// MARK: - MockServerResponseDatasource
+
+extension AppDelegate: MockServerResponseDatasource {
+    func mockServer(_ mockServer: MockServer, httpResponseFor request: HTTPRequest, possibleResponses: [HTTPResponse]) -> HTTPResponse? {
+        print("--- \(request.method.name) - \(request.uri.path) ---")
+        print("Query Params: \(String(describing: request.uri.queryItems))")
+        print("Path Params: \(String(describing: request.pathParams?.prettyPrinted))")
+        if let json = request.body.jsonObject?.prettyPrinted {
+            print("Request Body: \n\(json)")
+        } else if let string = request.body.string {
+            print("Request Body: \n\(string)")
+        }
+        print("--------------------------")
+        return nil
+    }
+}
+
+extension Dictionary {
+    var prettyPrinted: String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
+        return String(data: data, encoding: .utf8)
+    }
+}

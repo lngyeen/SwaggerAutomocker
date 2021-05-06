@@ -16,64 +16,89 @@ enum SwaggerResponseAttribute: String {
     case examples
 }
 
-class SwaggerResponse: Mappable {
+public class SwaggerResponse: Mappable {
+    public private(set) var statusCode: Int = 204
+    public var headersJson: [String: String] {
+        return headers?.mapValues { $0.value } ?? [:]
+    }
+
+    public var responseString: String? {
+        guard let swagger = swagger else { return nil }
+        if swagger.dataGenerator.generateDummyDataLazily {
+            return responseFromDefinitions(swagger.definitions, using: swagger.dataGenerator)
+        } else {
+            if case .none = _responseString {
+                _responseString = responseFromDefinitions(swagger.definitions, using: swagger.dataGenerator)
+            }
+            return _responseString
+        }
+    }
+    
     var headers: [String: SwaggerHeader]?
     var schema: SwaggerSchema?
     var example: Any?
     var examples: [String: Any]?
-    var headersJson: [String: String] {
-        return headers?.mapValues { $0.value } ?? [:]
+    weak var swagger: SwaggerJson?
+    
+    private var _responseString: String?
+    
+    init() {}
+    convenience init?(JSON: [String: Any], statusCode: Int) {
+        self.init(JSON: JSON)
+        self.statusCode = statusCode
     }
 
-    init() {}
-    required init?(map: Map) {}
-    func mapping(map: Map) {
+    public required init?(map: Map) {}
+    public func mapping(map: Map) {
         headers <- (map[SwaggerResponseAttribute.headers.rawValue], HeadersTransformer())
         schema <- map[SwaggerResponseAttribute.schema.rawValue]
         example <- map[SwaggerResponseAttribute.example.rawValue]
         examples <- map[SwaggerResponseAttribute.examples.rawValue]
     }
 
-    func responseFromDefinitions(_ definitions: Definitions, using dataGenerator: DataGenerator) -> String? {
+    func responseFromDefinitions(_ definitions: Definitions?, using dataGenerator: DataGenerator) -> String? {
         guard let schema = schema else { return nil }
-        if let responseStringFromExamples = responseStringFromExamples(type: schema.type, arrayEmelementCount: dataGenerator.defaultArrayElementCount) {
+        
+        if let responseStringFromExamples = responseStringFromExamples(type: schema.type, arrayEmelementCount: dataGenerator.rootArrayElementCount) {
             return responseStringFromExamples
         }
         
-        let responseData = schema.valueFromDefinitions(definitions, dataGenerator: dataGenerator)
-        switch responseData {
-        case .string(let content):
-            return content
-            
-        case .integer(let content):
-            return String(content)
-            
-        case .number(let content):
-            return String(content)
-            
-        case .boolean(let content):
-            return String(content)
-            
-        case .object(let content):
-            if !content.isEmpty, let jsonData = try? JSONSerialization.data(
-                withJSONObject: content,
-                options: [.prettyPrinted, .fragmentsAllowed])
-            {
-                return String(data: jsonData, encoding: .ascii)
+        if let definitions = definitions {
+            let responseData = schema.valueFromDefinitions(definitions, dataGenerator: dataGenerator)
+            switch responseData {
+            case .string(let content):
+                return content
+                
+            case .integer(let content):
+                return String(content)
+                
+            case .number(let content):
+                return String(content)
+                
+            case .boolean(let content):
+                return String(content)
+                
+            case .object(let content):
+                if !content.isEmpty, let jsonData = try? JSONSerialization.data(
+                    withJSONObject: content,
+                    options: [.prettyPrinted, .fragmentsAllowed])
+                {
+                    return String(data: jsonData, encoding: .ascii)
+                }
+                
+            case .array(let content):
+                if let jsonData = try? JSONSerialization.data(
+                    withJSONObject: content,
+                    options: [.prettyPrinted, .fragmentsAllowed])
+                {
+                    return String(data: jsonData, encoding: .ascii)
+                }
+                
+            case .none:
+                return nil
             }
-            
-        case .array(let content):
-            if let jsonData = try? JSONSerialization.data(
-                withJSONObject: content,
-                options: [.prettyPrinted, .fragmentsAllowed])
-            {
-                return String(data: jsonData, encoding: .ascii)
-            }
-            
-        case .none:
-            return nil
         }
-       
+        
         return nil
     }
     

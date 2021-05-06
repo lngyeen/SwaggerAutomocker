@@ -7,13 +7,13 @@ class Tests: XCTestCase {
     class var dataGenerator: DataGenerator {
         let dataGenerator = DataGenerator()
         dataGenerator.useFakeryDataGenerator = false
-        dataGenerator.defaultArrayElementCount = 3
+        dataGenerator.rootArrayElementCount = 3
         dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
         return dataGenerator
     }
     
     class var port: Int {
-        return 8080
+        return 8089
     }
     
     class var jsonFileName: String {
@@ -119,7 +119,7 @@ extension Tests {
     
     func call(request: URLRequest, description: String = "Requesting", completionHandler: @escaping ([[String: Any]]?, [AnyHashable: Any]?, Int?, Error?) -> Void) {
         let exp = expectation(description: description)
-        let httpClient = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: nil)
+        let httpClient = URLSession.shared
         let httpTask = httpClient.dataTask(with: request) { data, response, error in
             
             let jsonArray: [[String: Any]]? = data?.jsonArray
@@ -136,12 +136,12 @@ extension Tests {
         }
         print(httpClient.requestDescription(dataTask: httpTask))
         httpTask.resume()
-        wait(for: [exp], timeout: 10)
+        wait(for: [exp], timeout: 60)
     }
     
     func call(request: URLRequest, description: String = "Requesting", completionHandler: @escaping ([String: Any]?, [AnyHashable: Any]?, Int?, Error?) -> Void) {
         let exp = expectation(description: description)
-        let httpClient = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: nil)
+        let httpClient = URLSession.shared
         let httpTask = httpClient.dataTask(with: request) { data, response, error in
             
             let jsonObject: [String: Any]? = data?.jsonObject
@@ -158,12 +158,12 @@ extension Tests {
         }
         print(httpClient.requestDescription(dataTask: httpTask))
         httpTask.resume()
-        wait(for: [exp], timeout: 10)
+        wait(for: [exp], timeout: 60)
     }
     
     func call(request: URLRequest, description: String = "Requesting", completionHandler: @escaping (String?, [AnyHashable: Any]?, Int?, Error?) -> Void) {
         let exp = expectation(description: description)
-        let httpClient = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: nil)
+        let httpClient = URLSession.shared
         let httpTask = httpClient.dataTask(with: request) { data, response, error in
             
             let responseString: String? = data?.string
@@ -180,15 +180,73 @@ extension Tests {
         }
         print(httpClient.requestDescription(dataTask: httpTask))
         httpTask.resume()
-        wait(for: [exp], timeout: 10)
+        wait(for: [exp], timeout: 60)
     }
     
+    func uploadImages(path: String, images: [UIImage], parameters: [String: String]?, description: String = "Uploading", completionHandler: @escaping (Any?, [AnyHashable: Any]?, Int?, Error?) -> Void) {
+        let url = serverURL(path: path)
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let mediaImages = images.compactMap { Media(withImage: $0, forKey: "file") }
+        request.httpBody = requesBodyWith(params: parameters, media: mediaImages, boundary: boundary)
+        
+        let exp = expectation(description: description)
+        let httpClient = URLSession.shared
+        let httpTask = httpClient.dataTask(with: request) { data, response, error in
+            
+            let jsonObject: [String: Any]? = data?.jsonObject
+            let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
+            if let error = error {
+                print("[CLIENT]", "Request failed - status:", statusCode, "- error: \(error)")
+            }
+            print(httpClient.responseDescription(data: data, request: request, response: response))
+            completionHandler(jsonObject,
+                              (response as? HTTPURLResponse)?.allHeaderFields,
+                              statusCode,
+                              error)
+            exp.fulfill()
+        }
+        print(httpClient.requestDescription(dataTask: httpTask))
+        httpTask.resume()
+        wait(for: [exp], timeout: 60)
+    }
+    
+    private func requesBodyWith(params: [String: String]?, media: [Media], boundary: String) -> Data {
+        let lineBreak = "\r\n"
+        var body = Data()
+        
+        if let parameters = params {
+            for (key, value) in parameters {
+                body.append("--\(boundary + lineBreak)")
+                body.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak + lineBreak)")
+                body.append("\(value + lineBreak)")
+            }
+        }
+        
+        for photo in media {
+            body.append("--\(boundary + lineBreak)")
+            body.append("Content-Disposition: form-data; name=\"\(photo.key)\"; filename=\"\(photo.fileName)\"\(lineBreak)")
+            body.append("Content-Type: \(photo.mimeType + lineBreak + lineBreak)")
+            body.append(photo.data)
+            body.append(lineBreak)
+        }
+        
+        body.append("--\(boundary)--\(lineBreak)")
+        
+        return body
+    }
+
     func serverURL(path: String) -> URL {
         var components = URLComponents()
         components.scheme = "http"
         components.port = Self.port
         components.host = "localhost"
-        components.path = path
+        let pathAndQueries = path.components(separatedBy: "?")
+        components.path = pathAndQueries.first ?? ""
+        components.query = pathAndQueries.count > 1 ? pathAndQueries.last : nil
         return components.url!
     }
     
@@ -251,32 +309,7 @@ extension Dictionary where Value: Any {
     }
 }
 
-private extension Data {
-    var jsonObject: [String: Any]? {
-        guard let json = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [String: Any],
-              !json.isEmpty else { return nil }
-        return json
-    }
-    
-    var jsonArray: [[String: Any]]? {
-        guard let array = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [[String: Any]],
-              !array.isEmpty else { return nil }
-        return array
-    }
-    
-    var stringArray: [String]? {
-        guard let array = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [String],
-              !array.isEmpty else { return nil }
-        return array
-    }
-    
-    var string: String? {
-        guard !isEmpty else { return nil }
-        return String(data: self, encoding: .utf8)
-    }
-}
-
-private extension URLSession {
+extension URLSession {
     func shortDescription(dataTask: URLSessionDataTask) -> String {
         guard let request = dataTask.originalRequest,
               let url = request.url else { return "Unable to describe request" }
@@ -426,6 +459,12 @@ private extension URLSession {
     }
 }
 
+extension String {
+    func matches(_ regex: String) -> Bool {
+        return range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
+    }
+}
+
 extension Array {
     var prettyPrinted: String? {
         guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
@@ -437,5 +476,43 @@ extension Dictionary {
     var prettyPrinted: String? {
         guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
         return String(data: data, encoding: .utf8)
+    }
+}
+
+struct Media {
+    enum ImageCompressionType {
+        case jpg(quality: CGFloat), png
+    }
+
+    let key: String
+    let fileName: String
+    let data: Data
+    let mimeType: String
+    
+    init?(withImage image: UIImage,
+          forKey key: String,
+          compressionType: ImageCompressionType = .jpg(quality: 0.5))
+    {
+        self.key = key
+        switch compressionType {
+        case .jpg(let quality):
+            guard let data = image.jpegData(compressionQuality: quality) else { return nil }
+            self.mimeType = "image/jpg"
+            self.fileName = "\(arc4random()).jpeg"
+            self.data = data
+        case .png:
+            guard let data = image.pngData() else { return nil }
+            self.mimeType = "image/png"
+            self.fileName = "\(arc4random()).png"
+            self.data = data
+        }
+    }
+}
+
+extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
     }
 }

@@ -12,7 +12,7 @@ final class TestsOpenApi1: Tests {
         // Given
         let request = post(path: "/api/v1/registration/user", body: [
             "comment": "string value",
-            "email": "string value",
+            "email": "email@domain.com",
             "firstName": "Ida",
             "focusmeEntityId": 123,
             "glnNumber": "string value",
@@ -21,7 +21,7 @@ final class TestsOpenApi1: Tests {
             "password": "string value",
             "phone": "0123456789",
             "termAndConditions": true,
-            "userRole": "PATIENT"
+            "userRole": "ADMIN"
         ])
         let expectedResponse = [
             "focusmeEntityId": 123456789,
@@ -1952,11 +1952,5 @@ final class TestsOpenApi1: Tests {
         // Then
         XCTAssertNotNil(jsonResponse)
         XCTAssertTrue(jsonResponse ?? [:] == expectedResponse)
-    }
-}
-
-extension String {
-    func matches(_ regex: String) -> Bool {
-        return self.range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
     }
 }

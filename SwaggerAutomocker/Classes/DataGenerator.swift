@@ -12,9 +12,16 @@ public final class DataGenerator {
     /// If this variable is set to true, the data generator will use the Fakery library to generate dummy data. If false, generator will use default values
     public var useFakeryDataGenerator: Bool = false
     
+    /// Only available when useFakeryDataGenerator is true. Fakery Data Generator will generate different objects in the array
+    public var distinctElementsInArray: Bool = false
+    
+    /// Data will be generated lazyly every time the server receives a request, which mean for the same endpoint, the data will be different for each request.
+    public var generateDummyDataLazily: Bool = false
+    
     // MARK: Default values
 
-    public var defaultArrayElementCount: Int = 3
+    public var rootArrayElementCount: Int = 3
+    public var childrenArrayElementCount: Int = 3
     public var booleanDefaultValue: Bool = true
     public var floatDefaultValue: Float = 1.23
     public var doubleDefaultValue: Double = 2.34

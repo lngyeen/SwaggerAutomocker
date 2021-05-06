@@ -42,6 +42,7 @@ class SwaggerSchema: Mappable {
     var exclusiveMaximum: Bool?
     
     private var root: Node?
+    private var topLevelIsArray = false
     
     required init?(map: Map) {}
     func mapping(map: Map) {
@@ -62,6 +63,7 @@ class SwaggerSchema: Mappable {
     
     func valueFromDefinitions(_ definitions: Definitions, dataGenerator: DataGenerator) -> SwaggerSchemaResponse {
         root = nil
+        topLevelIsArray = false
         return valueFromJson(toJSON(), definitions: definitions, currentNode: root, dataGenerator: dataGenerator)
     }
     
@@ -100,54 +102,59 @@ class SwaggerSchema: Mappable {
                     
                 } else if let items = json[SwaggerSchemaAttribute.items.rawValue] as? [String: Any] {
                     /// Example in individual array item
+                    let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childrenArrayElementCount
+                    topLevelIsArray = true
+                    
                     if let example = items[SwaggerSchemaAttribute.example.rawValue] {
-                        array = [example, example, example]
+                        array = Array(repeating: example, count: elementCount)
                     } else {
-                        switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
-                        case .string(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
-                            
-                        case .integer(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
-                            
-                        case .number(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
-                            
-                        case .boolean(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
-                            
-                        case .array(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
-                            
-                        case .object(let content):
-                            array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: dataGenerator.defaultArrayElementCount))
-                            
-                        case .none: break
+                        if dataGenerator.distinctElementsInArray {
+                            for _ in 0 ..< elementCount {
+                                switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
+                                case .string(let content):
+                                    array.append(content)
+                                    
+                                case .integer(let content):
+                                    array.append(content)
+                                    
+                                case .number(let content):
+                                    array.append(content)
+                                    
+                                case .boolean(let content):
+                                    array.append(content)
+                                    
+                                case .array(let content):
+                                    array.append(content)
+                                    
+                                case .object(let content):
+                                    array.append(content)
+                                    
+                                case .none: break
+                                }
+                            }
+                        } else {
+                            switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
+                            case .string(let content):
+                                array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: elementCount))
+                                
+                            case .integer(let content):
+                                array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: elementCount))
+                                
+                            case .number(let content):
+                                array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: elementCount))
+                                
+                            case .boolean(let content):
+                                array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: elementCount))
+                                
+                            case .array(let content):
+                                array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: elementCount))
+                                
+                            case .object(let content):
+                                array.append(contentsOf: (value as? Array) ?? Array(repeating: content, count: elementCount))
+                                
+                            case .none: break
+                            }
                         }
-
-//                        for _ in 0..<MockServer.dataGenerator.defaultArrayElementCount {
-//                            switch valueFromJson(items, for: propertyName, definitions: definitions, currentNode: currentNode) {
-//                            case .string(let content):
-//                                array.append(content)
-//
-//                            case .integer(let content):
-//                                array.append(content)
-//
-//                            case .number(let content):
-//                                array.append(content)
-//
-//                            case .boolean(let content):
-//                                array.append(content)
-//
-//                            case .array(let content):
-//                                array.append(content)
-//
-//                            case .object(let content):
-//                                array.append(content)
-//
-//                            case .none: break
-//                            }
-//                        }
                     }
                 }
                 return .array(content: array)
@@ -192,7 +199,8 @@ class SwaggerSchema: Mappable {
                     if let propertyName = propertyName,
                        let additionalProperties = json[SwaggerSchemaAttribute.additionalProperties.rawValue] as? [String: Any]
                     {
-                        for i in 1 ... dataGenerator.defaultArrayElementCount {
+                        let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childrenArrayElementCount
+                        for i in 1 ... elementCount {
                             switch valueFromJson(additionalProperties, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
                             case .string(let content):
                                 object["\(propertyName)\(i)"] = content
@@ -248,9 +256,8 @@ class SwaggerSchema: Mappable {
         
         /// Get value from enums array
         if case .none = value,
-           let enumValue = (json[SwaggerSchemaAttribute.enumValues.rawValue] as? [Any])?[safe: 0]
-        {
-            value = enumValue
+           let enumValues = json[SwaggerSchemaAttribute.enumValues.rawValue] as? [Any] {
+            value = dataGenerator.distinctElementsInArray ? enumValues.randomElement() : enumValues[safe: 0]
         }
         
         /// If has no example value, try to generate default values
@@ -285,7 +292,9 @@ private class Node: NSObject {
     private(set) var propertyName: String
     private(set) var children: Set<Node> = []
     private(set) weak var parent: Node?
-    
+    var isRoot: Bool {
+        return parent == nil
+    }
     var json: [String: Any] {
         if children.isEmpty {
             return ["\(propertyName) - \(className)": ""]

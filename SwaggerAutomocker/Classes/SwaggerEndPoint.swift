@@ -19,26 +19,9 @@ enum SwaggerEndPointAttribute: String {
 class SwaggerEndPoint: Mappable {
     var produces: [String] = []
     var parameters: [SwaggerParam] = []
-    var responses: [String: SwaggerResponse]?
-    var requestBody: SwaggerResponse?
+    var responses: [SwaggerResponse] = []
     var contentType: String {
         return produces.first ?? ""
-    }
-
-    var responseCode: Int {
-        if responses != nil {
-            let defaultRes = defaultResponse()
-            return Int(defaultRes.statusCode) ?? 204
-        }
-        return 204
-    }
-
-    var headers: [String: String] {
-        if responses != nil {
-            let defaultRes = defaultResponse()
-            return defaultRes.response.headersJson
-        }
-        return [:]
     }
 
     required init?(map: Map) {}
@@ -46,52 +29,24 @@ class SwaggerEndPoint: Mappable {
         produces <- map[SwaggerEndPointAttribute.produces.rawValue]
         parameters <- map[SwaggerEndPointAttribute.parameters.rawValue]
         responses <- (map[SwaggerEndPointAttribute.responses.rawValue], ResponsesTransformer())
-        requestBody <- (map[SwaggerEndPointAttribute.requestBody.rawValue], RequestBodyTransformer())
-    }
-
-    func responseStringFromDefinitions(_ definitions: Definitions, using dataGenerator: DataGenerator) -> String? {
-        if responses != nil {
-            let defaultRes = defaultResponse()
-            return defaultRes.response.responseFromDefinitions(definitions, using: dataGenerator)
-        }
-        return nil
-    }
-
-    private func defaultResponse() -> (statusCode: String, response: SwaggerResponse) {
-        if let responses = responses {
-            let okResponses = responses.filter { (reponse) -> Bool in
-                if reponse.key != "default", let keyInt = Int(reponse.key), keyInt >= 200, keyInt <= 299 {
-                    return true
-                } else {
-                    return false
-                }
-            }
-            let sortedOkResponseKeys = Array(okResponses.keys).sorted(by: <)
-            if let firstKey = sortedOkResponseKeys.first,
-               let firstData = responses[firstKey]
-            {
-                return (firstKey, firstData)
-            }
-        }
-        return (statusCode: "204", response: SwaggerResponse())
     }
 }
 
 private class ResponsesTransformer: TransformType {
-    func transformFromJSON(_ value: Any?) -> [String: SwaggerResponse]? {
+    func transformFromJSON(_ value: Any?) -> [SwaggerResponse]? {
         if let responses = value as? [String: Any] {
-            var returnValue: [String: SwaggerResponse] = [:]
-
+            var returnValue: [SwaggerResponse] = []
             for (statusCode, responseData) in responses {
-                if let jsonObject = responseData as? [String: Any] {
+                if let jsonObject = responseData as? [String: Any], let statusCode = Int(statusCode) {
                     let content: [String: Any] = jsonObject["content"] as? [String: Any] ?? [:]
                     /// Get "application/json" first, if not exists, try to get other types
                     if let nestedJsonObject = (content["application/json"] as? [String: Any]) ??
-                        content.values.first(where: { $0 is [String: Any] }) as? [String: Any]
+                        content.values.first(where: { $0 is [String: Any] }) as? [String: Any],
+                        let response = SwaggerResponse(JSON: nestedJsonObject, statusCode: statusCode)
                     {
-                        returnValue[statusCode] = SwaggerResponse(JSON: nestedJsonObject)
-                    } else {
-                        returnValue[statusCode] = SwaggerResponse(JSON: jsonObject)
+                        returnValue.append(response)
+                    } else if let response = SwaggerResponse(JSON: jsonObject, statusCode: statusCode) {
+                        returnValue.append(response)
                     }
                 }
             }
@@ -100,34 +55,14 @@ private class ResponsesTransformer: TransformType {
         return nil
     }
 
-    func transformToJSON(_ value: [String: SwaggerResponse]?) -> [String: Any]? {
+    func transformToJSON(_ value: [SwaggerResponse]?) -> Any? {
         if let value = value {
-            return value.mapValues { $0.toJSON() }
-        }
-        return nil
-    }
-}
-
-private class RequestBodyTransformer: TransformType {
-    func transformFromJSON(_ value: Any?) -> SwaggerResponse? {
-        if let requestBody = value as? [String: Any] {
-            var returnValue: SwaggerResponse?
-            let content: [String: Any] = requestBody["content"] as? [String: Any] ?? [:]
-            /// Get "application/json" first, if not exists, try to get other types
-            if let nestedJsonObject = (content["application/json"] as? [String: Any]) ??
-                content.values.first(where: { $0 is [String: Any] }) as? [String: Any]
-            {
-                returnValue = SwaggerResponse(JSON: nestedJsonObject)
-            } else {
-                returnValue = SwaggerResponse(JSON: requestBody)
+            var json: [String: Any] = [:]
+            for response in value {
+                json["\(response.statusCode)"] = response.toJSON()
             }
-
-            return returnValue
+            return json
         }
         return nil
-    }
-
-    func transformToJSON(_ value: SwaggerResponse?) -> [String: Any]? {
-        return value?.toJSON()
     }
 }

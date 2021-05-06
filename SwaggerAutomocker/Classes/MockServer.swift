@@ -10,17 +10,46 @@ import Foundation
 import ObjectMapper
 import Telegraph
 
+public typealias HTTPRequest = Telegraph.HTTPRequest
+public typealias HTTPResponse = Telegraph.HTTPResponse
+public typealias HTTPStatus = Telegraph.HTTPStatus
+public typealias HTTPVersion = Telegraph.HTTPVersion
+
+public protocol MockServerResponseDatasource: class {
+    /// The function allows us to customize the response for any request. If this method return nil, the default response will be use.
+    /// - Parameters:
+    ///   - mockServer: MockServer
+    ///   - request: HTTPRequest
+    ///   - possibleResponses: Responses are predefined for the request in the swagger json file.
+    func mockServer(_ mockServer: MockServer, httpResponseFor request: HTTPRequest, possibleResponses: [HTTPResponse]) -> HTTPResponse?
+}
+
 public final class MockServer {
+    /// The port which the mock server is running on.
     public let port: Int
-    public let swaggerJson: [String: Any]
-    public let dataGenerator: DataGenerator
-    public let server = Server()
-    private var swagger: SwaggerJson?
     
-    public var endPoints: [EndPoint] {
+    /// Json content of swagger definitions
+    public let swaggerJson: [String: Any]
+    
+    /// DataGenerator object which will be used to generate dummy data for HTTPResponse
+    public let dataGenerator: DataGenerator
+    
+    /// Datasource which will provide the custom HTTPResponse
+    public weak var responseDatasource: MockServerResponseDatasource?
+    
+    /// All endpoints the mock server can handle
+    public var endPoints: [MockServerEndPoint] {
         return swagger?.endPoints ?? []
     }
+
+    private lazy var server = Server()
+    private var swagger: SwaggerJson?
     
+    /// Init new Mockserver at port: port with swagger json: swaggerJson
+    /// - Parameters:
+    ///   - port: Port that server will run on, default is 8080
+    ///   - swaggerJson: [String: Any]
+    ///   - dataGenerator: DataGenerator
     public init(port: Int = 8080,
                 swaggerJson: [String: Any],
                 dataGenerator: DataGenerator = DataGenerator())
@@ -30,6 +59,7 @@ public final class MockServer {
         self.dataGenerator = dataGenerator
     }
     
+    /// Start mock server
     public func start() {
         swagger = SwaggerJson(JSON: swaggerJson, dataGenerator: dataGenerator)
         if let swagger = swagger {
@@ -56,36 +86,54 @@ public final class MockServer {
             let endpointsHasNoPathParam = allEndpoints.filter { !$0.hasPathParameters }
             
             for endpoint in endpointsHasNoPathParam {
-                server.route(endpoint.method, endpoint.route) { (_) -> HTTPResponse? in
+                server.route(endpoint.method, endpoint.route) { [weak self] request -> HTTPResponse? in
+                    guard let strongSelf = self else { return nil }
                     
-                    var headers: [HTTPHeaderName: String] = [:]
-                    
-                    if let contentType = endpoint.contentType {
-                        headers[HTTPHeaderName(stringLiteral: "Content-Type")] = contentType
+                    request.pathParams = MockServer.pathParamsFrom(requestPath: request.uri.path, endpointPath: endpoint.path)
+                    if let httpResponse = self?.responseDatasource?.mockServer(strongSelf, httpResponseFor: request,
+                                                                               possibleResponses: endpoint.responses.map { swaggerResponse -> HTTPResponse in
+                                                                                   let headers = MockServer.headersFor(endpoint: endpoint, swaggerResponse: swaggerResponse)
+                                                                                   return HTTPResponse(HTTPStatus(code: swaggerResponse.statusCode, phrase: ""),
+                                                                                                       version: request.version,
+                                                                                                       headers: headers,
+                                                                                                       body: swaggerResponse.responseString?.utf8Data ?? Data())
+                                                                               })
+                    {
+                        return httpResponse
+                    } else {
+                        let defaultResponse = endpoint.defaultResponse
+                        let headers = MockServer.headersFor(endpoint: endpoint, swaggerResponse: defaultResponse)
+                        return HTTPResponse(HTTPStatus(code: defaultResponse.statusCode, phrase: ""),
+                                            version: request.version,
+                                            headers: headers,
+                                            body: defaultResponse.responseString?.utf8Data ?? Data())
                     }
-                    
-                    for (key, val) in endpoint.headers {
-                        headers[HTTPHeaderName(stringLiteral: key)] = val
-                    }
-                    
-                    return HTTPResponse(HTTPStatus(code: endpoint.statusCode, phrase: ""), headers: headers, body: endpoint.responseString?.utf8Data ?? Data())
                 }
             }
 
             for endpoint in endpointsHasPathParam {
-                server.route(endpoint.method, regex: "^" + endpoint.route + "$") { (_) -> HTTPResponse? in
+                server.route(endpoint.method, regex: "^" + endpoint.route + "$") { [weak self] request -> HTTPResponse? in
+                    guard let strongSelf = self else { return nil }
                     
-                    var headers: [HTTPHeaderName: String] = [:]
-                    
-                    if let contentType = endpoint.contentType {
-                        headers[HTTPHeaderName(stringLiteral: "Content-Type")] = contentType
+                    request.pathParams = MockServer.pathParamsFrom(requestPath: request.uri.path, endpointPath: endpoint.path)
+                    if let httpResponse = self?.responseDatasource?.mockServer(strongSelf, httpResponseFor: request,
+                                                                               possibleResponses: endpoint.responses.map { swaggerResponse -> HTTPResponse in
+                                                                                   let headers = MockServer.headersFor(endpoint: endpoint, swaggerResponse: swaggerResponse)
+                                                                                   return HTTPResponse(HTTPStatus(code: swaggerResponse.statusCode, phrase: ""),
+                                                                                                       version: request.version,
+                                                                                                       headers: headers,
+                                                                                                       body: swaggerResponse.responseString?.utf8Data ?? Data())
+                                                                               })
+                    {
+                        return httpResponse
+                    } else {
+                        let defaultResponse = endpoint.defaultResponse
+                        let headers = MockServer.headersFor(endpoint: endpoint, swaggerResponse: defaultResponse)
+                        return HTTPResponse(HTTPStatus(code: defaultResponse.statusCode, phrase: ""),
+                                            version: request.version,
+                                            headers: headers,
+                                            body: defaultResponse.responseString?.utf8Data ?? Data())
                     }
-                    
-                    for (key, val) in endpoint.headers {
-                        headers[HTTPHeaderName(stringLiteral: key)] = val
-                    }
-                    
-                    return HTTPResponse(HTTPStatus(code: endpoint.statusCode, phrase: ""), headers: headers, body: endpoint.responseString?.utf8Data ?? Data())
                 }
             }
 
@@ -103,8 +151,34 @@ public final class MockServer {
         }
     }
     
+    /// Stop mock server
     public func stop() {
         server.stop()
+    }
+    
+    private static func headersFor(endpoint: MockServerEndPoint, swaggerResponse: SwaggerResponse) -> [HTTPHeaderName: String] {
+        var headers: [HTTPHeaderName: String] = [:]
+        if let contentType = endpoint.contentType {
+            headers[HTTPHeaderName(stringLiteral: "Content-Type")] = contentType
+        }
+        for (key, val) in swaggerResponse.headersJson {
+            headers[HTTPHeaderName(stringLiteral: key)] = val
+        }
+        return headers
+    }
+    
+    private static func pathParamsFrom(requestPath: String, endpointPath: String) -> [String: String] {
+        let requestPathComponents = requestPath.components(separatedBy: "/")
+        let endpointPathComponents = endpointPath.components(separatedBy: "/")
+        let endpointPathComponentsCount = endpointPathComponents.count
+        var pathParams: [String: String] = [:]
+        for (idx, requestPathComponent) in requestPathComponents.enumerated() {
+            if idx < endpointPathComponentsCount, endpointPathComponents[idx] != requestPathComponent {
+                let paramName = endpointPathComponents[idx].replacingOccurrences(of: "{", with: "").replacingOccurrences(of: "}", with: "")
+                pathParams[paramName] = requestPathComponent
+            }
+        }
+        return pathParams
     }
 }
 
@@ -114,5 +188,26 @@ extension MockServer: ServerDelegate {
     // Raised when the server gets disconnected.
     public func serverDidStop(_ server: Server, error: Error?) {
         print("[SERVER]", "Server stopped:", error?.localizedDescription ?? "")
+    }
+}
+
+public extension HTTPResponse {
+    var statusCode: Int {
+        return status.code
+    }
+}
+
+public extension HTTPRequest {
+    private enum AssociatedKeys {
+        static var pathParams = "NSObject.HTTPRequestPathParams"
+    }
+    
+    @objc var pathParams: [String: String]? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.pathParams) as? [String: String]
+        }
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.pathParams, newValue!, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
 }

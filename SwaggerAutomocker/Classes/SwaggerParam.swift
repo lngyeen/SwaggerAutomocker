@@ -15,13 +15,13 @@ enum SwaggerParamAttribute: String {
     case type
 }
 
-class SwaggerParam: Mappable {
-    var name: String?
-    var position: String?
-    var type: String?
+public class SwaggerParam: Mappable {
+    public private(set) var name: String?
+    public private(set) var position: String?
+    public private(set) var type: String?
 
-    required init?(map: Map) {}
-    func mapping(map: Map) {
+    required public init?(map: Map) {}
+    public func mapping(map: Map) {
         name <- map[SwaggerParamAttribute.name.rawValue]
         position <- map[SwaggerParamAttribute.position.rawValue]
         type <- map[SwaggerParamAttribute.type.rawValue]

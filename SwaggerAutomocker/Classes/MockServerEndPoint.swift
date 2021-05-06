@@ -1,5 +1,5 @@
 //
-//  EndPoint.swift
+//  MockServerEndPoint.swift
 //  SwaggerAutomocker
 //
 //  Created by Nguyen Truong Luu on 5/5/20.
@@ -9,15 +9,31 @@
 import Foundation
 import Telegraph
 
-public final class EndPoint {
-    let method: HTTPMethod
-    let path: String
-    let parameters: [SwaggerParam]
-    let route: String
-    let contentType: String?
-    let statusCode: Int
-    let headers: [String: String]
-    let responseString: String?
+public final class MockServerEndPoint {
+    
+    /// HTTPMethod:  GET/POST/PUT/DELETE...
+    public let method: HTTPMethod
+
+    /// Original path include path params for example: /api/v1/company/{id}
+    public let path: String
+    
+    /// Endpoint parameters (path params, query params)
+    public let parameters: [SwaggerParam]
+    
+    /// Regular expression form of the path property
+    public let route: String
+    
+    /// Content type (Media Type)
+    public let contentType: String?
+    
+    /// All possible responses of the endpoint
+    public let responses: [SwaggerResponse]
+    
+    /// Default response - first response object in the response array which has the success status code (200-299)
+    public var defaultResponse: SwaggerResponse {
+        return responses.filter { $0.statusCode >= 200 && $0.statusCode <= 299 }
+            .sorted(by: { $0.statusCode < $1.statusCode }).first ?? SwaggerResponse()
+    }
     
     var hasPathParameters: Bool {
         return path != route
@@ -26,25 +42,21 @@ public final class EndPoint {
     var description: String {
         return description(httpMethod: method.description,
                            path: path,
-                           statusCode: statusCode,
-                           response: responseString?.utf8Data)
+                           statusCode: defaultResponse.statusCode,
+                           response: defaultResponse.responseString?.utf8Data)
     }
 
     init(method: String,
          path: String,
          parameters: [SwaggerParam],
          contentType: String?,
-         statusCode: Int,
-         headers: [String: String],
-         responseString: String?)
+         responses: [SwaggerResponse])
     {
         self.method = HTTPMethod(stringLiteral: method)
         self.path = path
         self.parameters = parameters
-        self.responseString = responseString
         self.contentType = contentType
-        self.statusCode = statusCode
-        self.headers = headers
+        self.responses = responses
         
         var route = path
         let pathParams = parameters.filter { $0.position == "path" }
@@ -118,7 +130,7 @@ public final class EndPoint {
     }
 }
 
-extension Data {
+public extension Data {
     var jsonObject: [String: Any]? {
         guard let json = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [String: Any],
               !json.isEmpty else { return nil }

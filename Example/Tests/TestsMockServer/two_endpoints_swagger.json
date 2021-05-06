@@ -11,7 +11,39 @@
                                     "items" : {
                                         "$ref" : "#/components/schemas/CompanyDTO"
                                     },
-                                    "type" : "array"
+                                    "type" : "array",
+                                    "example": [
+                                        {
+                                            "contactDetails": "string value",
+                                            "contact": {
+                                                "name": "Rodrigo Armstrong",
+                                                "id": 123456789
+                                            },
+                                            "name": "Rodrigo Armstrong",
+                                            "status": "ACTIVE",
+                                            "id": 123456789
+                                        },
+                                        {
+                                            "contactDetails": "string value",
+                                            "contact": {
+                                                "name": "Selena Hessel",
+                                                "id": 234567890
+                                            },
+                                            "name": "Selena Hessel",
+                                            "status": "NON_ACTIVE",
+                                            "id": 234567890
+                                        },
+                                        {
+                                            "contactDetails": "string value",
+                                            "contact": {
+                                                "name": "Vernon Wiza",
+                                                "id": 345678901
+                                            },
+                                            "name": "Vernon Wiza",
+                                            "status": "ACTIVE",
+                                            "id": 345678901
+                                        }
+                                    ]
                                 }
                             }
                         },

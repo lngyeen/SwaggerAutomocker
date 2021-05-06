@@ -46,25 +46,24 @@ public final class SwaggerJson: Mappable {
         }
     }
 
-    var endPoints: [EndPoint] {
+    lazy var endPoints: [MockServerEndPoint] = {
         if let paths = paths {
-            var endPoints: [EndPoint] = []
+            var endPoints: [MockServerEndPoint] = []
             for (path, jsonPath) in paths {
                 for (method, swaggerEndPoint) in jsonPath {
-                    let endpoint = EndPoint(method: method.uppercased(),
-                                            path: (basePath ?? "") + path,
-                                            parameters: swaggerEndPoint.parameters,
-                                            contentType: swaggerEndPoint.contentType,
-                                            statusCode: swaggerEndPoint.responseCode,
-                                            headers: swaggerEndPoint.headers,
-                                            responseString: definitions != nil ? swaggerEndPoint.responseStringFromDefinitions(definitions!, using: dataGenerator) : nil)
+                    for response in swaggerEndPoint.responses { response.swagger = self }
+                    let endpoint = MockServerEndPoint(method: method.uppercased(),
+                                                      path: (basePath ?? "") + path,
+                                                      parameters: swaggerEndPoint.parameters,
+                                                      contentType: swaggerEndPoint.contentType,
+                                                      responses: swaggerEndPoint.responses.sorted(by: { $0.statusCode < $1.statusCode }))
                     endPoints.append(endpoint)
                 }
             }
             return endPoints
         }
         return []
-    }
+    }()
 }
 
 private class PathsTransformer: TransformType {
