@@ -10,37 +10,25 @@ final class TestsOpenApi1: Tests {
 
     func testRegistration() {
         // Given
-        let request = post(path: "/api/v1/registration/user", body: [
-            "comment": "string value",
-            "email": "email@domain.com",
-            "firstName": "Ida",
-            "focusmeEntityId": 123,
-            "glnNumber": "string value",
-            "lastName": "Adams",
-            "nickName": "string value",
-            "password": "string value",
-            "phone": "0123456789",
-            "termAndConditions": true,
-            "userRole": "ADMIN"
-        ])
+        let request = post(path: "/api/v1/registration/user")
         let expectedResponse = [
             "focusmeEntityId": 123456789,
             "registration": [
                 "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
+                "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
             "termAndConditions": true,
             "id": 123456789,
-            "nickName": "string value",
-            "comment": "string value",
+            "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "lastName": "Adams",
-            "phone": "string value",
+            "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "email": "firstname@domain.com",
-            "description": "string value",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "status": "ACTIVE",
             "avatar": "U3dhZ2dlciByb2Nrcw==",
-            "glnNumber": "string value",
+            "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "userRole": "ADMIN",
             "firstName": "Ida",
             "settings": [
@@ -94,7 +82,7 @@ final class TestsOpenApi1: Tests {
                 "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                 "id": 123456789,
                 "ageGroup": "FIFTY_TO_FIFTY_NINE",
-                "postCode": "string value",
+                "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "additionalHospitals": [
                     [
                         "name": "Ida Adams",
@@ -133,7 +121,7 @@ final class TestsOpenApi1: Tests {
         let request = post(path: "/api/v1/registration/resend-code/123")
         let expectedResponse = [
             "status": "ACTIVE",
-            "glnNumber": "string value",
+            "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "profile": [
                 "ageGroup": "FIFTY_TO_FIFTY_NINE",
                 "id": 123456789,
@@ -151,7 +139,7 @@ final class TestsOpenApi1: Tests {
                         "name": "Ida Adams"
                     ]
                 ],
-                "postCode": "string value",
+                "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                 "diseaseStatuses": [
                     "BRCA_PLUS",
@@ -163,10 +151,10 @@ final class TestsOpenApi1: Tests {
             "firstName": "Ida",
             "registration": [
                 "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
+                "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
-            "comment": "string value",
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "focusmeEntityId": 123456789,
             "topics": [
                 [
@@ -188,7 +176,7 @@ final class TestsOpenApi1: Tests {
                     "name": "Ida Adams"
                 ]
             ],
-            "phone": "string value",
+            "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "settings": [
                 "availability": "EVERY_TIME",
                 "id": 123456789,
@@ -220,9 +208,9 @@ final class TestsOpenApi1: Tests {
             "userRole": "ADMIN",
             "termAndConditions": true,
             "email": "firstname@domain.com",
-            "nickName": "string value",
+            "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "avatar": "U3dhZ2dlciByb2Nrcw==",
-            "description": "string value"
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         ].formatted
         
         // When
@@ -243,8 +231,8 @@ final class TestsOpenApi1: Tests {
             "status": "ACTIVE",
             "registration": [
                 "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
+                "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
             "profile": [
                 "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
@@ -264,7 +252,7 @@ final class TestsOpenApi1: Tests {
                 ],
                 "id": 123456789,
                 "ageGroup": "FIFTY_TO_FIFTY_NINE",
-                "postCode": "string value",
+                "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "diseaseStatuses": [
                     "BRCA_PLUS",
                     "BRCA_PLUS",
@@ -272,7 +260,7 @@ final class TestsOpenApi1: Tests {
                 ]
             ],
             "email": "firstname@domain.com",
-            "nickName": "string value",
+            "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "topics": [
                 [
                     "status": "ACTIVE",
@@ -295,14 +283,14 @@ final class TestsOpenApi1: Tests {
             ],
             "id": 123456789,
             "userRole": "ADMIN",
-            "glnNumber": "string value",
+            "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "firstName": "Ida",
             "lastName": "Adams",
             "termAndConditions": true,
             "avatar": "U3dhZ2dlciByb2Nrcw==",
             "focusmeEntityId": 123456789,
-            "comment": "string value",
-            "phone": "string value",
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "settings": [
                 "showPostCode": true,
                 "id": 123456789,
@@ -330,7 +318,7 @@ final class TestsOpenApi1: Tests {
                 ],
                 "pushNotifications": true
             ],
-            "description": "string value"
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         ].formatted
         
         // When
@@ -393,7 +381,7 @@ final class TestsOpenApi1: Tests {
                     ]
                 ],
                 "ageGroup": "FIFTY_TO_FIFTY_NINE",
-                "postCode": "string value",
+                "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "diseaseStatuses": [
                     "BRCA_PLUS",
@@ -401,7 +389,7 @@ final class TestsOpenApi1: Tests {
                     "BRCA_PLUS"
                 ]
             ],
-            "description": "string value",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "topics": [
                 [
                     "status": "ACTIVE",
@@ -425,16 +413,16 @@ final class TestsOpenApi1: Tests {
             "focusmeEntityId": 123456789,
             "lastName": "Adams",
             "avatar": "U3dhZ2dlciByb2Nrcw==",
-            "comment": "string value",
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "email": "firstname@domain.com",
             "status": "ACTIVE",
-            "nickName": "string value",
-            "glnNumber": "string value",
-            "phone": "string value",
+            "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "registration": [
                 "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
+                "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
             "id": 123456789,
             "termAndConditions": true,
@@ -461,7 +449,7 @@ final class TestsOpenApi1: Tests {
                 "ageGroup": "FIFTY_TO_FIFTY_NINE",
                 "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                 "id": 123456789,
-                "postCode": "string value",
+                "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "additionalHospitals": [
                     [
                         "id": 123456789,
@@ -485,13 +473,13 @@ final class TestsOpenApi1: Tests {
             "email": "firstname@domain.com",
             "registration": [
                 "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
+                "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
-            "nickName": "string value",
+            "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "avatar": "U3dhZ2dlciByb2Nrcw==",
             "status": "ACTIVE",
-            "glnNumber": "string value",
+            "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "topics": [
                 [
                     "status": "ACTIVE",
@@ -513,11 +501,11 @@ final class TestsOpenApi1: Tests {
                 ]
             ],
             "termAndConditions": true,
-            "phone": "string value",
+            "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "lastName": "Adams",
             "id": 123456789,
-            "comment": "string value",
-            "description": "string value",
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "settings": [
                 "pushNotifications": true,
                 "availabilityUntil": [
@@ -569,7 +557,7 @@ final class TestsOpenApi1: Tests {
                 "ageGroup": "FIFTY_TO_FIFTY_NINE",
                 "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                 "id": 123456789,
-                "postCode": "string value",
+                "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "additionalHospitals": [
                     [
                         "id": 123456789,
@@ -593,13 +581,13 @@ final class TestsOpenApi1: Tests {
             "email": "firstname@domain.com",
             "registration": [
                 "id": 123456789,
-                "invitationCode": "string value",
-                "invitationLink": "string value"
+                "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
-            "nickName": "string value",
+            "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "avatar": "U3dhZ2dlciByb2Nrcw==",
             "status": "ACTIVE",
-            "glnNumber": "string value",
+            "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "topics": [
                 [
                     "status": "ACTIVE",
@@ -621,11 +609,11 @@ final class TestsOpenApi1: Tests {
                 ]
             ],
             "termAndConditions": true,
-            "phone": "string value",
+            "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "lastName": "Adams",
             "id": 123456789,
-            "comment": "string value",
-            "description": "string value",
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "settings": [
                 "pushNotifications": true,
                 "availabilityUntil": [
@@ -738,7 +726,7 @@ final class TestsOpenApi1: Tests {
                     "ageGroup": "FIFTY_TO_FIFTY_NINE",
                     "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                     "id": 123456789,
-                    "postCode": "string value",
+                    "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "additionalHospitals": [
                         [
                             "id": 123456789,
@@ -762,13 +750,13 @@ final class TestsOpenApi1: Tests {
                 "email": "firstname@domain.com",
                 "registration": [
                     "id": 123456789,
-                    "invitationCode": "string value",
-                    "invitationLink": "string value"
+                    "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 ],
-                "nickName": "string value",
+                "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "avatar": "U3dhZ2dlciByb2Nrcw==",
                 "status": "ACTIVE",
-                "glnNumber": "string value",
+                "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "topics": [
                     [
                         "status": "ACTIVE",
@@ -790,11 +778,11 @@ final class TestsOpenApi1: Tests {
                     ]
                 ],
                 "termAndConditions": true,
-                "phone": "string value",
+                "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "lastName": "Adams",
                 "id": 123456789,
-                "comment": "string value",
-                "description": "string value",
+                "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "settings": [
                     "pushNotifications": true,
                     "availabilityUntil": [
@@ -1000,7 +988,7 @@ final class TestsOpenApi1: Tests {
         let request = get(path: "/api/v1/company")
         let expectedResponse = [
             [
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "contact": [
                     "name": "Ida Adams",
                     "id": 123456789
@@ -1011,7 +999,7 @@ final class TestsOpenApi1: Tests {
             ],
             [
                 "name": "Ida Adams",
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "contact": [
                     "name": "Ida Adams",
@@ -1027,7 +1015,7 @@ final class TestsOpenApi1: Tests {
                     "id": 123456789
                 ],
                 "name": "Ida Adams",
-                "contactDetails": "string value"
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ]
         ].map { $0.formatted }
 
@@ -1047,13 +1035,13 @@ final class TestsOpenApi1: Tests {
         let request = get(path: "/api/v1/company/123")
         let expectedResponse = [
             "contact": [
-                "description": "string value",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "profile": [
                     "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                     "ageGroup": "FIFTY_TO_FIFTY_NINE",
                     "id": 123456789,
-                    "postCode": "string value",
+                    "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "additionalHospitals": [
                         [
                             "id": 123456789,
@@ -1075,14 +1063,14 @@ final class TestsOpenApi1: Tests {
                     ]
                 ],
                 "firstName": "Ida",
-                "glnNumber": "string value",
+                "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "lastName": "Adams",
-                "phone": "string value",
+                "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "userRole": "ADMIN",
                 "registration": [
                     "id": 123456789,
-                    "invitationCode": "string value",
-                    "invitationLink": "string value"
+                    "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 ],
                 "settings": [
                     "showPostCode": true,
@@ -1111,7 +1099,7 @@ final class TestsOpenApi1: Tests {
                     "revealFullName": true,
                     "showHospital": true
                 ],
-                "comment": "string value",
+                "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "focusmeEntityId": 123456789,
                 "avatar": "U3dhZ2dlciByb2Nrcw==",
                 "topics": [
@@ -1134,12 +1122,12 @@ final class TestsOpenApi1: Tests {
                         "name": "Ida Adams"
                     ]
                 ],
-                "nickName": "string value",
+                "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "email": "firstname@domain.com",
                 "status": "ACTIVE",
                 "termAndConditions": true
             ],
-            "contactDetails": "string value",
+            "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "id": 123456789,
             "name": "Ida Adams",
             "status": "ACTIVE"
@@ -1161,13 +1149,13 @@ final class TestsOpenApi1: Tests {
         let request = post(path: "/api/v1/company")
         let expectedResponse = [
             "contact": [
-                "description": "string value",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "profile": [
                     "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                     "ageGroup": "FIFTY_TO_FIFTY_NINE",
                     "id": 123456789,
-                    "postCode": "string value",
+                    "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "additionalHospitals": [
                         [
                             "id": 123456789,
@@ -1189,14 +1177,14 @@ final class TestsOpenApi1: Tests {
                     ]
                 ],
                 "firstName": "Ida",
-                "glnNumber": "string value",
+                "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "lastName": "Adams",
-                "phone": "string value",
+                "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "userRole": "ADMIN",
                 "registration": [
                     "id": 123456789,
-                    "invitationCode": "string value",
-                    "invitationLink": "string value"
+                    "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 ],
                 "settings": [
                     "showPostCode": true,
@@ -1225,7 +1213,7 @@ final class TestsOpenApi1: Tests {
                     "revealFullName": true,
                     "showHospital": true
                 ],
-                "comment": "string value",
+                "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "focusmeEntityId": 123456789,
                 "avatar": "U3dhZ2dlciByb2Nrcw==",
                 "topics": [
@@ -1248,12 +1236,12 @@ final class TestsOpenApi1: Tests {
                         "name": "Ida Adams"
                     ]
                 ],
-                "nickName": "string value",
+                "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "email": "firstname@domain.com",
                 "status": "ACTIVE",
                 "termAndConditions": true
             ],
-            "contactDetails": "string value",
+            "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "id": 123456789,
             "name": "Ida Adams",
             "status": "ACTIVE"
@@ -1276,13 +1264,13 @@ final class TestsOpenApi1: Tests {
         let expectedResponse =
             [
                 "contact": [
-                    "description": "string value",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "id": 123456789,
                     "profile": [
                         "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
                         "ageGroup": "FIFTY_TO_FIFTY_NINE",
                         "id": 123456789,
-                        "postCode": "string value",
+                        "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "additionalHospitals": [
                             [
                                 "id": 123456789,
@@ -1304,14 +1292,14 @@ final class TestsOpenApi1: Tests {
                         ]
                     ],
                     "firstName": "Ida",
-                    "glnNumber": "string value",
+                    "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "lastName": "Adams",
-                    "phone": "string value",
+                    "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "userRole": "ADMIN",
                     "registration": [
                         "id": 123456789,
-                        "invitationCode": "string value",
-                        "invitationLink": "string value"
+                        "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     "settings": [
                         "showPostCode": true,
@@ -1340,7 +1328,7 @@ final class TestsOpenApi1: Tests {
                         "revealFullName": true,
                         "showHospital": true
                     ],
-                    "comment": "string value",
+                    "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "focusmeEntityId": 123456789,
                     "avatar": "U3dhZ2dlciByb2Nrcw==",
                     "topics": [
@@ -1363,12 +1351,12 @@ final class TestsOpenApi1: Tests {
                             "name": "Ida Adams"
                         ]
                     ],
-                    "nickName": "string value",
+                    "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "name": "Ida Adams",
                 "status": "ACTIVE"
@@ -1408,22 +1396,22 @@ final class TestsOpenApi1: Tests {
             [
                 "emailDomains": [
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ]
                 ],
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "contact": [
                     "name": "Ida Adams",
                     "id": 123456789
@@ -1436,19 +1424,19 @@ final class TestsOpenApi1: Tests {
                 "id": 123456789,
                 "emailDomains": [
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ]
                 ],
                 "name": "Ida Adams",
@@ -1457,29 +1445,29 @@ final class TestsOpenApi1: Tests {
                     "id": 123456789
                 ],
                 "status": "ACTIVE",
-                "contactDetails": "string value"
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
             [
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "contact": [
                     "name": "Ida Adams",
                     "id": 123456789
                 ],
                 "emailDomains": [
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
-                        "domain": "string value",
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "id": 123456789,
-                        "description": "string value"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ]
                 ],
                 "status": "ACTIVE",
@@ -1508,8 +1496,8 @@ final class TestsOpenApi1: Tests {
                     "id": 123456789,
                     "registration": [
                         "id": 123456789,
-                        "invitationCode": "string value",
-                        "invitationLink": "string value"
+                        "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     "profile": [
                         "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
@@ -1529,7 +1517,7 @@ final class TestsOpenApi1: Tests {
                         ],
                         "ageGroup": "FIFTY_TO_FIFTY_NINE",
                         "id": 123456789,
-                        "postCode": "string value",
+                        "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "diseaseStatuses": [
                             "BRCA_PLUS",
                             "BRCA_PLUS",
@@ -1537,9 +1525,9 @@ final class TestsOpenApi1: Tests {
                         ]
                     ],
                     "firstName": "Ida",
-                    "glnNumber": "string value",
-                    "phone": "string value",
-                    "description": "string value",
+                    "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "userRole": "ADMIN",
                     "lastName": "Adams",
                     "settings": [
@@ -1569,7 +1557,7 @@ final class TestsOpenApi1: Tests {
                         "viewType": "EVERY_BODY",
                         "availability": "EVERY_TIME"
                     ],
-                    "comment": "string value",
+                    "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "focusmeEntityId": 123456789,
                     "avatar": "U3dhZ2dlciByb2Nrcw==",
                     "topics": [
@@ -1592,29 +1580,29 @@ final class TestsOpenApi1: Tests {
                             "name": "Ida Adams"
                         ]
                     ],
-                    "nickName": "string value",
+                    "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "name": "Ida Adams",
                 "emailDomains": [
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ]
                 ],
                 "status": "ACTIVE"
@@ -1640,8 +1628,8 @@ final class TestsOpenApi1: Tests {
                     "id": 123456789,
                     "registration": [
                         "id": 123456789,
-                        "invitationCode": "string value",
-                        "invitationLink": "string value"
+                        "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     "profile": [
                         "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
@@ -1661,7 +1649,7 @@ final class TestsOpenApi1: Tests {
                         ],
                         "ageGroup": "FIFTY_TO_FIFTY_NINE",
                         "id": 123456789,
-                        "postCode": "string value",
+                        "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "diseaseStatuses": [
                             "BRCA_PLUS",
                             "BRCA_PLUS",
@@ -1669,9 +1657,9 @@ final class TestsOpenApi1: Tests {
                         ]
                     ],
                     "firstName": "Ida",
-                    "glnNumber": "string value",
-                    "phone": "string value",
-                    "description": "string value",
+                    "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "userRole": "ADMIN",
                     "lastName": "Adams",
                     "settings": [
@@ -1701,7 +1689,7 @@ final class TestsOpenApi1: Tests {
                         "viewType": "EVERY_BODY",
                         "availability": "EVERY_TIME"
                     ],
-                    "comment": "string value",
+                    "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "focusmeEntityId": 123456789,
                     "avatar": "U3dhZ2dlciByb2Nrcw==",
                     "topics": [
@@ -1724,29 +1712,29 @@ final class TestsOpenApi1: Tests {
                             "name": "Ida Adams"
                         ]
                     ],
-                    "nickName": "string value",
+                    "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "name": "Ida Adams",
                 "emailDomains": [
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ]
                 ],
                 "status": "ACTIVE"
@@ -1772,8 +1760,8 @@ final class TestsOpenApi1: Tests {
                     "id": 123456789,
                     "registration": [
                         "id": 123456789,
-                        "invitationCode": "string value",
-                        "invitationLink": "string value"
+                        "invitationCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "invitationLink": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     "profile": [
                         "maritalStatus": "DESIRE_TO_HAVE_CHILDREN",
@@ -1793,7 +1781,7 @@ final class TestsOpenApi1: Tests {
                         ],
                         "ageGroup": "FIFTY_TO_FIFTY_NINE",
                         "id": 123456789,
-                        "postCode": "string value",
+                        "postCode": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                         "diseaseStatuses": [
                             "BRCA_PLUS",
                             "BRCA_PLUS",
@@ -1801,9 +1789,9 @@ final class TestsOpenApi1: Tests {
                         ]
                     ],
                     "firstName": "Ida",
-                    "glnNumber": "string value",
-                    "phone": "string value",
-                    "description": "string value",
+                    "glnNumber": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "userRole": "ADMIN",
                     "lastName": "Adams",
                     "settings": [
@@ -1833,7 +1821,7 @@ final class TestsOpenApi1: Tests {
                         "viewType": "EVERY_BODY",
                         "availability": "EVERY_TIME"
                     ],
-                    "comment": "string value",
+                    "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "focusmeEntityId": 123456789,
                     "avatar": "U3dhZ2dlciByb2Nrcw==",
                     "topics": [
@@ -1856,29 +1844,29 @@ final class TestsOpenApi1: Tests {
                             "name": "Ida Adams"
                         ]
                     ],
-                    "nickName": "string value",
+                    "nickName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                     "email": "firstname@domain.com",
                     "status": "ACTIVE",
                     "termAndConditions": true
                 ],
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "id": 123456789,
                 "name": "Ida Adams",
                 "emailDomains": [
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ],
                     [
                         "id": 123456789,
-                        "domain": "string value",
-                        "description": "string value"
+                        "domain": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     ]
                 ],
                 "status": "ACTIVE"

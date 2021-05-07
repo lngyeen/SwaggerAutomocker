@@ -13,7 +13,7 @@ final class TestsSwagger: Tests {
         let request = get(path: "/v2/store/inventory")
         let expectedResponse = [
             "id": 123456789,
-            "name": "string value"
+            "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         ].formatted
         
         // When
@@ -48,7 +48,7 @@ final class TestsSwagger: Tests {
             "petId": 123456789,
             "quantity": 123,
             "status": "placed",
-            "shipDate": "string value",
+            "shipDate": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "id": 123456789,
             "complete": true
         ].formatted
@@ -87,26 +87,26 @@ final class TestsSwagger: Tests {
             "id": 123456789,
             "category": [
                 "id": 123456789,
-                "name": "string value"
+                "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
             "name": "doggie",
             "photoUrls": [
-                "string value",
-                "string value",
-                "string value"
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             ],
             "tags": [
                 [
                     "id": 123456789,
-                    "name": "string value"
+                    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 ],
                 [
                     "id": 123456789,
-                    "name": "string value"
+                    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 ],
                 [
                     "id": 123456789,
-                    "name": "string value"
+                    "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                 ]
             ],
             "status": "available"
@@ -128,33 +128,33 @@ final class TestsSwagger: Tests {
         let request = get(path: "/v2/pet/findByStatus")
         let expectedResponse = [
             ["id": 123456789,
-             "category": ["id": 123456789, "name": "string value"],
+             "category": ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
              "name": "doggie",
-             "photoUrls": ["string value", "string value", "string value"],
+             "photoUrls": ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
              "tags": [
-                 ["id": 123456789, "name": "string value"],
-                 ["id": 123456789, "name": "string value"],
-                 ["id": 123456789, "name": "string value"]
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
              ],
              "status": "available"],
             ["id": 123456789,
-             "category": ["id": 123456789, "name": "string value"],
+             "category": ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
              "name": "doggie",
-             "photoUrls": ["string value", "string value", "string value"],
+             "photoUrls": ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
              "tags": [
-                 ["id": 123456789, "name": "string value"],
-                 ["id": 123456789, "name": "string value"],
-                 ["id": 123456789, "name": "string value"]
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
              ],
              "status": "available"],
             ["id": 123456789,
-             "category": ["id": 123456789, "name": "string value"],
+             "category": ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
              "name": "doggie",
-             "photoUrls": ["string value", "string value", "string value"],
+             "photoUrls": ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
              "tags": [
-                 ["id": 123456789, "name": "string value"],
-                 ["id": 123456789, "name": "string value"],
-                 ["id": 123456789, "name": "string value"]
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
+                 ["id": 123456789, "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."]
              ],
              "status": "available"]
         ].map { $0.formatted }
@@ -296,7 +296,7 @@ final class TestsSwagger: Tests {
         
         // Then
         XCTAssertNotNil(responseString)
-        XCTAssertTrue(responseString == "string value")
+        XCTAssertTrue(responseString == "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
     }
     
     func testGetLogout() {
@@ -318,12 +318,12 @@ final class TestsSwagger: Tests {
         let request = get(path: "/v2/user/john")
         let expectedResponse = [
             "id": 123456789,
-            "username": "string value",
-            "firstName": "string value",
-            "lastName": "string value",
-            "email": "string value",
-            "password": "string value",
-            "phone": "string value",
+            "username": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "firstName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "lastName": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "email": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "password": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "phone": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "userStatus": 123
         ].formatted
         

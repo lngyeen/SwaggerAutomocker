@@ -1455,7 +1455,7 @@
                               "example": {
                                   "firstName" : "Nguyen",
                                   "lastName" : "Truong Luu",
-                                  "avatar" : "string value",
+                                  "avatar" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                   "userRole" : "PATIENT",
                                   "status" : "IN_VERIFICATION",
                                   "id" : 98349702,

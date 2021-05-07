@@ -61,17 +61,20 @@ public final class MockServerEndPoint {
         var route = path
         let pathParams = parameters.filter { $0.position == "path" }
         for pathParam in pathParams {
-            switch pathParam.type {
-            case "integer":
-                route = route.removingRegexMatches(pattern: "\\{\(pathParam.name ?? ".*")\\}", replaceWith: "[-+]?[0-9]+")
-                
-            case "number":
-                route = route.removingRegexMatches(pattern: "\\{\(pathParam.name ?? ".*")\\}", replaceWith: "[-+]?[0-9]+(?:[.,][0-9]+)*")
-                
-            default:
-                route = route.removingRegexMatches(pattern: "\\{\(pathParam.name ?? ".*")\\}", replaceWith: "[^/]*")
+            if let paramName = pathParam.name {
+                switch pathParam.type {
+                case "integer":
+                    route = route.removingRegexMatches(pattern: "\\{\(paramName)\\}", replaceWith: "[-+]?[0-9]+")
+                    
+                case "number":
+                    route = route.removingRegexMatches(pattern: "\\{\(paramName)\\}", replaceWith: "[-+]?[0-9]+(?:[.,][0-9]+)*")
+                    
+                default:
+                    route = route.removingRegexMatches(pattern: "\\{\(paramName)\\}", replaceWith: "[^/]*")
+                }
             }
         }
+        route = route.removingRegexMatches(pattern: "\\{\(".*")\\}", replaceWith: "[^/]*")
         
         self.route = route
     }
@@ -88,27 +91,24 @@ public final class MockServerEndPoint {
         logResponse += "\n|     Method: \(String(describing: httpMethod))"
         logResponse += "\n|     Default status code: \(statusCode)"
         
-        if let responseObject = response?.jsonObject,
-           var responseJSON = responseObject.prettyPrinted
-        {
+        if let responseObject = response?.jsonObject {
+            var responseJSON = responseObject.prettyPrinted
             responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
                 responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
             }
             logResponse += "\n|     Response example: \(type(of: responseObject)) :\n\(responseJSON)"
-        } else if let responseArray = response?.jsonArray,
+        } else if let responseArray = response?.jsonArray {
             var responseJSON = responseArray.prettyPrinted
-        {
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
                 responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
             }
             responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
             logResponse += "\n|     Response example: \(type(of: responseArray)) (\(responseArray.count) objects):\n\(responseJSON)"
-        } else if let responseArray = response?.stringArray,
+        } else if let responseArray = response?.stringArray {
             var responseJSON = responseArray.prettyPrinted
-        {
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
                 responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
@@ -168,15 +168,15 @@ extension String {
 }
 
 extension Array {
-    var prettyPrinted: String? {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
-        return String(data: data, encoding: .utf8)
+    var prettyPrinted: String {
+        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return "" }
+        return String(data: data, encoding: .utf8) ?? ""
     }
 }
 
-extension Dictionary {
-    var prettyPrinted: String? {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
-        return String(data: data, encoding: .utf8)
+extension Dictionary where Key == String {
+    var prettyPrinted: String {
+        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return "" }
+        return String(data: data, encoding: .utf8) ?? ""
     }
 }

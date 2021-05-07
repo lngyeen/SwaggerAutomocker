@@ -102,7 +102,7 @@ class SwaggerSchema: Mappable {
                     
                 } else if let items = json[SwaggerSchemaAttribute.items.rawValue] as? [String: Any] {
                     /// Example in individual array item
-                    let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childrenArrayElementCount
+                    let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childArrayElementCount
                     topLevelIsArray = true
                     
                     if let example = items[SwaggerSchemaAttribute.example.rawValue] {
@@ -199,7 +199,7 @@ class SwaggerSchema: Mappable {
                     if let propertyName = propertyName,
                        let additionalProperties = json[SwaggerSchemaAttribute.additionalProperties.rawValue] as? [String: Any]
                     {
-                        let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childrenArrayElementCount
+                        let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childArrayElementCount
                         for i in 1 ... elementCount {
                             switch valueFromJson(additionalProperties, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
                             case .string(let content):
@@ -229,7 +229,7 @@ class SwaggerSchema: Mappable {
                 return .object(content: object)
             }
         } else if let reference = json[SwaggerSchemaAttribute.ref.rawValue] as? String,
-            let referenceName = reference.components(separatedBy: "/").last
+                  let referenceName = reference.components(separatedBy: "/").last
         {
             /// Stop creating child objects if there are more than one ancestors of the same type
             guard (currentNode?.ancestors(name: referenceName).count ?? 0) < 2 else { return .none }
@@ -256,7 +256,8 @@ class SwaggerSchema: Mappable {
         
         /// Get value from enums array
         if case .none = value,
-           let enumValues = json[SwaggerSchemaAttribute.enumValues.rawValue] as? [Any] {
+           let enumValues = json[SwaggerSchemaAttribute.enumValues.rawValue] as? [Any]
+        {
             value = dataGenerator.distinctElementsInArray ? enumValues.randomElement() : enumValues[safe: 0]
         }
         
@@ -267,16 +268,16 @@ class SwaggerSchema: Mappable {
             } else {
                 switch type {
                 case SwaggerSchemaDataType.string.rawValue:
-                    value = dataGenerator.othersDefaultValue
+                    value = dataGenerator.defaultDataConfigurator.othersDefaultValue
                     
                 case SwaggerSchemaDataType.integer.rawValue:
-                    value = dataGenerator.int64DefaultValue
+                    value = dataGenerator.defaultDataConfigurator.int64DefaultValue
                     
                 case SwaggerSchemaDataType.number.rawValue:
-                    value = dataGenerator.doubleDefaultValue
+                    value = dataGenerator.defaultDataConfigurator.doubleDefaultValue
                     
                 case SwaggerSchemaDataType.boolean.rawValue:
-                    value = dataGenerator.booleanDefaultValue
+                    value = dataGenerator.defaultDataConfigurator.booleanDefaultValue
                     
                 default: break
                 }
@@ -295,6 +296,7 @@ private class Node: NSObject {
     var isRoot: Bool {
         return parent == nil
     }
+
     var json: [String: Any] {
         if children.isEmpty {
             return ["\(propertyName) - \(className)": ""]

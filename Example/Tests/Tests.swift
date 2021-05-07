@@ -6,9 +6,7 @@ class Tests: XCTestCase {
     
     class var dataGenerator: DataGenerator {
         let dataGenerator = DataGenerator()
-        dataGenerator.useFakeryDataGenerator = false
-        dataGenerator.rootArrayElementCount = 3
-        dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
+        dataGenerator.defaultDataConfigurator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
         return dataGenerator
     }
     
@@ -43,20 +41,11 @@ class Tests: XCTestCase {
 
 extension Tests {
     class func readJSONFromFile(fileName: String) -> Any? {
-        if let fileUrl = Bundle(for: Self.self).url(forResource: fileName, withExtension: "json") {
-            do {
-                // Getting data from JSON file using the file URL
-                let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
-                do {
-                    return try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                } catch {
-                    fatalError("Error!! Unable to parse \(fileName).json")
-                }
-            } catch {
-                fatalError("Error!! Unable to load \(fileName).json")
-            }
+        if let fileUrl = Bundle(for: Self.self).url(forResource: fileName, withExtension: "json"),
+           let data = try? Data(contentsOf: fileUrl, options: .mappedIfSafe)
+        {
+            return try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
         }
-        
         return nil
     }
     
@@ -310,13 +299,6 @@ extension Dictionary where Value: Any {
 }
 
 extension URLSession {
-    func shortDescription(dataTask: URLSessionDataTask) -> String {
-        guard let request = dataTask.originalRequest,
-              let url = request.url else { return "Unable to describe request" }
-        
-        return "\(String(describing: request.httpMethod)) - \(url)"
-    }
-    
     /// Print the request in a nice way
     func requestDescription(dataTask: URLSessionDataTask) -> String {
         guard let request = dataTask.originalRequest,
@@ -334,14 +316,14 @@ extension URLSession {
             + "|"
         logRequest += "\n" + String(repeating: "- ", count: 14 + urlString.count/2)
         if let httpMethod = request.httpMethod {
-            logRequest += "\n|     Request : \(String(describing: httpMethod)) - \(url)"
+            logRequest += "\n|     Request: \(String(describing: httpMethod)) - \(url)"
         }
         
         if let cookies = components["Cookies"] as? [String: String], !cookies.isEmpty {
-            logRequest += "\n|     Cookies : \(cookies)"
+            logRequest += "\n|     Cookies: \(cookies)"
         }
         if let headerFields = components["Headers"] as? [String: Any], !headerFields.isEmpty {
-            logRequest += "\n|     Headers : \(headerFields)"
+            logRequest += "\n|     Headers: \(headerFields)"
         }
         
         if let payload = request.httpBody {
@@ -361,7 +343,7 @@ extension URLSession {
         return logRequest
     }
     
-    /// Print the request in a nice way
+    /// Print the response in a nice way
     func responseDescription(data: Data?, request: URLRequest, response: URLResponse?) -> String {
         guard let url = request.url,
               let response = response as? HTTPURLResponse else { return "Unable to describe response" }
@@ -377,12 +359,12 @@ extension URLSession {
             + "|"
         logResponse += "\n" + String(repeating: "- ", count: 14 + urlString.count/2)
         if let httpMethod = request.httpMethod {
-            logResponse += "\n|     Response : \(String(describing: httpMethod)) - \(url)"
+            logResponse += "\n|     Response: \(String(describing: httpMethod)) - \(url)"
         }
         
         logResponse += "\n|     Status: \(response.statusCode)"
         if let headerFields = response.allHeaderFields as? [String: String], !headerFields.isEmpty {
-            logResponse += "\n|     Headers : \(headerFields)"
+            logResponse += "\n|     Headers\(headerFields.count):\n\(headerFields)"
         }
         if let responseObject = data?.jsonObject,
            var responseJSON = responseObject.prettyPrinted
@@ -394,7 +376,7 @@ extension URLSession {
             }
             logResponse += "\n|     \(type(of: responseObject)) :\n\(responseJSON)"
         } else if let responseObjectArray = data?.jsonArray,
-            var responseJSON = responseObjectArray.prettyPrinted
+                  var responseJSON = responseObjectArray.prettyPrinted
         {
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
@@ -403,7 +385,7 @@ extension URLSession {
             responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
             logResponse += "\n|     \(type(of: responseObjectArray)) (\(responseObjectArray.count) objects):\n\(responseJSON)"
         } else if let responseObjectArray = data?.stringArray,
-            var responseJSON = responseObjectArray.prettyPrinted
+                  var responseJSON = responseObjectArray.prettyPrinted
         {
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))

@@ -14,7 +14,7 @@
                                     "type" : "array",
                                     "example": [
                                         {
-                                            "contactDetails": "string value",
+                                            "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                             "contact": {
                                                 "name": "Rodrigo Armstrong",
                                                 "id": 123456789
@@ -24,7 +24,7 @@
                                             "id": 123456789
                                         },
                                         {
-                                            "contactDetails": "string value",
+                                            "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                             "contact": {
                                                 "name": "Selena Hessel",
                                                 "id": 234567890
@@ -34,7 +34,7 @@
                                             "id": 234567890
                                         },
                                         {
-                                            "contactDetails": "string value",
+                                            "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                                             "contact": {
                                                 "name": "Vernon Wiza",
                                                 "id": 345678901

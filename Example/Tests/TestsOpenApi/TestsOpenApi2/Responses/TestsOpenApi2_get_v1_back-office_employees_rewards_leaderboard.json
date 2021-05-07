@@ -2,36 +2,36 @@
     {
         "user" : {
             "lastName" : "Adams",
-            "username" : "string value",
+            "username" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "metadata" : {
                 "gender" : "M",
-                "lastLocalizationAt" : "string value",
+                "lastLocalizationAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "externalPhoneNumbers" : [
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     },
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     },
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     }
                 ],
                 "longitude" : -156.65548382095133,
-                "supportContactName" : "string value",
-                "employeeDepartment" : "string value",
-                "employeeCompany" : "string value",
+                "supportContactName" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "employeeDepartment" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "employeeCompany" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "latitude" : -58.17256227443719,
-                "supportContactPhoneNumber" : "string value",
-                "lastActivityAt" : "string value",
+                "supportContactPhoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "lastActivityAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "employeeClinicId" : 123
             },
             "settings" : {
-                "language" : "string value",
-                "nickname" : "string value",
+                "language" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "nickname" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "notificationSettings" : [
                     {
                         "channel" : "EMAIL",
@@ -59,36 +59,36 @@
     {
         "user" : {
             "lastName" : "Adams",
-            "username" : "string value",
+            "username" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "metadata" : {
                 "gender" : "M",
-                "lastLocalizationAt" : "string value",
+                "lastLocalizationAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "externalPhoneNumbers" : [
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     },
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     },
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     }
                 ],
                 "longitude" : -156.65548382095133,
-                "supportContactName" : "string value",
-                "employeeDepartment" : "string value",
-                "employeeCompany" : "string value",
+                "supportContactName" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "employeeDepartment" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "employeeCompany" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "latitude" : -58.17256227443719,
-                "supportContactPhoneNumber" : "string value",
-                "lastActivityAt" : "string value",
+                "supportContactPhoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "lastActivityAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "employeeClinicId" : 123
             },
             "settings" : {
-                "language" : "string value",
-                "nickname" : "string value",
+                "language" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "nickname" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "notificationSettings" : [
                     {
                         "channel" : "EMAIL",
@@ -116,36 +116,36 @@
     {
         "user" : {
             "lastName" : "Adams",
-            "username" : "string value",
+            "username" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "metadata" : {
                 "gender" : "M",
-                "lastLocalizationAt" : "string value",
+                "lastLocalizationAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "externalPhoneNumbers" : [
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     },
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     },
                     {
                         "visible" : true,
-                        "phoneNumber" : "string value"
+                        "phoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     }
                 ],
                 "longitude" : -156.65548382095133,
-                "supportContactName" : "string value",
-                "employeeDepartment" : "string value",
-                "employeeCompany" : "string value",
+                "supportContactName" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "employeeDepartment" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "employeeCompany" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "latitude" : -58.17256227443719,
-                "supportContactPhoneNumber" : "string value",
-                "lastActivityAt" : "string value",
+                "supportContactPhoneNumber" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "lastActivityAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "employeeClinicId" : 123
             },
             "settings" : {
-                "language" : "string value",
-                "nickname" : "string value",
+                "language" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "nickname" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "notificationSettings" : [
                     {
                         "channel" : "EMAIL",

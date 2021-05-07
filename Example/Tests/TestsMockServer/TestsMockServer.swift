@@ -12,7 +12,7 @@ final class TestsMockServer: Tests {
         let dataGenerator = DataGenerator()
         dataGenerator.useFakeryDataGenerator = false
         dataGenerator.rootArrayElementCount = 3
-        dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
+        dataGenerator.defaultDataConfigurator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
         return dataGenerator
     }
     
@@ -27,7 +27,6 @@ final class TestsMockServer: Tests {
         privateMockServer = MockServer(port: Self.port,
                                        swaggerJson: swaggerJson,
                                        dataGenerator: Self.dataGenerator)
-        privateMockServer?.responseDatasource = self
         privateMockServer?.start()
     }
     
@@ -230,7 +229,7 @@ final class TestsMockServer: Tests {
         
         // Then
         XCTAssertNotNil(jsonResponse)
-        XCTAssertEqual((jsonResponse?["contact"] as? [String: Any])?["email"] as? String, TestsMockServer.dataGenerator.emailDefaultValue)
+        XCTAssertEqual((jsonResponse?["contact"] as? [String: Any])?["email"] as? String, TestsMockServer.dataGenerator.defaultDataConfigurator.emailDefaultValue)
     }
     
     func testServerShouldReturnExampleDataWhenSwaggerJsonHasExampleValue() {
@@ -240,7 +239,7 @@ final class TestsMockServer: Tests {
         let request = get(path: "/api/v1/company")
         let expectedResponse = [
             [
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "contact": [
                 "name": "Rodrigo Armstrong",
                 "id": 123456789
@@ -250,7 +249,7 @@ final class TestsMockServer: Tests {
                 "id": 123456789
             ],
             [
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "contact": [
                 "name": "Selena Hessel",
                 "id": 234567890
@@ -260,7 +259,7 @@ final class TestsMockServer: Tests {
                 "id": 234567890
             ],
             [
-                "contactDetails": "string value",
+                "contactDetails": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 "contact": [
                 "name": "Vernon Wiza",
                 "id": 345678901
@@ -304,15 +303,5 @@ private extension Dictionary where Key == String, Value == Any {
             }
         }
         return result
-    }
-}
-
-extension TestsMockServer: MockServerResponseDatasource {
-    func mockServer(_ mockServer: MockServer, httpResponseFor request: HTTPRequest, possibleResponses: [HTTPResponse]) -> HTTPResponse? {
-        print("request.uri.path: \(request.uri.path)")
-        print("request.uri.query: \(String(describing: request.uri.queryItems))")
-        print("request.pathParams: \(String(describing: request.pathParams))")
-        print("request.body: \(String(describing: request.body.string))")
-        return nil
     }
 }

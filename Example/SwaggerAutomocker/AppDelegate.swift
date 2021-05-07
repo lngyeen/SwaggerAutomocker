@@ -20,8 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataGenerator.distinctElementsInArray = true
         dataGenerator.generateDummyDataLazily = true
         dataGenerator.rootArrayElementCount = 3
-        dataGenerator.childrenArrayElementCount = 3
-        dataGenerator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
+        dataGenerator.childArrayElementCount = 2
+        
+        dataGenerator.defaultDataConfigurator.dateTimeDefaultValue = "2021-01-01T17:32:28Z"
+        
+        dataGenerator.fakeryDataConfigurator.maxInt = 1000
+        dataGenerator.fakeryDataConfigurator.maxFloat = 100
+        dataGenerator.fakeryDataConfigurator.maxDouble = 100
         return dataGenerator
     }
 
@@ -29,75 +34,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         let jsonFileName = "openapi1"
-        let json = readJSONFromFile(fileName: jsonFileName)
-        if let json = json as? [String: Any] {
+        if let json = readJSONFromFile(fileName: jsonFileName) as? [String: Any] {
             mockServer = MockServer(port: 8080,
-                                    swaggerJson: json,
+                                    swaggerJson:json,
                                     dataGenerator: dataGenerator)
-            mockServer?.responseDatasource = self
+            mockServer?.responseDataSource = self
             mockServer?.start()
         }
-
+        
+//        let swaggerUrl = "https://mobileapp-fe-dev.swissmedical.net/aevis-app-backend-api/v3/api-docs"
+//        mockServer = MockServer(port: 8080,
+//                                swaggerUrl: swaggerUrl,
+//                                dataGenerator: dataGenerator)
+//        mockServer?.responseDataSource = self
+//        mockServer?.start()
+        
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        mockServer?.stop()
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        mockServer?.start()
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
     private func readJSONFromFile(fileName: String) -> Any? {
-        var json: Any?
-
-        if let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "json") {
-            do {
-                // Getting data from JSON file using the file URL
-                let data = try Data(contentsOf: fileUrl, options: .mappedIfSafe)
-                do {
-                    json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                } catch {
-                    print("Error!! Unable to parse \(fileName).json")
-                }
-            } catch {
-                print("Error!! Unable to load \(fileName).json")
-            }
+        if let fileUrl = Bundle(for: Self.self).url(forResource: fileName, withExtension: "json"),
+           let data = try? Data(contentsOf: fileUrl, options: .mappedIfSafe){
+            return try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
         }
-        return json
-    }
-}
-
-// MARK: - MockServerResponseDatasource
-
-extension AppDelegate: MockServerResponseDatasource {
-    func mockServer(_ mockServer: MockServer, httpResponseFor request: HTTPRequest, possibleResponses: [HTTPResponse]) -> HTTPResponse? {
-        print("--- \(request.method.name) - \(request.uri.path) ---")
-        print("Query Params: \(String(describing: request.uri.queryItems))")
-        print("Path Params: \(String(describing: request.pathParams?.prettyPrinted))")
-        if let json = request.body.jsonObject?.prettyPrinted {
-            print("Request Body: \n\(json)")
-        } else if let string = request.body.string {
-            print("Request Body: \n\(string)")
-        }
-        print("--------------------------")
         return nil
     }
 }
@@ -106,5 +65,53 @@ extension Dictionary {
     var prettyPrinted: String? {
         guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
         return String(data: data, encoding: .utf8)
+    }
+}
+
+// MARK: - MockServerResponseDataSource
+
+extension AppDelegate: MockServerResponseDataSource {
+    func mockServer(_ mockServer: MockServer, responseFor request: HTTPRequest, possibleResponses: [HTTPResponse]) -> HTTPResponse? {
+        print(request.fullDescription)
+        
+        switch request.uri.path {
+        /// OPENAPI_1
+        case "/api/v1/company":
+            switch request.method {
+            case .POST:
+                // return possibleResponses.first(where: {$0.statusCode > 299})
+                return HTTPResponse(statusCode: 409, headers: ["X-Server-Message": "Conflict"], body: "Company with the same id was created before.".utf8Data)
+            default: break
+            }
+
+        case "/api/v1/company/123":
+            switch request.method {
+            case .GET:
+                // return possibleResponses.first(where: {$0.statusCode > 299})
+                return HTTPResponse(statusCode: 422, body: "Company with id 123 does not exist.".utf8Data)
+            default: break
+            }
+
+        case "/api/v1/registration/user":
+            switch request.method {
+            case .POST:
+                // return possibleResponses.first(where: {$0.statusCode > 400})
+                return HTTPResponse(statusCode: 409, headers: ["X-Server-Message": "Conflict"], body: "Email was used to sign up for another account.".utf8Data)
+            default: break
+            }
+
+        /// OPENAPI_2
+        case "/v1/directory/employees":
+            switch request.method {
+            case .GET:
+                return possibleResponses.first(where: { $0.statusCode >= 200 })
+            default: break
+            }
+
+        default:
+            break
+        }
+
+        return nil
     }
 }

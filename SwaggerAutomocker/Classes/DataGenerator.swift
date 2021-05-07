@@ -8,30 +8,19 @@
 import Fakery
 import Foundation
 
-public final class DataGenerator {
-    /// If this variable is set to true, the data generator will use the Fakery library to generate dummy data. If false, generator will use default values
-    public var useFakeryDataGenerator: Bool = false
-    
-    /// Only available when useFakeryDataGenerator is true. Fakery Data Generator will generate different objects in the array
-    public var distinctElementsInArray: Bool = false
-    
-    /// Data will be generated lazyly every time the server receives a request, which mean for the same endpoint, the data will be different for each request.
-    public var generateDummyDataLazily: Bool = false
-    
+public final class DefaultDataConfigurator {
     // MARK: Default values
-
-    public var rootArrayElementCount: Int = 3
-    public var childrenArrayElementCount: Int = 3
+    
     public var booleanDefaultValue: Bool = true
     public var floatDefaultValue: Float = 1.23
     public var doubleDefaultValue: Double = 2.34
     public var int32DefaultValue: Int32 = 123
     public var int64DefaultValue: Int64 = 123456789
-    public var dateDefaultValue: String = "2017-07-21"
-    public var dateTimeDefaultValue: String = "2017-07-21T17:32:28Z"
+    public var dateDefaultValue: Any = "2017-07-21"
+    public var dateTimeDefaultValue: Any = "2017-07-21T17:32:28Z"
     public var byteDefaultValue: String = "U3dhZ2dlciByb2Nrcw=="
     public var uuidDefaultValue: String = "123e4567-e89b-12d3-a456-426614174000"
-    public var othersDefaultValue: String = "string value"
+    public var othersDefaultValue: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     
     // MARK: Internet
     
@@ -76,9 +65,9 @@ public final class DataGenerator {
     
     public var creditCardNumberDefaultValue: String = "1234-2121-1221-1211"
     public var creditCardTypeDefaultValue: String = "visa"
-    public var creditCardExpiryDateDefaultValue: Date = {
-        let isoDate = "2025-01-01T00:00:00+0000"
-        let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: "en_US_POSIX")
+    public lazy var creditCardExpiryDateDefaultValue: Date = {
+        let isoDate = "2025-01-01"
+        let dateFormatter = DateFormatter(withFormat: "yyyy-mm-dd", locale: "en_US_POSIX")
         let year2025 = dateFormatter.date(from: isoDate)!
         return year2025
     }()
@@ -91,6 +80,50 @@ public final class DataGenerator {
     public var prefixDefaultValue: String = "Mrs."
     public var suffixDefaultValue: String = "PhD"
     public var titleDefaultValue: String = "Lead"
+}
+
+public final class FakeryDataConfigurator {
+    public enum TextStyle {
+        case words(amount: Int)
+        case characters(amount: Int)
+        case sentence(wordsAmount: Int)
+        case sentences(amount: Int)
+        case paragraph(sentencesAmount: Int)
+        case paragraphs(amount: Int)
+    }
+    
+    public var minInt: Int = 0
+    public var maxInt: Int = 1000000000
+    public var minFloat: Float = 0
+    public var maxFloat: Float = 100000
+    public var minDouble: Double = 0
+    public var maxDouble: Double = 100000
+    public var minDate = Date(timeIntervalSince1970: 0)
+    public var maxDate = Date()
+    public var passwordMinLength: Int = 8
+    public var passwordMaxLength: Int = 16
+    public var textStyle: TextStyle = .words(amount: 10)
+}
+
+public final class DataGenerator {
+    /// If this variable is set to true, the data generator will use the Fakery library to generate dummy data. If false, generator will use default values
+    public var useFakeryDataGenerator: Bool = false
+    
+    /// Only available when useFakeryDataGenerator is true. Fakery Data Generator will generate different objects in the array
+    public var distinctElementsInArray: Bool = false
+    
+    /// The data will be generated lazily each time the server receives the request, meaning that for the same endpoint, the data will be different over time.
+    public var generateDummyDataLazily: Bool = false
+    
+    /// Number of elements in the root response array
+    public var rootArrayElementCount: Int = 3
+    
+    /// Number of elements in the child response array
+    public var childArrayElementCount: Int = 3
+    
+    public let defaultDataConfigurator = DefaultDataConfigurator()
+    
+    public let fakeryDataConfigurator = FakeryDataConfigurator()
     
     public init() {}
     
@@ -108,7 +141,7 @@ public final class DataGenerator {
     ///   "password", "email", "uri", "url", "uriPath", "uripath", "hostName", "hostname", "domainName", "domainname", "ipv4", "ipv6":
     ///
     ///   ADDRESS
-    ///   "city", "streetName", "streetname", "secondaryAddress", "secondaryaddress", "streetAddress", "streetaddress", "buildingNumber", "buildingnumber", "postCode", "postcode", "timeZone", "timezone", "streetSuffix", "streetsuffix", "citySuffix", "citysuffix", "cityPrefix", "cityprefix", "stateAbbreviation", "stateabbreviation", "state", "county", "country", "countryCode", "countrycode", "latitude", "longitude", "coordinate", "phoneNumber", "phonenumber":
+    ///   "city", "streetName", "streetname", "secondaryAddress", "secondaryaddress", "streetAddress", "streetaddress", "buildingNumber", "buildingnumber", "postCode", "postcode", "timeZone", "timezone", "streetSuffix", "streetsuffix", "citySuffix", "citysuffix", "cityPrefix", "cityprefix", "stateAbbreviation", "stateabbreviation", "state", "county", "country", "countryCode", "countrycode", "latitude", "longitude", "coordinate", "phone", "phoneNumber", "phonenumber":
     ///
     ///   APP
     ///   "appName", "appname", "appVersion", "appversion", "appAuthor", "appauthor":
@@ -126,75 +159,78 @@ public final class DataGenerator {
             return fakeryValueFor(format: format, schema: schema)
         } else {
             switch format {
-            case "float": return floatDefaultValue
-            case "double": return doubleDefaultValue
-            case "int32": return int32DefaultValue
-            case "int64": return int64DefaultValue
-            case "date": return dateDefaultValue
-            case "dateTime", "datetime": return dateTimeDefaultValue
-            case "byte", "base64": return byteDefaultValue
-            case "uuid": return uuidDefaultValue
+            case "float": return defaultDataConfigurator.floatDefaultValue
+            case "double": return defaultDataConfigurator.doubleDefaultValue
+            case "int32": return defaultDataConfigurator.int32DefaultValue
+            case "int64": return defaultDataConfigurator.int64DefaultValue
+            case "date": return defaultDataConfigurator.dateDefaultValue
+            case "dateTime", "datetime": return defaultDataConfigurator.dateTimeDefaultValue
+            case "byte", "base64": return defaultDataConfigurator.byteDefaultValue
+            case "uuid": return defaultDataConfigurator.uuidDefaultValue
                 
             // MARK: Internet
             
-            case "password": return passwordDefaultValue
-            case "email": return emailDefaultValue
-            case "uri", "url": return uriDefaultValue
-            case "uriPath", "uripath": return uriPathDefaultValue
-            case "hostName", "hostname": return hostnameDefaultValue
-            case "domainName", "domainname": return domainnameDefaultValue
-            case "ipv4": return ipv4DefaultValue
-            case "ipv6": return ipv6DefaultValue
+            case "password": return defaultDataConfigurator.passwordDefaultValue
+            case "email": return defaultDataConfigurator.emailDefaultValue
+            case "uri", "url": return defaultDataConfigurator.uriDefaultValue
+            case "uriPath", "uripath": return defaultDataConfigurator.uriPathDefaultValue
+            case "hostName", "hostname": return defaultDataConfigurator.hostnameDefaultValue
+            case "domainName", "domainname": return defaultDataConfigurator.domainnameDefaultValue
+            case "ipv4": return defaultDataConfigurator.ipv4DefaultValue
+            case "ipv6": return defaultDataConfigurator.ipv6DefaultValue
             
             // MARK: Address
             
-            case "city": return cityDefaultValue
-            case "streetName", "streetname": return streetNameDefaultValue
-            case "secondaryAddress", "secondaryaddress": return secondaryAddressDefaultValue
-            case "streetAddress", "streetaddress": return streetNameDefaultValue
-            case "buildingNumber", "buildingnumber": return buildingNumberDefaultValue
-            case "postCode", "postcode": return postCodeDefaultValue
-            case "timeZone", "timezone": return timeZoneDefaultValue
-            case "streetSuffix", "streetsuffix": return streetSuffixDefaultValue
-            case "citySuffix", "citysuffix": return citySuffixDefaultValue
-            case "cityPrefix", "cityprefix": return cityPrefixDefaultValue
-            case "stateAbbreviation", "stateabbreviation": return stateAbbreviationDefaultValue
-            case "state": return stateDefaultValue
-            case "county": return countyDefaultValue
-            case "country": return countryDefaultValue
-            case "countryCode", "countrycode": return countryCodeDefaultValue
-            case "latitude": return latitudeDefaultValue
-            case "longitude": return longitudeDefaultValue
-            case "coordinate": return coordinateDefaultValue
-            case "phoneNumber", "phonenumber": return phoneNumberDefaultValue
+            case "city": return defaultDataConfigurator.cityDefaultValue
+            case "streetName", "streetname": return defaultDataConfigurator.streetNameDefaultValue
+            case "secondaryAddress", "secondaryaddress": return defaultDataConfigurator.secondaryAddressDefaultValue
+            case "streetAddress", "streetaddress": return defaultDataConfigurator.streetNameDefaultValue
+            case "buildingNumber", "buildingnumber": return defaultDataConfigurator.buildingNumberDefaultValue
+            case "postCode", "postcode": return defaultDataConfigurator.postCodeDefaultValue
+            case "timeZone", "timezone": return defaultDataConfigurator.timeZoneDefaultValue
+            case "streetSuffix", "streetsuffix": return defaultDataConfigurator.streetSuffixDefaultValue
+            case "citySuffix", "citysuffix": return defaultDataConfigurator.citySuffixDefaultValue
+            case "cityPrefix", "cityprefix": return defaultDataConfigurator.cityPrefixDefaultValue
+            case "stateAbbreviation", "stateabbreviation": return defaultDataConfigurator.stateAbbreviationDefaultValue
+            case "state": return defaultDataConfigurator.stateDefaultValue
+            case "county": return defaultDataConfigurator.countyDefaultValue
+            case "country": return defaultDataConfigurator.countryDefaultValue
+            case "countryCode", "countrycode": return defaultDataConfigurator.countryCodeDefaultValue
+            case "latitude": return defaultDataConfigurator.latitudeDefaultValue
+            case "longitude": return defaultDataConfigurator.longitudeDefaultValue
+            case "coordinate": return defaultDataConfigurator.coordinateDefaultValue
+            case "phone", "phoneNumber", "phonenumber": return defaultDataConfigurator.phoneNumberDefaultValue
             
             // MARK: App
             
-            case "appName", "appname": return appNameDefaultValue
-            case "appVersion", "appversion": return appVersionDefaultValue
-            case "appAuthor", "appauthor": return appAuthorDefaultValue
+            case "appName", "appname": return defaultDataConfigurator.appNameDefaultValue
+            case "appVersion", "appversion": return defaultDataConfigurator.appVersionDefaultValue
+            case "appAuthor", "appauthor": return defaultDataConfigurator.appAuthorDefaultValue
             
             // MARK: Business
             
-            case "creditCardNumber", "creditcardnumber": return creditCardNumberDefaultValue
-            case "creditCardType", "creditcardtype": return creditCardTypeDefaultValue
-            case "creditCardExpiryDate", "creditcardexpirydate": return creditCardExpiryDateDefaultValue
+            case "creditCardNumber", "creditcardnumber": return defaultDataConfigurator.creditCardNumberDefaultValue
+            case "creditCardType", "creditcardtype": return defaultDataConfigurator.creditCardTypeDefaultValue
+            case "creditCardExpiryDate", "creditcardexpirydate": return defaultDataConfigurator.creditCardExpiryDateDefaultValue
             
             // MARK: Person
             
-            case "name", "fullname", "fullName": return nameDefaultValue
-            case "firstName", "firstname": return firstNameDefaultValue
-            case "lastName", "lastname": return lastNameDefaultValue
-            case "prefix": return prefixDefaultValue
-            case "suffix": return suffixDefaultValue
-            case "title": return titleDefaultValue
+            case "name", "fullname", "fullName": return defaultDataConfigurator.nameDefaultValue
+            case "firstName", "firstname": return defaultDataConfigurator.firstNameDefaultValue
+            case "lastName", "lastname": return defaultDataConfigurator.lastNameDefaultValue
+            case "prefix": return defaultDataConfigurator.prefixDefaultValue
+            case "suffix": return defaultDataConfigurator.suffixDefaultValue
+            case "title": return defaultDataConfigurator.titleDefaultValue
             
-            default: return othersDefaultValue
+            default: return defaultDataConfigurator.othersDefaultValue
             }
         }
     }
     
     private func fakeryValueFor(format: String, schema: [String: Any]) -> Any {
+        var dateFormatter: DateFormatter { DateFormatter(withFormat: "yyyy-MM-dd", locale: "en_US_POSIX") }
+        var dateTimeFormatter: DateFormatter { DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: "en_US_POSIX") }
+        
         switch format {
         // MARK: Primitive
         
@@ -202,13 +238,13 @@ public final class DataGenerator {
             let minimum = schema[SwaggerSchemaAttribute.minimum.rawValue] as? Float
             let maximum = schema[SwaggerSchemaAttribute.maximum.rawValue] as? Float
             
-            return faker.number.randomFloat(min: Float(minimum ?? 0), max: Float(maximum ?? Float.greatestFiniteMagnitude))
+            return faker.number.randomFloat(min: minimum ?? fakeryDataConfigurator.minFloat, max: maximum ?? fakeryDataConfigurator.maxFloat)
             
         case "double":
             let minimum = schema[SwaggerSchemaAttribute.minimum.rawValue] as? Double
             let maximum = schema[SwaggerSchemaAttribute.maximum.rawValue] as? Double
             
-            return faker.number.randomDouble(min: minimum ?? 0, max: maximum ?? Double.greatestFiniteMagnitude)
+            return faker.number.randomDouble(min: minimum ?? fakeryDataConfigurator.minDouble, max: maximum ?? fakeryDataConfigurator.maxDouble)
             
         case "int32", "int64":
             let minimum = schema[SwaggerSchemaAttribute.minimum.rawValue] as? Int
@@ -216,20 +252,14 @@ public final class DataGenerator {
             let exclusiveMinimum = schema[SwaggerSchemaAttribute.exclusiveMinimum.rawValue] as? Bool ?? false
             let exclusiveMaximum = schema[SwaggerSchemaAttribute.exclusiveMaximum.rawValue] as? Bool ?? false
             
-            return faker.number.randomInt(min: Int(minimum ?? 0) + (exclusiveMinimum ? 1 : 0),
-                                          max: Int(maximum ?? Int.max) - (exclusiveMaximum ? 0 : 1))
+            return faker.number.randomInt(min: (minimum ?? fakeryDataConfigurator.minInt) + (exclusiveMinimum ? 1 : 0),
+                                          max: (maximum ?? fakeryDataConfigurator.maxInt) - (exclusiveMaximum ? 0 : 1))
             
         case "date":
-            let isoDate = "2010-01-01T00:00:00+0000"
-            let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd", locale: "en_US_POSIX")
-            let year2010 = dateFormatter.date(from: isoDate)!
-            return dateFormatter.string(from: faker.date.between(year2010, Date()))
+            return dateFormatter.string(from: faker.date.between(fakeryDataConfigurator.minDate, fakeryDataConfigurator.maxDate))
             
         case "dateTime", "datetime":
-            let isoDate = "2010-01-01T00:00:00+0000"
-            let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: "en_US_POSIX")
-            let year2010 = dateFormatter.date(from: isoDate)!
-            return dateFormatter.string(from: faker.date.between(year2010, Date()))
+            return dateTimeFormatter.string(from: faker.date.between(fakeryDataConfigurator.minDate, fakeryDataConfigurator.maxDate))
             
         case "byte", "base64":
             func uiImage(from color: UIColor?, size: CGSize) -> UIImage? {
@@ -251,7 +281,7 @@ public final class DataGenerator {
         // MARK: Internet
         
         case "password":
-            return faker.internet.password(minimumLength: 8, maximumLength: 16)
+            return faker.internet.password(minimumLength: fakeryDataConfigurator.passwordMinLength, maximumLength: fakeryDataConfigurator.passwordMaxLength)
             
         case "email":
             return faker.internet.email()
@@ -260,13 +290,9 @@ public final class DataGenerator {
             return faker.internet.url()
             
         case "uriPath", "uripath":
-            return URL(string: faker.internet.url())?.path ?? faker.internet.url()
+            return faker.internet.username()
             
-        case "hostName", "hostname":
-            let url = URL(string: faker.internet.url())
-            return url?.host as Any
-            
-        case "domainName", "domainname":
+        case "hostName", "hostname", "domainName", "domainname":
             return faker.internet.domainName()
             
         case "ipv4":
@@ -333,8 +359,8 @@ public final class DataGenerator {
                           faker.address.latitude(),
                           faker.address.longitude()) // => (-58.17256227443719, -156.65548382095133)
         
-        case "phoneNumber", "phonenumber":
-            return faker.phoneNumber.phoneNumber() // => "1-333-333-3333"
+        case "phone", "phoneNumber", "phonenumber":
+            return faker.phoneNumber.cellPhone() // => "1-333-333-3333"
         
         // MARK: App
         
@@ -356,10 +382,7 @@ public final class DataGenerator {
             return faker.business.creditCardType() // => "visa"
         
         case "creditCardExpiryDate", "creditcardexpirydate":
-            let isoDate = "2025-01-01T00:00:00+0000"
-            let dateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: "en_US_POSIX")
-            let year2025 = dateFormatter.date(from: isoDate)!
-            return faker.business.creditCardExpiryDate() ?? year2025 // => "2020-10-12"
+            return dateFormatter.string(from: faker.business.creditCardExpiryDate() ?? Date().dateByAddingYears(5)) // => "2020-10-12"
         
         // MARK: Person
         
@@ -382,7 +405,30 @@ public final class DataGenerator {
             return faker.name.title() // => "Lead"
         
         default:
-            return faker.lorem.paragraph(sentencesAmount: 4)
+            switch fakeryDataConfigurator.textStyle {
+            case .words(let amount):
+                return faker.lorem.words(amount: amount)
+            case .characters(let amount):
+                return faker.lorem.characters(amount: amount)
+            case .sentence(let wordsAmount):
+                return faker.lorem.sentence(wordsAmount: wordsAmount)
+            case .sentences(let amount):
+                return faker.lorem.sentences(amount: amount)
+            case .paragraph(let sentencesAmount):
+                return faker.lorem.paragraph(sentencesAmount: sentencesAmount)
+            case .paragraphs(let amount):
+                return faker.lorem.paragraphs(amount: amount)
+            }
         }
+    }
+}
+
+extension Date {
+    func dateByAddingYears(_ years: Int) -> Date {
+        return Calendar.current.date(byAdding: .year, value: years, to: self)!
+    }
+    
+    func dateBySubtractingYears(_ years: Int) -> Date {
+        return Calendar.current.date(byAdding: .year, value: years * -1, to: self)!
     }
 }

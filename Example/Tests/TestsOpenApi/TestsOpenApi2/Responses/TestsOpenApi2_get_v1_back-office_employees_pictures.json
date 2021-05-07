@@ -1,95 +1,95 @@
 [
     {
-        "submittedAt" : "string value",
-        "comment" : "string value",
+        "submittedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "clinicId" : 123,
         "picture" : {
             "id" : 123456789,
-            "hash" : "string value",
+            "hash" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "uploadedBy" : {
                 "firstName" : "Ida",
                 "email" : "firstname@domain.com",
                 "lastName" : "Adams",
-                "username" : "string value"
+                "username" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
-            "uriPath" : "string value"
+            "uriPath" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         },
         "awards" : [
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             }
         ],
         "id" : 123456789
     },
     {
-        "comment" : "string value",
+        "comment" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "picture" : {
             "id" : 123456789,
-            "hash" : "string value",
+            "hash" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "uploadedBy" : {
                 "firstName" : "Ida",
                 "email" : "firstname@domain.com",
                 "lastName" : "Adams",
-                "username" : "string value"
+                "username" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
-            "uriPath" : "string value"
+            "uriPath" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         },
         "clinicId" : 123,
-        "submittedAt" : "string value",
+        "submittedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "awards" : [
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             }
         ],
         "id" : 123456789
     },
     {
-        "submittedAt" : "string value",
-        "comment" : "string value",
+        "submittedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "comment" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "clinicId" : 123,
         "id" : 123456789,
         "awards" : [
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
             {
                 "award" : "PICTURE_OF_THE_WEEK",
-                "awardedAt" : "string value"
+                "awardedAt" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             }
         ],
         "picture" : {
             "id" : 123456789,
-            "hash" : "string value",
+            "hash" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             "uploadedBy" : {
                 "firstName" : "Ida",
                 "email" : "firstname@domain.com",
                 "lastName" : "Adams",
-                "username" : "string value"
+                "username" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
             },
-            "uriPath" : "string value"
+            "uriPath" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         }
     }
 ]
