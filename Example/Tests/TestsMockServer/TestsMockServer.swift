@@ -55,7 +55,7 @@ final class TestsMockServer: Tests {
         startServer(emptyEndpointSwaggerJson)
         
         // Then
-        XCTAssert(privateMockServer?.endPoints.count == 0)
+        XCTAssert(privateMockServer?.endpoints.count == 0)
     }
     
     func testMockserverShouldCoverOneEndpoint() {
@@ -66,7 +66,7 @@ final class TestsMockServer: Tests {
         startServer(oneEndpointSwaggerJson)
         
         // Then
-        XCTAssert(privateMockServer?.endPoints.count == 1)
+        XCTAssert(privateMockServer?.endpoints.count == 1)
     }
     
     func testMockserverShouldCoverTwoEndpoints() {
@@ -77,7 +77,7 @@ final class TestsMockServer: Tests {
         startServer(twoEndpointsSwaggerJson)
         
         // Then
-        XCTAssert(privateMockServer?.endPoints.count == 2)
+        XCTAssert(privateMockServer?.endpoints.count == 2)
     }
     
     func testMockserverShouldCoverFourEndpoints() {
@@ -88,7 +88,7 @@ final class TestsMockServer: Tests {
         startServer(fourEndpointsSwaggerJson)
 
         // Then
-        XCTAssert(privateMockServer?.endPoints.count == 4)
+        XCTAssert(privateMockServer?.endpoints.count == 4)
     }
     
     // MARK: Number of response objects should equal to default array element count in data generator

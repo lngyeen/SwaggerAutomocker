@@ -9,10 +9,10 @@
 import Foundation
 import ObjectMapper
 
-enum SwaggerParamAttribute: String {
-    case name
-    case position = "in"
-    case type
+enum SwaggerParamAttribute {
+    static var name: String { "name" }
+    static var `in`: String { "in" }
+    static var type: String { "type" }
 }
 
 public class SwaggerParam: Mappable {
@@ -20,10 +20,10 @@ public class SwaggerParam: Mappable {
     public private(set) var position: String?
     public private(set) var type: String?
 
-    required public init?(map: Map) {}
+    public required init?(map: Map) {}
     public func mapping(map: Map) {
-        name <- map[SwaggerParamAttribute.name.rawValue]
-        position <- map[SwaggerParamAttribute.position.rawValue]
-        type <- map[SwaggerParamAttribute.type.rawValue]
+        name <- map[SwaggerParamAttribute.name]
+        position <- map[SwaggerParamAttribute.in]
+        type <- map[SwaggerParamAttribute.type]
     }
 }

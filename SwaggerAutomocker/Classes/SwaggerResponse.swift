@@ -9,11 +9,11 @@
 import Foundation
 import ObjectMapper
 
-enum SwaggerResponseAttribute: String {
-    case headers
-    case schema
-    case example
-    case examples
+enum SwaggerResponseAttribute {
+    static var headers: String { "headers" }
+    static var schema: String { "schema" }
+    static var example: String { "example" }
+    static var examples: String { "examples" }
 }
 
 public class SwaggerResponse: Mappable {
@@ -50,10 +50,10 @@ public class SwaggerResponse: Mappable {
 
     public required init?(map: Map) {}
     public func mapping(map: Map) {
-        headers <- (map[SwaggerResponseAttribute.headers.rawValue], HeadersTransformer())
-        schema <- map[SwaggerResponseAttribute.schema.rawValue]
-        example <- map[SwaggerResponseAttribute.example.rawValue]
-        examples <- map[SwaggerResponseAttribute.examples.rawValue]
+        headers <- (map[SwaggerResponseAttribute.headers], HeadersTransformer())
+        schema <- map[SwaggerResponseAttribute.schema]
+        example <- map[SwaggerResponseAttribute.example]
+        examples <- map[SwaggerResponseAttribute.examples]
     }
 
     func responseFromDefinitions(_ definitions: Definitions?, using dataGenerator: DataGenerator) -> String? {

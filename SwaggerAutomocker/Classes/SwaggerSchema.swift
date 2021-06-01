@@ -9,21 +9,21 @@
 import Foundation
 import ObjectMapper
 
-enum SwaggerSchemaAttribute: String {
-    case type
-    case format
-    case ref = "$ref"
-    case items
-    case properties
-    case additionalProperties
-    case example
-    case enumValues = "enum"
+enum SwaggerSchemaAttribute {
+    static var type: String { "type" }
+    static var format: String { "format" }
+    static var ref: String { "$ref" }
+    static var items: String { "items" }
+    static var properties: String { "properties" }
+    static var additionalProperties: String { "additionalProperties" }
+    static var example: String { "example" }
+    static var `enum`: String { "enum" }
     
     /// Number only
-    case minimum
-    case maximum
-    case exclusiveMinimum
-    case exclusiveMaximum
+    static var minimum: String { "minimum" }
+    static var maximum: String { "maximum" }
+    static var exclusiveMinimum: String { "exclusiveMinimum" }
+    static var exclusiveMaximum: String { "exclusiveMaximum" }
 }
 
 class SwaggerSchema: Mappable {
@@ -46,19 +46,19 @@ class SwaggerSchema: Mappable {
     
     required init?(map: Map) {}
     func mapping(map: Map) {
-        type <- map[SwaggerSchemaAttribute.type.rawValue]
-        format <- map[SwaggerSchemaAttribute.format.rawValue]
-        ref <- map[SwaggerSchemaAttribute.ref.rawValue]
-        items <- map[SwaggerSchemaAttribute.items.rawValue]
-        properties <- map[SwaggerSchemaAttribute.properties.rawValue]
-        additionalProperties <- map[SwaggerSchemaAttribute.additionalProperties.rawValue]
-        example <- map[SwaggerSchemaAttribute.example.rawValue]
+        type <- map[SwaggerSchemaAttribute.type]
+        format <- map[SwaggerSchemaAttribute.format]
+        ref <- map[SwaggerSchemaAttribute.ref]
+        items <- map[SwaggerSchemaAttribute.items]
+        properties <- map[SwaggerSchemaAttribute.properties]
+        additionalProperties <- map[SwaggerSchemaAttribute.additionalProperties]
+        example <- map[SwaggerSchemaAttribute.example]
         
         /// Number only
-        minimum <- map[SwaggerSchemaAttribute.minimum.rawValue]
-        maximum <- map[SwaggerSchemaAttribute.maximum.rawValue]
-        exclusiveMinimum <- map[SwaggerSchemaAttribute.exclusiveMinimum.rawValue]
-        exclusiveMaximum <- map[SwaggerSchemaAttribute.exclusiveMaximum.rawValue]
+        minimum <- map[SwaggerSchemaAttribute.minimum]
+        maximum <- map[SwaggerSchemaAttribute.maximum]
+        exclusiveMinimum <- map[SwaggerSchemaAttribute.exclusiveMinimum]
+        exclusiveMaximum <- map[SwaggerSchemaAttribute.exclusiveMaximum]
     }
     
     func valueFromDefinitions(_ definitions: Definitions, dataGenerator: DataGenerator) -> SwaggerSchemaResponse {
@@ -68,7 +68,7 @@ class SwaggerSchema: Mappable {
     }
     
     private func valueFromJson(_ json: [String: Any], for propertyName: String? = nil, definitions: Definitions, currentNode: Node?, dataGenerator: DataGenerator) -> SwaggerSchemaResponse {
-        if let type = json[SwaggerSchemaAttribute.type.rawValue] as? String {
+        if let type = json[SwaggerSchemaAttribute.type] as? String {
             let value = generateValueFor(type: type, from: json, dataGenerator: dataGenerator)
             
             switch type {
@@ -100,12 +100,12 @@ class SwaggerSchema: Mappable {
                     /// Example in array-level
                     array = arrayExample
                     
-                } else if let items = json[SwaggerSchemaAttribute.items.rawValue] as? [String: Any] {
+                } else if let items = json[SwaggerSchemaAttribute.items] as? [String: Any] {
                     /// Example in individual array item
                     let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childArrayElementCount
                     topLevelIsArray = true
                     
-                    if let example = items[SwaggerSchemaAttribute.example.rawValue] {
+                    if let example = items[SwaggerSchemaAttribute.example] {
                         array = Array(repeating: example, count: elementCount)
                     } else {
                         if dataGenerator.distinctElementsInArray {
@@ -166,7 +166,7 @@ class SwaggerSchema: Mappable {
                 if let example = value as? [String: Any] {
                     object = example
                 } else {
-                    let properties: [String: Any] = json[SwaggerSchemaAttribute.properties.rawValue] as? [String: Any] ?? [:]
+                    let properties: [String: Any] = json[SwaggerSchemaAttribute.properties] as? [String: Any] ?? [:]
                     for (propertyName, propertyDefinition) in properties {
                         if let jsonObject = propertyDefinition as? [String: Any] {
                             switch valueFromJson(jsonObject, for: propertyName, definitions: definitions, currentNode: currentNode, dataGenerator: dataGenerator) {
@@ -197,7 +197,7 @@ class SwaggerSchema: Mappable {
                     
                     /// additionalProperties
                     if let propertyName = propertyName,
-                       let additionalProperties = json[SwaggerSchemaAttribute.additionalProperties.rawValue] as? [String: Any]
+                       let additionalProperties = json[SwaggerSchemaAttribute.additionalProperties] as? [String: Any]
                     {
                         let elementCount = (currentNode?.isRoot ?? true && !topLevelIsArray) ? dataGenerator.rootArrayElementCount : dataGenerator.childArrayElementCount
                         for i in 1 ... elementCount {
@@ -228,7 +228,7 @@ class SwaggerSchema: Mappable {
                 
                 return .object(content: object)
             }
-        } else if let reference = json[SwaggerSchemaAttribute.ref.rawValue] as? String,
+        } else if let reference = json[SwaggerSchemaAttribute.ref] as? String,
                   let referenceName = reference.components(separatedBy: "/").last
         {
             /// Stop creating child objects if there are more than one ancestors of the same type
@@ -252,18 +252,18 @@ class SwaggerSchema: Mappable {
     
     private func generateValueFor(type: String, from json: [String: Any], dataGenerator: DataGenerator) -> Any? {
         /// Get example value
-        var value = json[SwaggerSchemaAttribute.example.rawValue]
+        var value = json[SwaggerSchemaAttribute.example]
         
         /// Get value from enums array
         if case .none = value,
-           let enumValues = json[SwaggerSchemaAttribute.enumValues.rawValue] as? [Any]
+           let enumValues = json[SwaggerSchemaAttribute.enum] as? [Any]
         {
             value = dataGenerator.distinctElementsInArray ? enumValues.randomElement() : enumValues[safe: 0]
         }
         
         /// If has no example value, try to generate default values
         if case .none = value {
-            if let format = json[SwaggerSchemaAttribute.format.rawValue] as? String {
+            if let format = json[SwaggerSchemaAttribute.format] as? String {
                 value = dataGenerator.generateValueFor(format: format, schema: json)
             } else {
                 switch type {

@@ -53,7 +53,13 @@ var mockServer: MockServer?
 
 let swaggerJson = readJSONFromFile(fileName: "swagger")
 if let swaggerJson = swaggerJson {
-    mockServer = MockServer(port: 8080, swaggerJson: swaggerJson, dataGenerator: dataGenerator)
+    mockServer = MockServer(port: 8080, 
+                            concurrency: 50,
+                            swaggerJson: swaggerJson, 
+                            dataGenerator: dataGenerator,
+                            genDataSourceExtensionInConsole: true)
+    // Set genDataSourceExtensionInConsole to true, so the MockServerResponseDataSource extension will be printed automatically in the console log. 
+    // You can copy it into your source code to save time implementing all the endpoints.
     mockServer?.responseDataSource = self
     mockServer?.start()
 }
@@ -64,7 +70,13 @@ or from swagger json url:
 var mockServer: MockServer?
 
 let swaggerUrl = "https://mobileapp-fe-dev.swissmedical.net/aevis-app-backend-api/v3/api-docs"
-mockServer = MockServer(port: 8080, swaggerUrl: swaggerUrl, dataGenerator: dataGenerator)
+mockServer = MockServer(port: 8080, 
+                        concurrency: 50,
+                        swaggerUrl: swaggerUrl, 
+                        dataGenerator: dataGenerator,
+                        genDataSourceExtensionInConsole: true)
+// Set genDataSourceExtensionInConsole to true, so the MockServerResponseDataSource extension will be printed automatically in the console log. 
+// You can copy it into your source code to save time implementing all the endpoints.
 mockServer?.responseDataSource = self
 mockServer?.start()
 ```
@@ -76,7 +88,7 @@ mockServer?.stop()
 
 Custom response for each request if needed via MockServerResponseDataSource protocol:
 ```swift
-func mockServer(_ mockServer: MockServer, responseFor request: HTTPRequest, possibleResponses: [HTTPResponse]) -> HTTPResponse? {
+func mockServer(_ mockServer: MockServer, responseFor request: HTTPRequest, to endpoint: MockServerEndpoint, possibleResponses: [HTTPResponse]) -> HTTPResponse? {
     // Pick one response from possibleResponses array
     return possibleResponses.first(where: {$0.statusCode > 299})
     

@@ -1,5 +1,5 @@
 //
-//  MockServerEndPoint.swift
+//  MockServerEndpoint.swift
 //  SwaggerAutomocker
 //
 //  Created by Nguyen Truong Luu on 5/5/20.
@@ -9,8 +9,7 @@
 import Foundation
 import Telegraph
 
-public final class MockServerEndPoint {
-    
+public final class MockServerEndpoint {
     /// HTTPMethod:  GET/POST/PUT/DELETE...
     public let method: HTTPMethod
 
@@ -29,7 +28,7 @@ public final class MockServerEndPoint {
     /// All possible responses of the endpoint
     public let responses: [SwaggerResponse]
     
-    /// Default response - first response object in the response array which has the success status code (200-299)
+    /// Default response - first response object in the responses array which has the success status code (200-299)
     public var defaultResponse: SwaggerResponse {
         return responses.filter { $0.statusCode >= 200 && $0.statusCode <= 299 }
             .sorted(by: { $0.statusCode < $1.statusCode }).first ?? SwaggerResponse()
@@ -39,13 +38,6 @@ public final class MockServerEndPoint {
         return path != route
     }
     
-    var description: String {
-        return description(httpMethod: method.description,
-                           path: path,
-                           statusCode: defaultResponse.statusCode,
-                           response: defaultResponse.responseString?.utf8Data)
-    }
-
     init(method: String,
          path: String,
          parameters: [SwaggerParam],
@@ -79,7 +71,37 @@ public final class MockServerEndPoint {
         self.route = route
     }
     
-    private func description(httpMethod: String, path: String, statusCode: Int, response: Data?) -> String {
+    func possibleHttpResponses(version: HTTPVersion) -> [HTTPResponse] {
+        return responses.map { [weak self] response -> HTTPResponse in
+            let headers = self?.headersFor(response: response) ?? [:]
+            return HTTPResponse(statusCode: response.statusCode,
+                                version: version,
+                                headers: headers,
+                                body: response.responseString?.utf8Data ?? Data())
+        }
+    }
+    
+    func headersFor(response: SwaggerResponse) -> [HTTPHeaderName: String] {
+        var headers: [HTTPHeaderName: String] = [:]
+        if let contentType = contentType {
+            headers[HTTPHeaderName(stringLiteral: "Content-Type")] = contentType
+        }
+        for (key, value) in response.headersJson {
+            headers[HTTPHeaderName(stringLiteral: key)] = value
+        }
+        return headers
+    }
+}
+
+public extension MockServerEndpoint {
+    var description: String {
+        return description(method: method,
+                           path: path,
+                           statusCode: defaultResponse.statusCode,
+                           response: defaultResponse.responseString?.utf8Data)
+    }
+
+    private func description(method: HTTPMethod, path: String, statusCode: Int, response: Data?) -> String {
         let maxResponseLength = 2000
         var logResponse = String(repeating: "- ", count: 14 + path.count/2)
         logResponse += "\n|"
@@ -88,7 +110,7 @@ public final class MockServerEndPoint {
             + String(repeating: " ", count: 12)
             + "|"
         logResponse += "\n" + String(repeating: "- ", count: 14 + path.count/2)
-        logResponse += "\n|     Method: \(String(describing: httpMethod))"
+        logResponse += "\n|     Method: \(String(describing: method.description))"
         logResponse += "\n|     Default status code: \(statusCode)"
         
         if let responseObject = response?.jsonObject {
@@ -127,56 +149,5 @@ public final class MockServerEndPoint {
         logResponse += "\n" + String(repeating: "- ", count: 14 + path.count/2) + "\n"
         
         return logResponse
-    }
-}
-
-public extension Data {
-    var jsonObject: [String: Any]? {
-        guard let json = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [String: Any],
-              !json.isEmpty else { return nil }
-        return json
-    }
-    
-    var jsonArray: [[String: Any]]? {
-        guard let array = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [[String: Any]],
-              !array.isEmpty else { return nil }
-        return array
-    }
-    
-    var stringArray: [String]? {
-        guard let array = try? JSONSerialization.jsonObject(with: self, options: .allowFragments) as? [String],
-              !array.isEmpty else { return nil }
-        return array
-    }
-    
-    var string: String? {
-        guard !isEmpty else { return nil }
-        return String(data: self, encoding: .utf8)
-    }
-}
-
-extension String {
-    func removingRegexMatches(pattern: String, replaceWith: String = "") -> String {
-        do {
-            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options.caseInsensitive)
-            let range = NSMakeRange(0, count)
-            return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replaceWith)
-        } catch {
-            return self
-        }
-    }
-}
-
-extension Array {
-    var prettyPrinted: String {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return "" }
-        return String(data: data, encoding: .utf8) ?? ""
-    }
-}
-
-extension Dictionary where Key == String {
-    var prettyPrinted: String {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return "" }
-        return String(data: data, encoding: .utf8) ?? ""
     }
 }

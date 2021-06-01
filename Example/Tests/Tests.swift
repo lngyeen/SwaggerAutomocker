@@ -44,7 +44,7 @@ extension Tests {
         if let fileUrl = Bundle(for: Self.self).url(forResource: fileName, withExtension: "json"),
            let data = try? Data(contentsOf: fileUrl, options: .mappedIfSafe)
         {
-            return try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            return try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
         }
         return nil
     }
@@ -277,8 +277,8 @@ extension Array where Element: Any {
 extension Dictionary where Key == String, Value == Any {
     var formatted: [String: Any] {
         do {
-            let data = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted, .fragmentsAllowed])
-            let formattedDictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+            let data = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
+            let formattedDictionary = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String: Any]
             return formattedDictionary ?? self
         } catch {
             return self
@@ -366,27 +366,24 @@ extension URLSession {
         if let headerFields = response.allHeaderFields as? [String: String], !headerFields.isEmpty {
             logResponse += "\n|     Headers\(headerFields.count):\n\(headerFields)"
         }
-        if let responseObject = data?.jsonObject,
-           var responseJSON = responseObject.prettyPrinted
-        {
+        if let responseObject = data?.jsonObject {
+            var responseJSON = responseObject.prettyPrinted
             responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
                 responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
             }
             logResponse += "\n|     \(type(of: responseObject)) :\n\(responseJSON)"
-        } else if let responseObjectArray = data?.jsonArray,
-                  var responseJSON = responseObjectArray.prettyPrinted
-        {
+        } else if let responseObjectArray = data?.jsonArray {
+            var responseJSON = responseObjectArray.prettyPrinted
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
                 responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
             }
             responseJSON = "      " + responseJSON.replacingOccurrences(of: "\n", with: "\n      ")
             logResponse += "\n|     \(type(of: responseObjectArray)) (\(responseObjectArray.count) objects):\n\(responseJSON)"
-        } else if let responseObjectArray = data?.stringArray,
-                  var responseJSON = responseObjectArray.prettyPrinted
-        {
+        } else if let responseObjectArray = data?.stringArray {
+            var responseJSON = responseObjectArray.prettyPrinted
             if responseJSON.count > maxResponseLength {
                 responseJSON = String(responseJSON.prefix(maxResponseLength))
                 responseJSON += " (...) \n     The response is too long and has been truncated to the first \(maxResponseLength) chars)"
@@ -438,26 +435,6 @@ extension URLSession {
         }
         
         return ["Cookies": cookiesComponents, "Headers": headersComponents]
-    }
-}
-
-extension String {
-    func matches(_ regex: String) -> Bool {
-        return range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
-    }
-}
-
-extension Array {
-    var prettyPrinted: String? {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
-        return String(data: data, encoding: .utf8)
-    }
-}
-
-extension Dictionary {
-    var prettyPrinted: String? {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted]) else { return nil }
-        return String(data: data, encoding: .utf8)
     }
 }
 

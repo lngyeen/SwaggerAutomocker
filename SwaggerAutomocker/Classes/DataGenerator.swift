@@ -235,22 +235,22 @@ public final class DataGenerator {
         // MARK: Primitive
         
         case "float":
-            let minimum = schema[SwaggerSchemaAttribute.minimum.rawValue] as? Float
-            let maximum = schema[SwaggerSchemaAttribute.maximum.rawValue] as? Float
+            let minimum = schema[SwaggerSchemaAttribute.minimum] as? Float
+            let maximum = schema[SwaggerSchemaAttribute.maximum] as? Float
             
             return faker.number.randomFloat(min: minimum ?? fakeryDataConfigurator.minFloat, max: maximum ?? fakeryDataConfigurator.maxFloat)
             
         case "double":
-            let minimum = schema[SwaggerSchemaAttribute.minimum.rawValue] as? Double
-            let maximum = schema[SwaggerSchemaAttribute.maximum.rawValue] as? Double
+            let minimum = schema[SwaggerSchemaAttribute.minimum] as? Double
+            let maximum = schema[SwaggerSchemaAttribute.maximum] as? Double
             
             return faker.number.randomDouble(min: minimum ?? fakeryDataConfigurator.minDouble, max: maximum ?? fakeryDataConfigurator.maxDouble)
             
         case "int32", "int64":
-            let minimum = schema[SwaggerSchemaAttribute.minimum.rawValue] as? Int
-            let maximum = schema[SwaggerSchemaAttribute.maximum.rawValue] as? Int
-            let exclusiveMinimum = schema[SwaggerSchemaAttribute.exclusiveMinimum.rawValue] as? Bool ?? false
-            let exclusiveMaximum = schema[SwaggerSchemaAttribute.exclusiveMaximum.rawValue] as? Bool ?? false
+            let minimum = schema[SwaggerSchemaAttribute.minimum] as? Int
+            let maximum = schema[SwaggerSchemaAttribute.maximum] as? Int
+            let exclusiveMinimum = schema[SwaggerSchemaAttribute.exclusiveMinimum] as? Bool ?? false
+            let exclusiveMaximum = schema[SwaggerSchemaAttribute.exclusiveMaximum] as? Bool ?? false
             
             return faker.number.randomInt(min: (minimum ?? fakeryDataConfigurator.minInt) + (exclusiveMinimum ? 1 : 0),
                                           max: (maximum ?? fakeryDataConfigurator.maxInt) - (exclusiveMaximum ? 0 : 1))
@@ -408,14 +408,19 @@ public final class DataGenerator {
             switch fakeryDataConfigurator.textStyle {
             case .words(let amount):
                 return faker.lorem.words(amount: amount)
+                
             case .characters(let amount):
                 return faker.lorem.characters(amount: amount)
+                
             case .sentence(let wordsAmount):
                 return faker.lorem.sentence(wordsAmount: wordsAmount)
+                
             case .sentences(let amount):
                 return faker.lorem.sentences(amount: amount)
+                
             case .paragraph(let sentencesAmount):
                 return faker.lorem.paragraph(sentencesAmount: sentencesAmount)
+                
             case .paragraphs(let amount):
                 return faker.lorem.paragraphs(amount: amount)
             }
